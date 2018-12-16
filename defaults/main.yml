@@ -1,2 +1,28 @@
 ---
 # defaults file for pvwa
+pvwa_uninstall: false
+pvwa_prerequisites: false
+pvwa_install: false
+pvwa_postinstall: false
+pvwa_hardening: false
+pvwa_registration: false
+pvwa_upgrade: false
+pvwa_clean: false
+pvwa_extract: false
+
+pvwa_exists: false
+pvwa_hardened: false
+pvwa_registered: false
+
+pvwa_base_bin_drive: "C:"
+pvwa_zip_file_path: ""
+pvwa_extract_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\packages"
+pvwa_artifact_name: "pvwa.zip"
+pvwa_component_folder: "Password Vault Web Access"
+pvwa_installationautomation_folder: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}\\InstallationAutomation"
+
+pvwa_installation_drive: "C:"
+pvwa_installation_path: "{{ pvwa_installation_drive }}\\Program Files (x86)\\CyberArk\\Password Vault Web Access"
+pvwa_registrationtool_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\Components Registration"
+pvwa_guid: "{96B118DF-1B76-4CCE-8D51-731326034D51}"
+

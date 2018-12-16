@@ -1,0 +1,45 @@
+---
+# tasks file for pvwa installation
+
+- name: set installation folder on xml config file
+  win_shell: |
+    try
+    {
+        $filePath = "{{ pvwa_installationautomation_folder }}\\Installation\\InstallationConfig.xml"
+        $xml = [xml](Get-Content $filePath)
+        $step = $xml.SelectSingleNode("//Parameter[@Name = 'PVWAInstallDirectory']")
+        $step.Value = "{{ pvwa_installation_path }}"
+        $xml.Save($filePath)
+        exit 0
+    }
+    catch
+    {
+        Write-Output "Error occured during SetAtrributeInXML"
+        exit 1
+    }
+
+- name: run PVWA installation
+  win_shell: |
+    Set-Location "{{ pvwa_installationautomation_folder }}\Installation"
+    #$ErrorActionPreference = "SilentlyContinue"
+    $Action = .\PVWAInstallation.ps1
+    $Action | Out-File -FilePath "{{ pvwa_installationautomation_folder }}\pvwa_installation_result.txt"
+    $Result = Get-Content "{{ pvwa_installationautomation_folder }}\pvwa_installation_result.txt" | ConvertFrom-Json
+    if ($Result.isSucceeded -eq 2) {
+      exit 1
+    } else {
+      exit 0
+    }
+  args:
+    chdir: "{{ pvwa_installationautomation_folder }}\\Installation"
+
+- name: Validate PVWA installation
+  win_lineinfile:
+    path: '{{ pvwa_installationautomation_folder }}\Installation\Script.log'
+    regexp: 'Operation Succeeded'
+    state: present
+    line: 'Operation Succeeded'
+    
+- name: Set PVWA exists variable
+  set_fact:
+    pvwa_exists: true

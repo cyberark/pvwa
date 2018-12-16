@@ -1,2 +1,54 @@
 ---
 # tasks file for pvwa
+
+# Validate Parameters
+- name: validate input parameters
+  include_tasks: pvwa_validateparameters.yml
+
+- name: extract pvwa package
+  include_tasks: pvwa_extract.yml
+  when: 
+    - pvwa_extract 
+  
+- name: running pvwa prerequisities
+  include_tasks: pvwa_prerequisites.yml
+  when: 
+    - pvwa_prerequisites
+
+- name: running pvwa uninstall
+  include_tasks: pvwa_uninstall.yml
+  when: 
+    - pvwa_uninstall
+
+- name: running pvwa install
+  include_tasks: pvwa_install.yml
+  when: 
+    - pvwa_install
+    - not pvwa_exists
+
+- name: running pvwa postinstall
+  include_tasks: pvwa_postinstall.yml
+  when: 
+    - pvwa_postinstall
+    
+- name: running pvwa hardening
+  include_tasks: pvwa_hardening.yml
+  when: 
+    - pvwa_hardening 
+    
+- name: running pvwa registration
+  include_tasks: pvwa_registration.yml
+  when: 
+    - pvwa_registration
+    - pvwa_exists
+    - not pvwa_registered
+
+- name: running pvwa upgrade
+  include_tasks: pvwa_upgrade.yml
+  when: 
+    - pvwa_upgrade
+  
+- name: running pvwa clean
+  include_tasks: pvwa_clean.yml
+  when: 
+    - pvwa_clean

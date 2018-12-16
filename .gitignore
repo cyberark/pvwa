@@ -1,2 +1,3 @@
-# ignore *.retry files
 *.retry
+*/__pycache__
+*.pyc

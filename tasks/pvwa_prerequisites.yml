@@ -1,0 +1,25 @@
+---
+# tasks file for pvwa prerequisities
+
+- name: Run Preinstall Script
+  win_shell: |
+    # Script Name: PVWAPreInstall.ps1
+    # Description: Initiating pre-installation proccess of PVWA. If success, returns OK
+    
+    $ErrorActionPreference = "SilentlyContinue"
+    
+    try {
+        Set-Location "{{ pvwa_installationautomation_folder }}"
+        $Action = .\PVWA_Prerequisites.ps1
+        $Action | Out-File -FilePath "{{ pvwa_installationautomation_folder }}\\pvwa_pre_req_result.txt"
+        $Result = Get-Content "{{ pvwa_installationautomation_folder }}\\pvwa_pre_req_result.txt" | ConvertFrom-Json
+        if ($Result.isSucceeded -eq 2) {
+            exit 1
+        } else {
+            exit 0
+        }
+        exit 0
+    } catch {
+        Write-Output "Error occured: $error"
+        exit 1
+    }

@@ -1,0 +1,34 @@
+---
+# tasks file for pvwa_validateparameters
+
+- name: check if pvwa_zip_file_path is undefined
+  fail: 
+    msg: "pvwa_zip_file_path is undefined, failing..."
+  when: pvwa_zip_file_path is not defined
+
+- name: check if pvwa_zip_file_path exists
+  stat:
+    path="{{ pvwa_zip_file_path }}"
+  register: st
+  delegate_to: localhost
+  
+- fail: 
+    msg: "{{ pvwa_zip_file_path }} not exists, failing..."
+  when: not st.stat.exists
+
+- name: Check if PVWA is already installed (present in appwiz) (64-bit)
+  win_reg_stat:
+    path: HKLM:\\Software\Microsoft\Windows\CurrentVersion\Uninstall
+    name: "{{ pvwa_guid }}"
+  register: pvwa_appwiz_info_64bit
+
+- name: Check if PVWA is already installed (present in appwiz) (32-bit)
+  win_reg_stat:
+    path: HKLM:\\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall
+    name: "{{ pvwa_guid }}"
+  register: pvwa_appwiz_info_32bit
+
+- name: Set fact if pvwa is already installed
+  set_fact:
+    pvwa_registered: true
+  when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists

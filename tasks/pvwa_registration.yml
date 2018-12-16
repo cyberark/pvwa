@@ -1,0 +1,18 @@
+---
+# tasks file for pvwa registration
+
+- name: Execute pvwa registration
+  win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "C:\\inetpub\\wwwroot\\PasswordVault" /configfilespath "{{ pvwa_installation_path }}"'
+  args:
+    chdir: "{{ pvwa_registrationtool_folder }}"
+
+# Validate PVWA registration
+- name: Check that you can connect (GET) to pvwa and it returns a status 200
+  win_uri:
+    url: "https://127.0.0.1/PasswordVault/api/server"
+    validate_certs: no
+  register: pvwa_server_info
+
+- set_fact:
+    pvwa_registered: true
+  when: pvwa_server_info.status_code == 200
