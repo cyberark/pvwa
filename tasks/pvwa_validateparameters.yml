@@ -1,6 +1,11 @@
 ---
 # tasks file for pvwa_validateparameters
 
+- name: check EULA is accepted
+  fail:
+    msg: "You must accept EULA to start the playbook"
+  when: accept_eula|lower != "yes"
+
 - name: check if pvwa_zip_file_path is undefined
   fail: 
     msg: "pvwa_zip_file_path is undefined, failing..."

@@ -47,6 +47,9 @@ A list of vaiables the playbook is using
 | pvwa_auth_type                    | yes          | cyberark;ldap                                                                  | Authentication Type                      |
 | pvwa_iis_app_folder               | yes          | C:\inetpub\wwwroot\Password\Vault                                              | IIS Application Folder                   |
 | pvwa_app_name                     | yes          | PasswordVault                                                                  | Web Application Name                     |
+| vault_username                    | no           | "administrator"                                                                | vault username to perform registration   |
+| vault_password                    | yes          | None                                                                           | vault password to perform registration   |
+| accept_eula                       | yes          | "No"                                                                           | Accepting EULA condition                 |
 
 ## Usage 
 
