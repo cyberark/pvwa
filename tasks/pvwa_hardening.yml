@@ -44,4 +44,4 @@
 - name: Set fact on hardening if correct user running the service
   set_fact:
     pvwa_hardened: true
-  when: service_info is defined and service_info.username == ".\\PVWAReportsUser"
+  when: service_info.exists and service_info.username == ".\\PVWAReportsUser"
