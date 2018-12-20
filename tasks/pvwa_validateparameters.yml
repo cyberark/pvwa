@@ -23,14 +23,14 @@
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
   win_reg_stat:
-    path: HKLM:\\Software\Microsoft\Windows\CurrentVersion\Uninstall
-    name: "{{ pvwa_guid }}"
+    path: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{{ pvwa_guid }}"
+    name: Publisher
   register: pvwa_appwiz_info_64bit
 
 - name: Check if PVWA is already installed (present in appwiz) (32-bit)
   win_reg_stat:
-    path: HKLM:\\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall
-    name: "{{ pvwa_guid }}"
+    path: "HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{{ pvwa_guid }}"
+    name: Publisher
   register: pvwa_appwiz_info_32bit
 
 - name: Set fact if pvwa is already installed
