@@ -13,8 +13,9 @@
       win_uri:
         url: "https://127.0.0.1/PasswordVault/api/server"
         validate_certs: no
+        timeout: 60
       register: pvwa_server_info
-      failed_when: pvwa_server_info.status_code != 200
+      failed_when: pvwa_server_info is not defined or pvwa_server_info.status_code != 200
       
     - set_fact:
         pvwa_registered: true
