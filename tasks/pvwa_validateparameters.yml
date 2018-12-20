@@ -35,5 +35,5 @@
 
 - name: Set fact if pvwa is already installed
   set_fact:
-    pvwa_registered: true
+    pvwa_exists: true
   when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists
