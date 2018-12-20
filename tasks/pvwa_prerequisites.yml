@@ -16,7 +16,7 @@
             $Action = .\PVWA_Prerequisites.ps1
             $Action | Out-File -FilePath "{{ pvwa_prerequisites_log }}"
             $Result = Get-Content "{{ pvwa_prerequisites_log }}" | ConvertFrom-Json
-            if ($Result.isSucceeded -eq 2) {
+            if ($Result.isSucceeded -ne 0) {
                 exit 1
             } else {
                 exit 0
