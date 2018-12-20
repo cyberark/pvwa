@@ -1,19 +1,38 @@
 ---
 # tasks file for pvwa_hardening
 
-- name: run PVWA hardening
-  win_shell: |
-    $ErrorActionPreference = "SilentlyContinue"
-    $Action = .\PVWA_Hardening.ps1
-    $Action | Out-File -FilePath "{{ pvwa_installationautomation_folder }}\pvwa_hardening_result.txt"
-    $Result = Get-Content "{{ pvwa_installationautomation_folder }}\pvwa_hardening_result.txt" | ConvertFrom-Json
-    if ($Result.isSucceeded -eq 2) {
-        exit 1
-    } else {
-        exit 0
-    }
-  args:
-    chdir: "{{ pvwa_installationautomation_folder }}"
+- name: Pre-Installation Block
+  block:
+
+    - name: run PVWA hardening
+      win_shell: |
+        $ErrorActionPreference = "SilentlyContinue"
+        $Action = .\PVWA_Hardening.ps1
+        $Action | Out-File -FilePath "{{ pvwa_hardening_log }}"
+        $Result = Get-Content "{{ pvwa_hardening_log }}" | ConvertFrom-Json
+        if ($Result.isSucceeded -eq 2) {
+            exit 1
+        } else {
+            exit 0
+        }
+      args:
+        chdir: "{{ pvwa_installationautomation_folder }}"
+
+  rescue:
+
+    - name: Get log path for hardening
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_hardening_log }}"
+        Write-Output $Result
+      register: log_result
+
+    - fetch:
+        src: '{{ log_result.stdout | from_json | json_query("logPath") }}'
+        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
+        flat: yes
+
+    - fail:
+        msg: 'ERROR: Hardening failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
 
 # Validate PVWA Hardening
 
