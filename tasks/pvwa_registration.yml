@@ -1,10 +1,29 @@
 ---
 # tasks file for pvwa registration
 
-- name: Execute pvwa registration
-  win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "C:\\inetpub\\wwwroot\\PasswordVault" /configfilespath "{{ pvwa_installation_path }}"'
-  args:
-    chdir: "{{ pvwa_registrationtool_folder }}"
+- name: Registration Block
+  block:
+
+    - name: Execute pvwa registration
+      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "C:\\inetpub\\wwwroot\\PasswordVault" /configfilespath "{{ pvwa_installation_path }}"'
+      args:
+        chdir: "{{ pvwa_registrationtool_folder }}"
+
+  rescue:
+
+    - name: Get log path for registration
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_registration_log }}"
+        Write-Output $Result
+      register: log_result
+
+    - fetch:
+        src: '{{ log_result.stdout | from_json | json_query("logPath") }}'
+        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
+        flat: yes
+
+    - fail:
+        msg: 'ERROR: Registration failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
 
 # Validate PVWA registration
 - name: Check that you can connect (GET) to pvwa and it returns a status 200

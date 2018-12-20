@@ -36,9 +36,15 @@
       args:
         chdir: "{{ pvwa_installationautomation_folder }}\\Installation"
 
+    - name: Get log path for installation
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_install_log }}"
+        Write-Output $Result
+      register: log_result
+
     - name: Validate PVWA installation
       win_lineinfile:
-        path: '{{ pvwa_installationautomation_folder }}\Installation\Script.log'
+        path: '{{ log_result.stdout | from_json | json_query("logPath") }}'
         regexp: 'Operation Succeeded'
         state: present
         line: 'Operation Succeeded'
