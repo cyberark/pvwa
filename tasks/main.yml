@@ -37,6 +37,7 @@
   when: 
     - pvwa_hardening
     - pvwa_exists
+    - not pvwa_hardened
     
 - name: running pvwa registration
   include_tasks: pvwa_registration.yml

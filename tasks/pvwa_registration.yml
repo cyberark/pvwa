@@ -9,6 +9,16 @@
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
 
+    - name: Check that you can connect (GET) to pvwa and it returns a status 200
+      win_uri:
+        url: "https://127.0.0.1/PasswordVault/api/server"
+        validate_certs: no
+      register: pvwa_server_info
+      failed_when: pvwa_server_info.status_code != 200
+      
+    - set_fact:
+        pvwa_registered: true
+
   rescue:
 
     - name: Get log path for registration
@@ -24,14 +34,3 @@
 
     - fail:
         msg: 'ERROR: Registration failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
-
-# Validate PVWA registration
-- name: Check that you can connect (GET) to pvwa and it returns a status 200
-  win_uri:
-    url: "https://127.0.0.1/PasswordVault/api/server"
-    validate_certs: no
-  register: pvwa_server_info
-
-- set_fact:
-    pvwa_registered: true
-  when: pvwa_server_info.status_code == 200

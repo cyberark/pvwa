@@ -37,3 +37,13 @@
   set_fact:
     pvwa_exists: true
   when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists
+
+- name: Get PVWA Service Info
+  win_service:
+    name: CyberArk Scheduled Tasks
+  register: service_info
+
+- name: Set fact on hardening if correct user running the service
+  set_fact:
+    pvwa_hardened: true
+  when: service_info.username == ".\\PVWAReportsUser"
