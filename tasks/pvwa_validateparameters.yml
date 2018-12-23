@@ -1,6 +1,11 @@
 ---
 # tasks file for pvwa_validateparameters
 
+- name: check EULA is accepted
+  fail:
+    msg: "You must accept EULA to start the playbook"
+  when: accept_eula|lower != "yes"
+
 - name: check if pvwa_zip_file_path is undefined
   fail: 
     msg: "pvwa_zip_file_path is undefined, failing..."
@@ -18,17 +23,27 @@
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
   win_reg_stat:
-    path: HKLM:\\Software\Microsoft\Windows\CurrentVersion\Uninstall
-    name: "{{ pvwa_guid }}"
+    path: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{{ pvwa_guid }}"
+    name: Publisher
   register: pvwa_appwiz_info_64bit
 
 - name: Check if PVWA is already installed (present in appwiz) (32-bit)
   win_reg_stat:
-    path: HKLM:\\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall
-    name: "{{ pvwa_guid }}"
+    path: "HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{{ pvwa_guid }}"
+    name: Publisher
   register: pvwa_appwiz_info_32bit
 
 - name: Set fact if pvwa is already installed
   set_fact:
-    pvwa_registered: true
+    pvwa_exists: true
   when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists
+
+- name: Get PVWA Service Info
+  win_service:
+    name: CyberArk Scheduled Tasks
+  register: service_info
+
+- name: Set fact on hardening if correct user running the service
+  set_fact:
+    pvwa_hardened: true
+  when: service_info.exists and service_info.username == ".\\PVWAReportsUser"

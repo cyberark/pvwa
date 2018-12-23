@@ -1,25 +1,78 @@
 ---
 # tasks file for pvwa prerequisities
 
-- name: Run Preinstall Script
-  win_shell: |
-    # Script Name: PVWAPreInstall.ps1
-    # Description: Initiating pre-installation proccess of PVWA. If success, returns OK
-    
-    $ErrorActionPreference = "SilentlyContinue"
-    
-    try {
-        Set-Location "{{ pvwa_installationautomation_folder }}"
-        $Action = .\PVWA_Prerequisites.ps1
-        $Action | Out-File -FilePath "{{ pvwa_installationautomation_folder }}\\pvwa_pre_req_result.txt"
-        $Result = Get-Content "{{ pvwa_installationautomation_folder }}\\pvwa_pre_req_result.txt" | ConvertFrom-Json
-        if ($Result.isSucceeded -eq 2) {
-            exit 1
-        } else {
+- name: Check if Redistributables is already installed (present in appwiz) (64-bit)
+  win_reg_stat:
+    path: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{050d4fc8-5d48-4b8f-8972-47c82c46020f}"
+  register: vcredist_x64_appwiz_info_64bit
+
+- name: Check if Redistributables is already installed (present in appwiz) (32-bit)
+  win_reg_stat:
+    path: "HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f65db027-aff3-4070-886a-0d87064aabb1}"
+  register: vcredist_x64_appwiz_info_32bit
+
+- name: Copy Redistributables for v10.6 x64
+  win_copy:
+    src: ../files/vcredist_x64.exe
+    dest: C:\Windows\Temp\vcredist_x64.exe
+  when: not vcredist_x64_appwiz_info_64bit.exists
+   
+- name: Copy Redistributables for v10.6 x86
+  win_copy:
+    src: ../files/vcredist_x86.exe
+    dest: C:\Windows\Temp\vcredist_x86.exe
+  when: not vcredist_x64_appwiz_info_32bit.exists
+  
+- name: Install Redistributables for v10.6
+  win_command: vcredist_x64.exe /install /passive /norestart
+  args:
+    chdir: C:\Windows\Temp
+  when: not vcredist_x64_appwiz_info_64bit.exists
+  
+- name: Install Redistributables for v10.6
+  win_command: vcredist_x86.exe /install /passive /norestart
+  args:
+    chdir: C:\Windows\Temp
+  when: not vcredist_x64_appwiz_info_32bit.exists
+
+- name: Pre-Installation Block
+  block:
+  
+    - name: Run Preinstall Script
+      win_shell: |
+        # Script Name: PVWAPreInstall.ps1
+        # Description: Initiating pre-installation proccess of PVWA. If success, returns OK
+        
+        $ErrorActionPreference = "SilentlyContinue"
+        
+        try {
+            Set-Location "{{ pvwa_installationautomation_folder }}"
+            $Action = .\PVWA_Prerequisites.ps1
+            $Action | Out-File -FilePath "{{ pvwa_prerequisites_log }}"
+            $Result = Get-Content "{{ pvwa_prerequisites_log }}" | ConvertFrom-Json
+            if ($Result.isSucceeded -ne 0) {
+                exit 1
+            } else {
+                exit 0
+            }
             exit 0
+        } catch {
+            Write-Output "Error occured: $error"
+            exit 1
         }
-        exit 0
-    } catch {
-        Write-Output "Error occured: $error"
-        exit 1
-    }
+
+  rescue:
+
+    - name: Get log path for preinstall
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_prerequisites_log }}"
+        Write-Output $Result
+      register: log_result
+
+    - fetch:
+        src: '{{ log_result.stdout | from_json | json_query("logPath") }}'
+        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
+        flat: yes
+
+    - fail:
+        msg: 'ERROR: Preinstallation failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'

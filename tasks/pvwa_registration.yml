@@ -1,18 +1,37 @@
 ---
 # tasks file for pvwa registration
 
-- name: Execute pvwa registration
-  win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "C:\\inetpub\\wwwroot\\PasswordVault" /configfilespath "{{ pvwa_installation_path }}"'
-  args:
-    chdir: "{{ pvwa_registrationtool_folder }}"
+- name: Registration Block
+  block:
 
-# Validate PVWA registration
-- name: Check that you can connect (GET) to pvwa and it returns a status 200
-  win_uri:
-    url: "https://127.0.0.1/PasswordVault/api/server"
-    validate_certs: no
-  register: pvwa_server_info
+    - name: Execute pvwa registration
+      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "C:\\inetpub\\wwwroot\\PasswordVault" /configfilespath "{{ pvwa_installation_path }}"'
+      args:
+        chdir: "{{ pvwa_registrationtool_folder }}"
 
-- set_fact:
-    pvwa_registered: true
-  when: pvwa_server_info.status_code == 200
+    - name: Check that you can connect (GET) to pvwa and it returns a status 200
+      win_uri:
+        url: "https://127.0.0.1/PasswordVault/api/server"
+        validate_certs: no
+        timeout: 60
+      register: pvwa_server_info
+      failed_when: pvwa_server_info is not defined or pvwa_server_info.status_code != 200
+      
+    - set_fact:
+        pvwa_registered: true
+
+  rescue:
+
+    - name: Get log path for registration
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_registration_log }}"
+        Write-Output $Result
+      register: log_result
+
+    - fetch:
+        src: '{{ pvwa_registration_log }}'
+        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
+        flat: yes
+
+    - fail:
+        msg: 'ERROR: Registration failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'

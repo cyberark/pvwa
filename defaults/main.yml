@@ -26,3 +26,12 @@ pvwa_installation_path: "{{ pvwa_installation_drive }}\\Program Files (x86)\\Cyb
 pvwa_registrationtool_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\Components Registration"
 pvwa_guid: "{96B118DF-1B76-4CCE-8D51-731326034D51}"
 
+pvwa_prerequisites_log: "{{ pvwa_installationautomation_folder }}\\pvwa_pre_req_result.txt"
+pvwa_install_log: "{{ pvwa_installationautomation_folder }}\\pvwa_installation_result.txt"
+pvwa_hardening_log: "{{ pvwa_installationautomation_folder }}\\pvwa_hardening_result.txt"
+pvwa_registration_log: "{{ pvwa_registrationtool_folder }}\\Log\\RegisterComponent.log"
+
+accept_eula: "No"
+
+vault_username: "administrator"
+vault_port: 1858
