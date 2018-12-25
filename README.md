@@ -13,10 +13,10 @@ Requirements
 
 ## Role Variables
 
-A list of vaiables the playbook is using 
+A list of vaiables the playbook is using
 
 **Flow Variables**
-                    
+
 | Variable                          | Required     | Default                                                                        | Comments                                 |
 |-----------------------------------|--------------|--------------------------------------------------------------------------------|------------------------------------------|
 | pvwa_prerequisites                | no           | false                                                                          | Install PVWA pre requisites              |
@@ -49,91 +49,7 @@ A list of vaiables the playbook is using
 | pvwa_app_name                     | yes          | PasswordVault                                                                  | Web Application Name                     |
 | accept_eula                       | yes          | "No"                                                                           | Accepting EULA condition                 |
 
-## Usage 
-
-**pvwa_install**
-
-This task will deploy the PVWA to required folder and validate deployment succeed.
-
-**pvwa_hardening**
-
-This task will run the PVWA hardening process
-
-**pvwa_registration**
-
-This task perform registration with active Vault
-
-**pvwa_validateparameters**
-
-| pvwa_prerequisites                | no           | false                                                                          | Install PVWA pre requisites               |
-| pvwa_install                      | no           | false                                                                          | Install PVWA                              |
-| pvwa_postinstall                  | no           | false                                                                          | PVWA port install role                    |
-| pvwa_hardening                    | no           | false                                                                          | PVWA hardening role                       |
-| pvwa_registration                 | no           | false                                                                          | PVWA Register with Vault                  |
-| pvwa_upgrade                      | no           | false                                                                          | N/A                                       |
-| pvwa_clean                        | no           | false                                                                          | Clean server after deployment             |
-| pvwa_uninstall                    | no           | false                                                                          | N/A                                       |
-
-**Installation Variables**
-
-| Variable                         | Required     | Default                                                                        | Comments                                   |
-|----------------------------------|--------------|--------------------------------------------------------------------------------|--------------------------------------------|
-| pvwa_base_bin_drive              | no           | "C:"                                                                           | Base path to extract CyberArk packages     |
-| pvwa_zip_file_path               | no           | "C:\\Cyberark\\packages"                                                       | Zip File path of CyberArk packages         |
-| pvwa_extract_folder              | no           | "{{pvwa_base_bin_drive}}\\Cyberark\\packages"                                  | Path to extract the CyberArk packages      |
-| pvwa_artifact_name               | no           | "pvwa.zip"                                                                     | zip file name of pvwa package              |
-| pvwa_component_folder            | no           | "Central Policy Manager"                                                       | The name of PVWA unzip folder              |
-| pvwa_installation_drive          | no           | "C:"                                                                           | Base drive to install PVWA                 |
-| vault_ip                         | yes          | None                                                                           | Vault ip to perform registration           |
-| dr_vault_ip                      | no           | None                                                                           | vault dr ip to perform registration        |
-| vault_port                       | no           | 1858                                                                           | vault port                                 |
-| vault_username                   | no           | "administrator"                                                                | vault username to perform registration     |
-| vault_password                   | yes          | None                                                                           | vault password to perform registration     |
-| pvwa_url                         | yes          | None                                                                           |  URL of registered PVWA                    |
-
-
-## Usage 
-
-**pvwa_install**
-
-This task will deploy the PVWA to required folder and validate deployment succeed.
-
-**pvwa_hardening**
-
-This task will run the PVWA hardening process
-
-**pvwa_registration**
-
-This task perform registration with active Vault
-
-**pvwa_validateparameters**
-
-This task validate which PVWA steps already occurred on the server so the other tasks won't run again
-
-**pvwa_clean**
-
-| pvwa_clean                        | no           | false                                                                          | Clean server after deployment             |
-| pvwa_uninstall                    | no           | false                                                                          | N/A                                       |
-
-**Installation Variables**
-
-| Variable                         | Required     | Default                                                                        | Comments                                   |
-|----------------------------------|--------------|--------------------------------------------------------------------------------|--------------------------------------------|
-| pvwa_base_bin_drive              | no           | "C:"                                                                           | Base path to extract CyberArk packages     |
-| pvwa_zip_file_path               | no           | "C:\\Cyberark\\packages"                                                       | Zip File path of CyberArk packages         |
-| pvwa_extract_folder              | no           | "{{pvwa_base_bin_drive}}\\Cyberark\\packages"                                  | Path to extract the CyberArk packages      |
-| pvwa_artifact_name               | no           | "pvwa.zip"                                                                     | zip file name of pvwa package              |
-| pvwa_component_folder            | no           | "Password Vault Web Access"                                                    | The name of PVWA unzip folder              |
-| pvwa_installation_drive          | no           | "C:"                                                                           | Base drive to install PVWA                 |
-| vault_ip                         | yes          | None                                                                           | Vault ip to perform registration           |
-| dr_vault_ip                      | no           | None                                                                           | vault dr ip to perform registration        |
-| vault_port                       | no           | 1858                                                                           | vault port                                 |
-| vault_username                   | no           | "administrator"                                                                | vault username to perform registration     |
-| vault_password                   | yes          | None                                                                           | vault password to perform registration     |
-| pvwa_url                         | yes          | None                                                                           |  URL of registered PVWA                    |
-
-
-## Usage 
+## Usage
 
 **pvwa_install**
 
@@ -179,4 +95,4 @@ To run the above playbook:
 
 ## License
 
-Apache 2  **TBD**
+Apache 2
