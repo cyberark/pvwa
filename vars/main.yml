@@ -1,2 +1,4 @@
 ---
-# vars file for .
+# vars file for pvwa
+
+pvwa_sha1_checksum: "802ca4cc7e759932da385c932d30dedecdf39706"
