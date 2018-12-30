@@ -9,6 +9,7 @@ This Playbook will install the [CyberArk PVWA](https://www.cyberark.com/products
 - Administrator credentials for access to the remote host (either Local or Domain)
 - Network connectivity to the CyberArk vault and the repository server
 - PVWA package version 10.6 and above, including the location of the CD images
+- pywinrm is installed on the workstation running the playbook
 
 ## Role Variables
 
@@ -45,7 +46,7 @@ These are the variables used in this playbook:
 | pvwa_base_bin_drive               | no           | **C:**                                          | Base path to extract CyberArk packages
 | pvwa_extract_folder               | no           | **{{pvwa_base_bin_drive}}\\Cyberark\\packages** | Path to extract the CyberArk packages
 | pvwa_artifact_name                | no           | **pvwa.zip**                                    | Zip file name of the PVWA package
-| pvwa_component_folder             | no           | **Central Policy Manager**                      | The name of PVWA unzip folder
+| pvwa_component_folder             | no           | **Password Vault Web Access**                      | The name of PVWA unzip folder
 | pvwa_installation_drive           | no           | **C:**                                          | Base drive to install PVWA
 
 ## Dependencies
