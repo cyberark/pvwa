@@ -1,5 +1,4 @@
 # PVWA Ansible Role
-
 This Playbook will install the [CyberArk PVWA](https://www.cyberark.com/products/privileged-account-security-solution/core-privileged-account-security/) software on a Windows 2016 server / VM / instance.
 
 ## Requirements
@@ -9,44 +8,42 @@ This Playbook will install the [CyberArk PVWA](https://www.cyberark.com/products
 - Administrator credentials for access to the remote host (either Local or Domain)
 - Network connectivity to the CyberArk vault and the repository server
 - PVWA package version 10.6 and above, including the location of the CD images
+- pywinrm is installed on the workstation running the playbook
 
 ## Role Variables
-
 These are the variables used in this playbook:
 
 ### Flow Variables
-
-| Variable                          | Required     | Default                                         | Comments
-|:----------------------------------|:-------------|:------------------------------------------------|:---------
-| pvwa_prerequisites                | no           | false                                           | Install PVWA pre-requisites
-| pvwa_install                      | no           | false                                           | Install PVWA
-| pvwa_postinstall                  | no           | false                                           | PVWA port install role
-| pvwa_hardening                    | no           | false                                           | PVWA hardening role
-| pvwa_registration                 | no           | false                                           | PVWA Register with Vault
-| pvwa_upgrade                      | no           | false                                           | N/A
-| pvwa_clean                        | no           | false                                           | Clean server after deployment
-| pvwa_uninstall                    | no           | false                                           | N/A
+Variable                          | Required     | Default                                         | Comments
+:----------------------------------|:-------------|:------------------------------------------------|:---------
+pvwa_prerequisites                | no           | false                                           | Install PVWA pre-requisites
+pvwa_install                      | no           | false                                           | Install PVWA
+pvwa_postinstall                  | no           | false                                           | PVWA port install role
+pvwa_hardening                    | no           | false                                           | PVWA hardening role
+pvwa_registration                 | no           | false                                           | PVWA Register with Vault
+pvwa_upgrade                      | no           | false                                           | N/A
+pvwa_clean                        | no           | false                                           | Clean server after deployment
+pvwa_uninstall                    | no           | false                                           | N/A
 
 ### Deployment Variables
-
-| Variable                          | Required     | Default                                         | Comments
-|:----------------------------------|:-------------|:------------------------------------------------|:---------
-| vault_ip                          | yes          | None                                            | Vault IP address to perform registration
-| vault_password                    | yes          | None                                            | Vault password to perform registration
-| pvwa_url                          | yes          | None                                            | URL of registered PVWA
-| accept_eula                       | yes          | **No**                                          | Accepting EULA condition
-| pvwa_zip_file_path                | yes          | None                                            | Zip File path of CyberArk packages
-| pvwa_auth_type                    | yes          | **cyberark;ldap**                               | Authentication Type
-| pvwa_iis_app_folder               | yes          | **C:\inetpub\wwwroot\Password\Vault**           | IIS Application Folder
-| pvwa_app_name                     | yes          | **PasswordVault**                               | Web Application Name
-| vault_username                    | no           | **administrator**                               | Vault username to perform registration
-| vault_port                        | no           | **1858**                                        | Vault port
-| dr_vault_ip                       | no           | None                                            | Vault DR IP address to perform registration
-| pvwa_base_bin_drive               | no           | **C:**                                          | Base path to extract CyberArk packages
-| pvwa_extract_folder               | no           | **{{pvwa_base_bin_drive}}\\Cyberark\\packages** | Path to extract the CyberArk packages
-| pvwa_artifact_name                | no           | **pvwa.zip**                                    | Zip file name of the PVWA package
-| pvwa_component_folder             | no           | **Central Policy Manager**                      | The name of PVWA unzip folder
-| pvwa_installation_drive           | no           | **C:**                                          | Base drive to install PVWA
+Variable                          | Required     | Default                                         | Comments
+:----------------------------------|:-------------|:------------------------------------------------|:---------
+vault_ip                          | yes          | None                                            | Vault IP address to perform registration
+vault_password                    | yes          | None                                            | Vault password to perform registration
+pvwa_url                          | yes          | None                                            | URL of registered PVWA
+accept_eula                       | yes          | **No**                                          | Accepting EULA condition
+pvwa_zip_file_path                | yes          | None                                            | Zip File path of CyberArk packages
+pvwa_auth_type                    | yes          | **cyberark;ldap**                               | Authentication Type
+pvwa_iis_app_folder               | yes          | **C:\inetpub\wwwroot\Password\Vault**           | IIS Application Folder
+pvwa_app_name                     | yes          | **PasswordVault**                               | Web Application Name
+vault_username                    | no           | **administrator**                               | Vault username to perform registration
+vault_port                        | no           | **1858**                                        | Vault port
+dr_vault_ip                       | no           | None                                            | Vault DR IP address to perform registration
+pvwa_base_bin_drive               | no           | **C:**                                          | Base path to extract CyberArk packages
+pvwa_extract_folder               | no           | **{{pvwa_base_bin_drive}}\\Cyberark\\packages** | Path to extract the CyberArk packages
+pvwa_artifact_name                | no           | **pvwa.zip**                                    | Zip file name of the PVWA package
+pvwa_component_folder             | no           | **Password Vault Web Access**                      | The name of PVWA unzip folder
+pvwa_installation_drive           | no           | **C:**                                          | Base drive to install PVWA
 
 ## Dependencies
 None
@@ -77,7 +74,6 @@ This task will clean the configuration (inf) files from the installation, delete
 PVWA installation logs from the Temp folder and delete the cred files.
 
 ## Example Playbook
-
 Below is an example of how you can incorporate this role into an Ansible playbook
 to call the PVWA role with several parameters:
 
@@ -92,10 +88,8 @@ to call the PVWA role with several parameters:
 ```
 
 ## Running the  playbook:
-
 For an example of how to incorporate this role into a complete playbook, please see the
 **[pas-orchestrator](https://github.com/cyberark/pas-orchestrator)** example.
 
 ## License
-
 [Apache 2](LICENSE)
