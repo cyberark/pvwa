@@ -7,7 +7,7 @@
   when: accept_eula|lower != "yes"
 
 - name: check if pvwa_zip_file_path is undefined
-  fail: 
+  fail:
     msg: "pvwa_zip_file_path is undefined, failing..."
   when: pvwa_zip_file_path is not defined
 
@@ -16,8 +16,13 @@
     path="{{ pvwa_zip_file_path }}"
   register: st
   delegate_to: localhost
-  
-- fail: 
+
+- name: check if package is valid using checksum
+  fail:
+    msg: "Checksum does not match, please validate your package."
+  when: st.stat.checksum != "{{ pvwa_sha1_checksum }}"
+
+- fail:
     msg: "{{ pvwa_zip_file_path }} not exists, failing..."
   when: not st.stat.exists
 
