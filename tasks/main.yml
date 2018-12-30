@@ -6,9 +6,9 @@
 
 - name: extract pvwa package
   include_tasks: pvwa_extract.yml
-  when: 
-    - pvwa_extract 
-  
+  when:
+    - pvwa_extract
+
 - name: running pvwa prerequisities
   include_tasks: pvwa_prerequisites.yml
   when:
@@ -22,36 +22,36 @@
 
 - name: running pvwa install
   include_tasks: pvwa_install.yml
-  when: 
+  when:
     - pvwa_install
     - not pvwa_exists
 
 - name: running pvwa postinstall
   include_tasks: pvwa_postinstall.yml
-  when: 
+  when:
     - pvwa_postinstall
     - pvwa_exists
-    
+
 - name: running pvwa hardening
   include_tasks: pvwa_hardening.yml
-  when: 
+  when:
     - pvwa_hardening
     - pvwa_exists
     - not pvwa_hardened
-    
+
 - name: running pvwa registration
   include_tasks: pvwa_registration.yml
-  when: 
+  when:
     - pvwa_registration
     - pvwa_exists
     - not pvwa_registered
 
 - name: running pvwa upgrade
   include_tasks: pvwa_upgrade.yml
-  when: 
+  when:
     - pvwa_upgrade
-  
+
 - name: running pvwa clean
   include_tasks: pvwa_clean.yml
-  when: 
+  when:
     - pvwa_clean

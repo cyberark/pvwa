@@ -31,7 +31,7 @@ pvwa_install_log: "{{ pvwa_installationautomation_folder }}\\pvwa_installation_r
 pvwa_hardening_log: "{{ pvwa_installationautomation_folder }}\\pvwa_hardening_result.txt"
 pvwa_registration_log: "{{ pvwa_registrationtool_folder }}\\Log\\RegisterComponent.log"
 
-accept_eula: "No"
+eula: "Decline"
 
 vault_username: "administrator"
 vault_port: 1858
