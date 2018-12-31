@@ -31,7 +31,7 @@ Variable                          | Required     | Default                      
 vault_ip                          | yes          | None                                            | Vault IP address to perform registration
 vault_password                    | yes          | None                                            | Vault password to perform registration
 pvwa_url                          | yes          | None                                            | URL of registered PVWA
-eula                              | yes          | **Decline**                                     | Accepting EULA condition (Accept/Decline)
+accept_eula                       | yes          | **No**                                          | Accepting EULA condition (Yes/No)
 pvwa_zip_file_path                | yes          | None                                            | Zip File path of CyberArk packages
 pvwa_auth_type                    | yes          | **cyberark;ldap**                               | Authentication Type
 pvwa_iis_app_folder               | yes          | **C:\inetpub\wwwroot\Password\Vault**           | IIS Application Folder
