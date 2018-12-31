@@ -3,7 +3,7 @@
 
 # TODO Extract and get exact paths
 
-- name: Create folder 
+- name: Create folder
   win_file:
     path: "{{ pvwa_extract_folder }}"
     state: directory
@@ -12,12 +12,12 @@
   win_copy:
     src: "{{ pvwa_zip_file_path }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
-    
+
 - name: Unzip the pvwa package
   win_unzip:
     src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
     dest: "{{ pvwa_extract_folder }}"
-    
+
 - name: Copy registration tool
   win_copy:
     src: "{{ pvwa_installationautomation_folder }}\\Registration\\RegistrationTool\\"

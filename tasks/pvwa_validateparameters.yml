@@ -4,7 +4,7 @@
 - name: check EULA is accepted
   fail:
     msg: "You must accept EULA to start the playbook"
-  when: accept_eula|lower != "yes"
+  when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
 - name: check if pvwa_zip_file_path is undefined
   fail:

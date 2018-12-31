@@ -16,19 +16,19 @@
     src: ../files/vcredist_x64.exe
     dest: C:\Windows\Temp\vcredist_x64.exe
   when: not vcredist_x64_appwiz_info_64bit.exists
-   
+
 - name: Copy Redistributables for v10.6 x86
   win_copy:
     src: ../files/vcredist_x86.exe
     dest: C:\Windows\Temp\vcredist_x86.exe
   when: not vcredist_x64_appwiz_info_32bit.exists
-  
+
 - name: Install Redistributables for v10.6
   win_command: vcredist_x64.exe /install /passive /norestart
   args:
     chdir: C:\Windows\Temp
   when: not vcredist_x64_appwiz_info_64bit.exists
-  
+
 - name: Install Redistributables for v10.6
   win_command: vcredist_x86.exe /install /passive /norestart
   args:
@@ -37,14 +37,14 @@
 
 - name: Pre-Installation Block
   block:
-  
+
     - name: Run Preinstall Script
       win_shell: |
         # Script Name: PVWAPreInstall.ps1
         # Description: Initiating pre-installation proccess of PVWA. If success, returns OK
-        
+
         $ErrorActionPreference = "SilentlyContinue"
-        
+
         try {
             Set-Location "{{ pvwa_installationautomation_folder }}"
             $Action = .\PVWA_Prerequisites.ps1
