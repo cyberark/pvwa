@@ -1,0 +1,3288 @@
+all:
+  children:
+    ami_013056bcdc900f18a:
+      hosts:
+        3.16.173.0:
+          ansible_host: 3.16.173.0
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            xvda: vol-0e72f4248050fc8e6
+          ec2_client_token: aws-c-Insta-1V7B489JHECDG
+          ec2_dns_name: ''
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0d6bbb992fa60311b
+          ec2_image_id: ami-013056bcdc900f18a
+          ec2_instance_type: m4.large
+          ec2_ip_address: 3.16.173.0
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: ''
+          ec2_launch_time: '2018-12-31T06:54:14.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-2a
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-192-168-200-29.us-east-2.compute.internal
+          ec2_private_ip_address: 192.168.200.29
+          ec2_public_dns_name: ''
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-2
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/xvda
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-05c388bb8c1d8696e
+          ec2_security_group_names: aws-cloud9-yogev-Cloud9-07a82548914f4eb5b69482acf2af5769-InstanceSecurityGroup-1J3VOMWNZNCHK
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-031014f10e358dba6
+          ec2_tag_Name: '[Yogev] Cloud9'
+          ec2_tag_Role: retain
+          ec2_tag_aws_cloud9_environment: 07a82548914f4eb5b69482acf2af5769
+          ec2_tag_aws_cloud9_owner: AIDAJZHD6BHHEQCQFGQN2
+          ec2_tag_aws_cloudformation_logical_id: Instance
+          ec2_tag_aws_cloudformation_stack_id: arn:aws:cloudformation:us-east-2:138339392836:stack/aws-cloud9-yogev-Cloud9-07a82548914f4eb5b69482acf2af5769/619ac9c0-a6ac-11e8-8e9a-06e23ed25c28
+          ec2_tag_aws_cloudformation_stack_name: aws-cloud9-yogev-Cloud9-07a82548914f4eb5b69482acf2af5769
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-00fff1273ed96df40
+    ami_01dbaf1c50a36891d:
+      hosts:
+        34.245.105.204:
+          ansible_host: 34.245.105.204
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0c6aba1c1ec17b893
+          ec2_client_token: ''
+          ec2_dns_name: ''
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0694881e6fbf145c6
+          ec2_image_id: ami-01dbaf1c50a36891d
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.xlarge
+          ec2_ip_address: 34.245.105.204
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: Hackathon-KP
+          ec2_launch_time: '2018-11-15T19:12:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1b
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-40-10-0-14.eu-west-1.compute.internal
+          ec2_private_ip_address: 40.10.0.14
+          ec2_public_dns_name: ''
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-0a471381b7cc8519d
+          ec2_security_group_names: Web-SG
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_subnet_id: subnet-0bebfe8532e5e7eef
+          ec2_tag_Name: '[Avishay] Windows Webserver'
+          ec2_tag_Role: retain
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-00d3319a06d4a1dc6
+    ami_027a1145f8fb3078f:
+      hosts:
+        34.248.22.210:
+          ansible_host: 34.248.22.210
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0ff97fd51075d5d04
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-248-22-210.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0c02adfc06aee5540
+          ec2_image_id: ami-027a1145f8fb3078f
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.micro
+          ec2_ip_address: 34.248.22.210
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: Jenkins-KP
+          ec2_launch_time: '2018-11-19T07:49:22.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-204.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.204
+          ec2_public_dns_name: ec2-34-248-22-210.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: EPV-HAIM-CASE
+          ec2_tag_Requester: Haim Cohen EPV
+          ec2_tag_Role: retain
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+    ami_041114ddee4a98333:
+      hosts:
+        3.83.235.19:
+          ansible_host: 3.83.235.19
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0970dc6d48e10bfb3
+          ec2_client_token: ''
+          ec2_dns_name: ec2-3-83-235-19.compute-1.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0c9657015aedbfc1f
+          ec2_image_id: ami-041114ddee4a98333
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.micro
+          ec2_ip_address: 3.83.235.19
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: kitchen-defaultwindows2016-ec2user-ip1020105-2018-12-31T10:37:58Z-9ek92lt3
+          ec2_launch_time: '2018-12-31T10:37:59.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-1b
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-172-31-86-176.ec2.internal
+          ec2_private_ip_address: 172.31.86.176
+          ec2_public_dns_name: ec2-3-83-235-19.compute-1.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-00be5b94a6cc9eeac
+          ec2_security_group_names: kitchen-mr80iwp6
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-08ca898e6fdf0335d
+          ec2_tag_created_by: test-kitchen
+          ec2_tag_kitchen_type: windows
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-0d4750ce2edc9a1f6
+        52.87.238.242:
+          ansible_host: 52.87.238.242
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0b7cdbf397a0f3e78
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-87-238-242.compute-1.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-078d0b9db584d8fab
+          ec2_image_id: ami-041114ddee4a98333
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.micro
+          ec2_ip_address: 52.87.238.242
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: kitchen-defaultwindows2016-ec2user-ip19216820029-2018-12-31T10:40:28Z-l4tjwqjr
+          ec2_launch_time: '2018-12-31T10:40:30.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-1b
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-172-31-90-45.ec2.internal
+          ec2_private_ip_address: 172.31.90.45
+          ec2_public_dns_name: ec2-52-87-238-242.compute-1.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-0de59572439bae636
+          ec2_security_group_names: kitchen-cibxqglz
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-08ca898e6fdf0335d
+          ec2_tag_created_by: test-kitchen
+          ec2_tag_kitchen_type: windows
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-0d4750ce2edc9a1f6
+        54.163.15.214:
+          ansible_host: 54.163.15.214
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0507e1352a898a477
+          ec2_client_token: ''
+          ec2_dns_name: ec2-54-163-15-214.compute-1.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0168b55253ca85260
+          ec2_image_id: ami-041114ddee4a98333
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.micro
+          ec2_ip_address: 54.163.15.214
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: kitchen-defaultwindows2016-ec2user-ip102057-2018-12-31T10:40:53Z-x9py2dlc
+          ec2_launch_time: '2018-12-31T10:40:54.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-1b
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-172-31-87-189.ec2.internal
+          ec2_private_ip_address: 172.31.87.189
+          ec2_public_dns_name: ec2-54-163-15-214.compute-1.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-0a7049bfa81337be5
+          ec2_security_group_names: kitchen-rofri9ag
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-08ca898e6fdf0335d
+          ec2_tag_created_by: test-kitchen
+          ec2_tag_kitchen_type: windows
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-0d4750ce2edc9a1f6
+    ami_04302bfce851831bb:
+      hosts:
+        54.158.105.77:
+          ansible_host: 54.158.105.77
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            xvda: vol-05f10bfb871089b42
+          ec2_client_token: aws-c-Insta-KTLNM3B65ZVT
+          ec2_dns_name: ec2-54-158-105-77.compute-1.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-00b32e96c8ade749a
+          ec2_image_id: ami-04302bfce851831bb
+          ec2_instance_type: m4.large
+          ec2_ip_address: 54.158.105.77
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: ''
+          ec2_launch_time: '2018-12-30T18:01:12.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-1c
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-30-10-0-216.ec2.internal
+          ec2_private_ip_address: 30.10.0.216
+          ec2_public_dns_name: ec2-54-158-105-77.compute-1.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/xvda
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-0a66ad1cab3e076b9
+          ec2_security_group_names: aws-cloud9-Avishay-Cloud9-d2b70bb8c0df49c2b486005187e1472c-InstanceSecurityGroup-1XGARVZXCT0JS
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-ef3dc6a5
+          ec2_tag_Name: aws-cloud9-Avishay-Cloud9-d2b70bb8c0df49c2b486005187e1472c
+          ec2_tag_aws_cloud9_environment: d2b70bb8c0df49c2b486005187e1472c
+          ec2_tag_aws_cloud9_owner: AIDAJ35MO4NQFLVKHNPS4
+          ec2_tag_aws_cloudformation_logical_id: Instance
+          ec2_tag_aws_cloudformation_stack_id: arn:aws:cloudformation:us-east-1:138339392836:stack/aws-cloud9-Avishay-Cloud9-d2b70bb8c0df49c2b486005187e1472c/bece8050-f6e8-11e8-9f25-0ad4d2e93658
+          ec2_tag_aws_cloudformation_stack_name: aws-cloud9-Avishay-Cloud9-d2b70bb8c0df49c2b486005187e1472c
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-392bab42
+    ami_0438f4489899d45bb:
+      hosts:
+        18.144.64.168:
+          ansible_host: 18.144.64.168
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0c54517e106e51719
+          ec2_client_token: ''
+          ec2_dns_name: ec2-18-144-64-168.us-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: true
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0b11742983c73b65f
+          ec2_image_id: ami-0438f4489899d45bb
+          ec2_instance_profile: ''
+          ec2_instance_type: m4.2xlarge
+          ec2_ip_address: 18.144.64.168
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: N_Cali_PTA_KP
+          ec2_launch_time: '2018-12-26T10:53:30.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-west-1c
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-20-0-0-146.us-west-1.compute.internal
+          ec2_private_ip_address: 20.0.0.146
+          ec2_public_dns_name: ec2-18-144-64-168.us-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-0e4d867a7383aa64e
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-05e984a6eaab0f874
+          ec2_tag_Name: transit-2
+          ec2_tag_Role: retain
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-0a6549f084e920c0f
+    ami_048331c706267a4b3:
+      hosts:
+        34.249.251.117:
+          ansible_host: 34.249.251.117
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            xvda: vol-0945a1d12abf30b21
+          ec2_client_token: aws-c-Insta-CUCDO43BP7WS
+          ec2_dns_name: ec2-34-249-251-117.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-00a6ba9cc0c27ce2f
+          ec2_image_id: ami-048331c706267a4b3
+          ec2_instance_type: m4.large
+          ec2_ip_address: 34.249.251.117
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: ''
+          ec2_launch_time: '2018-12-31T07:17:33.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-57.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.57
+          ec2_public_dns_name: ec2-34-249-251-117.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/xvda
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-0407ab78
+          ec2_security_group_names: aws-cloud9-Nimrod-Cloud9-25e5350a1eb341fdb88c2933e3c9f23e-InstanceSecurityGroup-1F11YIK8M6FNS
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: aws-cloud9-Nimrod-Cloud9-25e5350a1eb341fdb88c2933e3c9f23e
+          ec2_tag_Role: auto
+          ec2_tag_aws_cloud9_environment: 25e5350a1eb341fdb88c2933e3c9f23e
+          ec2_tag_aws_cloud9_owner: AIDAJQPWXN7JKSHNH6OKE
+          ec2_tag_aws_cloudformation_logical_id: Instance
+          ec2_tag_aws_cloudformation_stack_id: arn:aws:cloudformation:eu-west-1:138339392836:stack/aws-cloud9-Nimrod-Cloud9-25e5350a1eb341fdb88c2933e3c9f23e/c5cee130-8b34-11e8-b15c-500c41f5908d
+          ec2_tag_aws_cloudformation_stack_name: aws-cloud9-Nimrod-Cloud9-25e5350a1eb341fdb88c2933e3c9f23e
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        63.32.206.231:
+          ansible_host: 63.32.206.231
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            xvda: vol-05ccdc89bef304caa
+          ec2_client_token: aws-c-Insta-9YYSSOBJYJ7H
+          ec2_dns_name: ec2-63-32-206-231.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0da7a904e2e371aec
+          ec2_image_id: ami-048331c706267a4b3
+          ec2_instance_type: m4.large
+          ec2_ip_address: 63.32.206.231
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: ''
+          ec2_launch_time: '2018-12-31T10:13:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-105.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.105
+          ec2_public_dns_name: ec2-63-32-206-231.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/xvda
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-ffd67983
+          ec2_security_group_names: aws-cloud9-ZivL-3d66b596ee284c5590beae6fe914b99a-InstanceSecurityGroup-126DTQU0WVYK2
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: aws-cloud9-ZivL-3d66b596ee284c5590beae6fe914b99a
+          ec2_tag_Role: retain
+          ec2_tag_aws_cloud9_environment: 3d66b596ee284c5590beae6fe914b99a
+          ec2_tag_aws_cloud9_owner: AIDAJCIP6XQT2LVFUFBG4
+          ec2_tag_aws_cloudformation_logical_id: Instance
+          ec2_tag_aws_cloudformation_stack_id: arn:aws:cloudformation:eu-west-1:138339392836:stack/aws-cloud9-ZivL-3d66b596ee284c5590beae6fe914b99a/92a44600-8b3f-11e8-91ec-500c4265eed2
+          ec2_tag_aws_cloudformation_stack_name: aws-cloud9-ZivL-3d66b596ee284c5590beae6fe914b99a
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+    ami_0551d2acb56d6e88c:
+      hosts:
+        100.26.104.79:
+          ansible_host: 100.26.104.79
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0347788ee9aded539
+          ec2_client_token: ''
+          ec2_dns_name: ec2-100-26-104-79.compute-1.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0e37430dfe7ce6511
+          ec2_image_id: ami-0551d2acb56d6e88c
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.micro
+          ec2_ip_address: 100.26.104.79
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: kitchen-defaultrhel-ec2user-ip19216820029-2018-12-31T10:44:11Z-a6awazmo
+          ec2_launch_time: '2018-12-31T10:44:12.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-1b
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-172-31-90-82.ec2.internal
+          ec2_private_ip_address: 172.31.90.82
+          ec2_public_dns_name: ec2-100-26-104-79.compute-1.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-00118b9668b96ab7c
+          ec2_security_group_names: kitchen-yc6vqpot
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-08ca898e6fdf0335d
+          ec2_tag_created_by: test-kitchen
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-0d4750ce2edc9a1f6
+        3.85.99.51:
+          ansible_host: 3.85.99.51
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0be4e8d65f1da5cb1
+          ec2_client_token: ''
+          ec2_dns_name: ec2-3-85-99-51.compute-1.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-03b5e8e780163a0df
+          ec2_image_id: ami-0551d2acb56d6e88c
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.micro
+          ec2_ip_address: 3.85.99.51
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: kitchen-defaultrhel-ec2user-ip1020105-2018-12-31T10:42:24Z-v63js8tu
+          ec2_launch_time: '2018-12-31T10:42:25.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-1b
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-172-31-81-188.ec2.internal
+          ec2_private_ip_address: 172.31.81.188
+          ec2_public_dns_name: ec2-3-85-99-51.compute-1.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-069eb4007ce8213b9
+          ec2_security_group_names: kitchen-gkoakfa0
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-08ca898e6fdf0335d
+          ec2_tag_created_by: test-kitchen
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-0d4750ce2edc9a1f6
+        34.201.116.43:
+          ansible_host: 34.201.116.43
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0c1ce79da64997f23
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-201-116-43.compute-1.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-042b7c4e2bc32c54a
+          ec2_image_id: ami-0551d2acb56d6e88c
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.micro
+          ec2_ip_address: 34.201.116.43
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: kitchen-defaultrhel-ec2user-ip102057-2018-12-31T10:44:43Z-y5w0audy
+          ec2_launch_time: '2018-12-31T10:44:44.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-1b
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-172-31-90-170.ec2.internal
+          ec2_private_ip_address: 172.31.90.170
+          ec2_public_dns_name: ec2-34-201-116-43.compute-1.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-0b77dcad70c90b67c
+          ec2_security_group_names: kitchen-4gq1s4nd
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-08ca898e6fdf0335d
+          ec2_tag_created_by: test-kitchen
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-0d4750ce2edc9a1f6
+    ami_08c59800a21429561:
+      hosts:
+        18.223.61.101:
+          ansible_host: 18.223.61.101
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-04852ed64e77f0433
+          ec2_client_token: ''
+          ec2_dns_name: ec2-18-223-61-101.us-east-2.compute.amazonaws.com
+          ec2_ebs_optimized: true
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0664e5e1a9c659647
+          ec2_image_id: ami-08c59800a21429561
+          ec2_instance_profile: ''
+          ec2_instance_type: t3.medium
+          ec2_ip_address: 18.223.61.101
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: maishsk-keypair
+          ec2_launch_time: '2018-10-04T06:12:44.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-east-2b
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-192-168-100-7.us-east-2.compute.internal
+          ec2_private_ip_address: 192.168.100.7
+          ec2_public_dns_name: ec2-18-223-61-101.us-east-2.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-east-2
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-2cc4cd47,sg-0372b620edc0532be
+          ec2_security_group_names: CyberArk-RDP,hackathon-2018-web
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-63825d19
+          ec2_tag_Name: 2018-hackathon-web
+          ec2_tag_Role: retain
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-31721b59
+    ami_0b0a60c0a2bd40612:
+      hosts:
+        3.8.42.179:
+          ansible_host: 3.8.42.179
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-03b24e85bcac753e2
+          ec2_client_token: ''
+          ec2_dns_name: ec2-3-8-42-179.eu-west-2.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-08c093e3ef6400833
+          ec2_image_id: ami-0b0a60c0a2bd40612
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.large
+          ec2_ip_address: 3.8.42.179
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: Avishay-KeyPair
+          ec2_launch_time: '2018-10-17T11:56:08.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-2a
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-172-31-5-102.eu-west-2.compute.internal
+          ec2_private_ip_address: 172.31.5.102
+          ec2_public_dns_name: ec2-3-8-42-179.eu-west-2.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-2
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-079c71409396af1bc
+          ec2_security_group_names: Gogs
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-2159b45a
+          ec2_tag_Name: '[Avishay] Gogs'
+          ec2_tag_Role: retain
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-ce9b63a7
+    ami_0d55859ee09a59138:
+      hosts:
+        35.158.145.179:
+          ansible_host: 35.158.145.179
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0492fa1878734824a
+          ec2_client_token: ''
+          ec2_dns_name: ec2-35-158-145-179.eu-central-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-03eb6ec3e8ac1b00e
+          ec2_image_id: ami-0d55859ee09a59138
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.large
+          ec2_ip_address: 35.158.145.179
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: jenkins-kp
+          ec2_launch_time: '2018-12-12T12:00:47.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-central-1b
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-20-2-1-227.eu-central-1.compute.internal
+          ec2_private_ip_address: 20.2.1.227
+          ec2_public_dns_name: ec2-35-158-145-179.eu-central-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-central-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-46fe432d
+          ec2_security_group_names: Transit Clients
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-d8a633a2
+          ec2_tag_Name: Transit
+          ec2_tag_Role: retain
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-d1db56b9
+    ami_0dad95819a9372f76:
+      hosts:
+        34.240.15.120:
+          ansible_host: 34.240.15.120
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '9'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-084add5ec31bfd451
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-240-15-120.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0b060e584d761858d
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.240.15.120
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-231.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.231
+          ec2_public_dns_name: ec2-34-240-15-120.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.241.59.133:
+          ansible_host: 34.241.59.133
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '4'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-09f969ced46679964
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-241-59-133.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0bbbe291f154cb99d
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.241.59.133
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-24.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.24
+          ec2_public_dns_name: ec2-34-241-59-133.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.242.110.15:
+          ansible_host: 34.242.110.15
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '5'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-06e377c0ec9a7e113
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-242-110-15.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0f5832501983a4b9f
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.242.110.15
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-55.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.55
+          ec2_public_dns_name: ec2-34-242-110-15.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.242.150.246:
+          ansible_host: 34.242.150.246
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '8'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-030d3e16c2f1252fa
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-242-150-246.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-08c61719352ea80c1
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.242.150.246
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-129.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.129
+          ec2_public_dns_name: ec2-34-242-150-246.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.242.222.132:
+          ansible_host: 34.242.222.132
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '7'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0351cf05a8199118f
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-242-222-132.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0d27beca0a0993244
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.242.222.132
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-215.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.215
+          ec2_public_dns_name: ec2-34-242-222-132.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.243.0.38:
+          ansible_host: 34.243.0.38
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '9'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-07309f1d6b678c7ca
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-243-0-38.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0067a8177209dbfd4
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.243.0.38
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-50.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.50
+          ec2_public_dns_name: ec2-34-243-0-38.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.243.248.109:
+          ansible_host: 34.243.248.109
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '9'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-017995e51851d7516
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-243-248-109.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-08886f6384534330b
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.243.248.109
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-16.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.16
+          ec2_public_dns_name: ec2-34-243-248-109.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.244.145.190:
+          ansible_host: 34.244.145.190
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '4'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-047ec70d939b20e0c
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-244-145-190.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-044bcd35901e722ed
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.244.145.190
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-27.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.27
+          ec2_public_dns_name: ec2-34-244-145-190.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.244.185.73:
+          ansible_host: 34.244.185.73
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '2'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-03d60e72ffef47caa
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-244-185-73.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-045bb341e18856950
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.244.185.73
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-14.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.14
+          ec2_public_dns_name: ec2-34-244-185-73.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.244.60.91:
+          ansible_host: 34.244.60.91
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '7'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-03b811924c18e563a
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-244-60-91.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-095d03216db1847bb
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.244.60.91
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-183.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.183
+          ec2_public_dns_name: ec2-34-244-60-91.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.245.123.27:
+          ansible_host: 34.245.123.27
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '7'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0af9b6c83174dc4a5
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-245-123-27.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0e076f9cde9074af5
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.245.123.27
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-192.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.192
+          ec2_public_dns_name: ec2-34-245-123-27.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.245.124.244:
+          ansible_host: 34.245.124.244
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-088724129e03cdcba
+            xvdb: vol-0571edf45e55f5143
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-245-124-244.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0927f3b62529e7553
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.245.124.244
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T13:48:18.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-184.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.184
+          ec2_public_dns_name: ec2-34-245-124-244.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: '[orch] instance with drive D'
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.250.59.158:
+          ansible_host: 34.250.59.158
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '3'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0a041b55f3ac2730f
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-250-59-158.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0c71c282d43b4b6e0
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.250.59.158
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-89.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.89
+          ec2_public_dns_name: ec2-34-250-59-158.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.252.101.254:
+          ansible_host: 34.252.101.254
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '1'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-00a32e7fe9940d3da
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-252-101-254.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-07824d7fc16fa323f
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.252.101.254
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-159.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.159
+          ec2_public_dns_name: ec2-34-252-101-254.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.253.160.228:
+          ansible_host: 34.253.160.228
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '6'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0963195534ed3d571
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-253-160-228.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-01cf8eb2a1ffb6341
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.253.160.228
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-119.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.119
+          ec2_public_dns_name: ec2-34-253-160-228.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        34.253.21.95:
+          ansible_host: 34.253.21.95
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '2'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-002152ae8daf88a10
+          ec2_client_token: ''
+          ec2_dns_name: ec2-34-253-21-95.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-008fac21410336ff4
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 34.253.21.95
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-13.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.13
+          ec2_public_dns_name: ec2-34-253-21-95.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        52.211.240.60:
+          ansible_host: 52.211.240.60
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '5'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0db8d4374c96dda23
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-211-240-60.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-01ff5e2c4fd1d2898
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 52.211.240.60
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-120.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.120
+          ec2_public_dns_name: ec2-52-211-240-60.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        52.211.96.217:
+          ansible_host: 52.211.96.217
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '1'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-03fb1e7845184ff86
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-211-96-217.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-05d09341fb9f1eb48
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 52.211.96.217
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-77.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.77
+          ec2_public_dns_name: ec2-52-211-96-217.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        52.213.202.31:
+          ansible_host: 52.213.202.31
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0c45f0a09adfa1323
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-213-202-31.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-071ed89525a76d944
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 52.213.202.31
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-141.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.141
+          ec2_public_dns_name: ec2-52-213-202-31.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        52.214.117.119:
+          ansible_host: 52.214.117.119
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '4'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-01c1204e05422a8c0
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-214-117-119.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0f32481288139c08e
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 52.214.117.119
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-121.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.121
+          ec2_public_dns_name: ec2-52-214-117-119.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        52.215.204.140:
+          ansible_host: 52.215.204.140
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '2'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0e7cefea2b1eb1b6e
+            xvdb: vol-0ef2f2badd5ca8544
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-215-204-140.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0ad1c975bac44e467
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 52.215.204.140
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T13:48:18.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-69.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.69
+          ec2_public_dns_name: ec2-52-215-204-140.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: '[orch] instance with drive D'
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        52.30.223.38:
+          ansible_host: 52.30.223.38
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '2'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-00bbd7352e29ffd6e
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-30-223-38.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-039e1cd8d51a9ae67
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 52.30.223.38
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-238.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.238
+          ec2_public_dns_name: ec2-52-30-223-38.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        52.50.10.35:
+          ansible_host: 52.50.10.35
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '6'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-038932c8415c50dfd
+          ec2_client_token: ''
+          ec2_dns_name: ec2-52-50-10-35.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0d4d2b272546978e2
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 52.50.10.35
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-36.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.36
+          ec2_public_dns_name: ec2-52-50-10-35.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        54.171.173.214:
+          ansible_host: 54.171.173.214
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0d07061fab5dd4361
+          ec2_client_token: ''
+          ec2_dns_name: ec2-54-171-173-214.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0e88e0c7b68a4f80d
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 54.171.173.214
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:36:34.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-109.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.109
+          ec2_public_dns_name: ec2-54-171-173-214.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: cpm-Machine-2018-12-27-08-36-33
+          ec2_tag_Type: cpm
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        54.171.68.131:
+          ansible_host: 54.171.68.131
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-05295815850716875
+          ec2_client_token: ''
+          ec2_dns_name: ec2-54-171-68-131.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0ffebd93b3f252d50
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 54.171.68.131
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-125.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.125
+          ec2_public_dns_name: ec2-54-171-68-131.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        63.33.164.190:
+          ansible_host: 63.33.164.190
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '8'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-04b68778075143cba
+          ec2_client_token: ''
+          ec2_dns_name: ec2-63-33-164-190.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-08e4f998f2132ef90
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 63.33.164.190
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:35:35.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-167.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.167
+          ec2_public_dns_name: ec2-63-33-164-190.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-35-34
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        63.33.202.129:
+          ansible_host: 63.33.202.129
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '8'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-0fa0ad54f2a075af1
+          ec2_client_token: ''
+          ec2_dns_name: ec2-63-33-202-129.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0efd206b226c699a7
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 63.33.202.129
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-128.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.128
+          ec2_public_dns_name: ec2-63-33-202-129.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+        63.33.217.27:
+          ansible_host: 63.33.217.27
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '6'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-047073fef59aff1ba
+          ec2_client_token: ''
+          ec2_dns_name: ec2-63-33-217-27.eu-west-1.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-090c3524dda04de8f
+          ec2_image_id: ami-0dad95819a9372f76
+          ec2_instance_profile: ''
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 63.33.217.27
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: AutoAMI-KeyPair
+          ec2_launch_time: '2018-12-27T08:37:50.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-1a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-2-0-39.eu-west-1.compute.internal
+          ec2_private_ip_address: 10.2.0.39
+          ec2_public_dns_name: ec2-63-33-217-27.eu-west-1.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-1
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-e0344f98
+          ec2_security_group_names: default
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-dffe2084
+          ec2_tag_Name: pvwa-Machine-2018-12-27-08-37-48
+          ec2_tag_Type: pvwa
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-104dd777
+    ami_1562d075:
+      hosts:
+        52.27.54.251:
+          ansible_host: 52.27.54.251
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            sda1: vol-018c3c3f6dd3ffb23
+          ec2_client_token: RDGW-RDGat-1A0Z61CE88M4H
+          ec2_dns_name: ''
+          ec2_ebs_optimized: true
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-0ab2afcf0453d2317
+          ec2_image_id: ami-1562d075
+          ec2_instance_profile: ''
+          ec2_instance_type: m4.large
+          ec2_ip_address: 52.27.54.251
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: Daniel
+          ec2_launch_time: '2018-05-10T05:43:49.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: us-west-2a
+          ec2_platform: windows
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-10-3-1-10.us-west-2.compute.internal
+          ec2_private_ip_address: 10.3.1.10
+          ec2_public_dns_name: ''
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: us-west-2
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/sda1
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-749f8b0c
+          ec2_security_group_names: RDGW-existing-VPC-RemoteDesktopGatewaySG-ISUJVCF0X12Z
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-83be14ca
+          ec2_tag_Name: RDGW1
+          ec2_tag_Role: retain
+          ec2_tag_auto_start: 0 5 * * 0-4
+          ec2_tag_auto_stop: 0 20 * * 0-4
+          ec2_tag_aws_cloudformation_logical_id: RDGateway1
+          ec2_tag_aws_cloudformation_stack_id: arn:aws:cloudformation:us-west-2:138339392836:stack/RDGW-existing-VPC/3addfa60-0ca6-11e7-8af2-50a68a2012f2
+          ec2_tag_aws_cloudformation_stack_name: RDGW-existing-VPC
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-eb5d268c
+    ami_56cc2731:
+      hosts:
+        18.130.95.46:
+          ansible_host: 18.130.95.46
+          ec2__in_monitoring_element: false
+          ec2_account_id: '138339392836'
+          ec2_ami_launch_index: '0'
+          ec2_architecture: x86_64
+          ec2_block_devices:
+            xvda: vol-04cf7864bdaf73def
+          ec2_client_token: ''
+          ec2_dns_name: ec2-18-130-95-46.eu-west-2.compute.amazonaws.com
+          ec2_ebs_optimized: false
+          ec2_eventsSet: ''
+          ec2_group_name: ''
+          ec2_hypervisor: xen
+          ec2_id: i-06ce258a70866d074
+          ec2_image_id: ami-56cc2731
+          ec2_instance_type: t2.medium
+          ec2_ip_address: 18.130.95.46
+          ec2_item: ''
+          ec2_kernel: ''
+          ec2_key_name: Avishay-KeyPair
+          ec2_launch_time: '2018-10-15T13:55:59.000Z'
+          ec2_monitored: false
+          ec2_monitoring: ''
+          ec2_monitoring_state: disabled
+          ec2_persistent: false
+          ec2_placement: eu-west-2b
+          ec2_platform: ''
+          ec2_previous_state: ''
+          ec2_previous_state_code: 0
+          ec2_private_dns_name: ip-30-30-1-144.eu-west-2.compute.internal
+          ec2_private_ip_address: 30.30.1.144
+          ec2_public_dns_name: ec2-18-130-95-46.eu-west-2.compute.amazonaws.com
+          ec2_ramdisk: ''
+          ec2_reason: ''
+          ec2_region: eu-west-2
+          ec2_requester_id: ''
+          ec2_root_device_name: /dev/xvda
+          ec2_root_device_type: ebs
+          ec2_security_group_ids: sg-41bfd129
+          ec2_security_group_names: Jenkins-SG
+          ec2_sourceDestCheck: 'true'
+          ec2_spot_instance_request_id: ''
+          ec2_state: running
+          ec2_state_code: 16
+          ec2_state_reason: ''
+          ec2_subnet_id: subnet-91a2e9dc
+          ec2_tag_Name: '[Avishay] Jenkins Server'
+          ec2_tag_Role: retain
+          ec2_virtualization_type: hvm
+          ec2_vpc_id: vpc-9e9c96f7
+    ec2:
+      hosts:
+        100.26.104.79: {}
+        18.130.95.46: {}
+        18.144.64.168: {}
+        18.223.61.101: {}
+        3.16.173.0: {}
+        3.8.42.179: {}
+        3.83.235.19: {}
+        3.85.99.51: {}
+        34.201.116.43: {}
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.105.204: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.248.22.210: {}
+        34.249.251.117: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        35.158.145.179: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.27.54.251: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        52.87.238.242: {}
+        54.158.105.77: {}
+        54.163.15.214: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.32.206.231: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    eu-central-1:
+      hosts:
+        35.158.145.179: {}
+    eu-central-1b:
+      hosts:
+        35.158.145.179: {}
+    eu-west-1:
+      hosts:
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.105.204: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.248.22.210: {}
+        34.249.251.117: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.32.206.231: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    eu-west-1a:
+      hosts:
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.248.22.210: {}
+        34.249.251.117: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.32.206.231: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    eu-west-1b:
+      hosts:
+        34.245.105.204: {}
+    eu-west-2:
+      hosts:
+        18.130.95.46: {}
+        3.8.42.179: {}
+    eu-west-2a:
+      hosts:
+        3.8.42.179: {}
+    eu-west-2b:
+      hosts:
+        18.130.95.46: {}
+    i-0067a8177209dbfd4:
+      hosts:
+        34.243.0.38: {}
+    i-008fac21410336ff4:
+      hosts:
+        34.253.21.95: {}
+    i-00a6ba9cc0c27ce2f:
+      hosts:
+        34.249.251.117: {}
+    i-00b32e96c8ade749a:
+      hosts:
+        54.158.105.77: {}
+    i-0168b55253ca85260:
+      hosts:
+        54.163.15.214: {}
+    i-01cf8eb2a1ffb6341:
+      hosts:
+        34.253.160.228: {}
+    i-01ff5e2c4fd1d2898:
+      hosts:
+        52.211.240.60: {}
+    i-039e1cd8d51a9ae67:
+      hosts:
+        52.30.223.38: {}
+    i-03b5e8e780163a0df:
+      hosts:
+        3.85.99.51: {}
+    i-03eb6ec3e8ac1b00e:
+      hosts:
+        35.158.145.179: {}
+    i-042b7c4e2bc32c54a:
+      hosts:
+        34.201.116.43: {}
+    i-044bcd35901e722ed:
+      hosts:
+        34.244.145.190: {}
+    i-045bb341e18856950:
+      hosts:
+        34.244.185.73: {}
+    i-05d09341fb9f1eb48:
+      hosts:
+        52.211.96.217: {}
+    i-0664e5e1a9c659647:
+      hosts:
+        18.223.61.101: {}
+    i-0694881e6fbf145c6:
+      hosts:
+        34.245.105.204: {}
+    i-06ce258a70866d074:
+      hosts:
+        18.130.95.46: {}
+    i-071ed89525a76d944:
+      hosts:
+        52.213.202.31: {}
+    i-07824d7fc16fa323f:
+      hosts:
+        34.252.101.254: {}
+    i-078d0b9db584d8fab:
+      hosts:
+        52.87.238.242: {}
+    i-08886f6384534330b:
+      hosts:
+        34.243.248.109: {}
+    i-08c093e3ef6400833:
+      hosts:
+        3.8.42.179: {}
+    i-08c61719352ea80c1:
+      hosts:
+        34.242.150.246: {}
+    i-08e4f998f2132ef90:
+      hosts:
+        63.33.164.190: {}
+    i-090c3524dda04de8f:
+      hosts:
+        63.33.217.27: {}
+    i-0927f3b62529e7553:
+      hosts:
+        34.245.124.244: {}
+    i-095d03216db1847bb:
+      hosts:
+        34.244.60.91: {}
+    i-0ab2afcf0453d2317:
+      hosts:
+        52.27.54.251: {}
+    i-0ad1c975bac44e467:
+      hosts:
+        52.215.204.140: {}
+    i-0b060e584d761858d:
+      hosts:
+        34.240.15.120: {}
+    i-0b11742983c73b65f:
+      hosts:
+        18.144.64.168: {}
+    i-0bbbe291f154cb99d:
+      hosts:
+        34.241.59.133: {}
+    i-0c02adfc06aee5540:
+      hosts:
+        34.248.22.210: {}
+    i-0c71c282d43b4b6e0:
+      hosts:
+        34.250.59.158: {}
+    i-0c9657015aedbfc1f:
+      hosts:
+        3.83.235.19: {}
+    i-0d27beca0a0993244:
+      hosts:
+        34.242.222.132: {}
+    i-0d4d2b272546978e2:
+      hosts:
+        52.50.10.35: {}
+    i-0d6bbb992fa60311b:
+      hosts:
+        3.16.173.0: {}
+    i-0da7a904e2e371aec:
+      hosts:
+        63.32.206.231: {}
+    i-0e076f9cde9074af5:
+      hosts:
+        34.245.123.27: {}
+    i-0e37430dfe7ce6511:
+      hosts:
+        100.26.104.79: {}
+    i-0e88e0c7b68a4f80d:
+      hosts:
+        54.171.173.214: {}
+    i-0efd206b226c699a7:
+      hosts:
+        63.33.202.129: {}
+    i-0f32481288139c08e:
+      hosts:
+        52.214.117.119: {}
+    i-0f5832501983a4b9f:
+      hosts:
+        34.242.110.15: {}
+    i-0ffebd93b3f252d50:
+      hosts:
+        54.171.68.131: {}
+    key_AutoAMI_KeyPair:
+      hosts:
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    key_Avishay_KeyPair:
+      hosts:
+        18.130.95.46: {}
+        3.8.42.179: {}
+    key_Daniel:
+      hosts:
+        52.27.54.251: {}
+    key_Hackathon_KP:
+      hosts:
+        34.245.105.204: {}
+    key_Jenkins_KP:
+      hosts:
+        34.248.22.210: {}
+    key_N_Cali_PTA_KP:
+      hosts:
+        18.144.64.168: {}
+    key_jenkins_kp:
+      hosts:
+        35.158.145.179: {}
+    key_kitchen_defaultrhel_ec2user_ip1020105_2018_12_31T10_42_24Z_v63js8tu:
+      hosts:
+        3.85.99.51: {}
+    key_kitchen_defaultrhel_ec2user_ip102057_2018_12_31T10_44_43Z_y5w0audy:
+      hosts:
+        34.201.116.43: {}
+    key_kitchen_defaultrhel_ec2user_ip19216820029_2018_12_31T10_44_11Z_a6awazmo:
+      hosts:
+        100.26.104.79: {}
+    key_kitchen_defaultwindows2016_ec2user_ip1020105_2018_12_31T10_37_58Z_9ek92lt3:
+      hosts:
+        3.83.235.19: {}
+    key_kitchen_defaultwindows2016_ec2user_ip102057_2018_12_31T10_40_53Z_x9py2dlc:
+      hosts:
+        54.163.15.214: {}
+    key_kitchen_defaultwindows2016_ec2user_ip19216820029_2018_12_31T10_40_28Z_l4tjwqjr:
+      hosts:
+        52.87.238.242: {}
+    key_maishsk_keypair:
+      hosts:
+        18.223.61.101: {}
+    platform_undefined:
+      hosts:
+        100.26.104.79: {}
+        18.130.95.46: {}
+        3.16.173.0: {}
+        3.8.42.179: {}
+        3.85.99.51: {}
+        34.201.116.43: {}
+        34.249.251.117: {}
+        54.158.105.77: {}
+        63.32.206.231: {}
+    platform_windows:
+      hosts:
+        18.144.64.168: {}
+        18.223.61.101: {}
+        3.83.235.19: {}
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.105.204: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.248.22.210: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        35.158.145.179: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.27.54.251: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        52.87.238.242: {}
+        54.163.15.214: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    security_group_CyberArk_RDP:
+      hosts:
+        18.223.61.101: {}
+    security_group_Gogs:
+      hosts:
+        3.8.42.179: {}
+    security_group_Jenkins_SG:
+      hosts:
+        18.130.95.46: {}
+    security_group_RDGW_existing_VPC_RemoteDesktopGatewaySG_ISUJVCF0X12Z:
+      hosts:
+        52.27.54.251: {}
+    security_group_Transit_Clients:
+      hosts:
+        35.158.145.179: {}
+    security_group_Web_SG:
+      hosts:
+        34.245.105.204: {}
+    security_group_aws_cloud9_Avishay_Cloud9_d2b70bb8c0df49c2b486005187e1472c_InstanceSecurityGroup_1XGARVZXCT0JS:
+      hosts:
+        54.158.105.77: {}
+    security_group_aws_cloud9_Nimrod_Cloud9_25e5350a1eb341fdb88c2933e3c9f23e_InstanceSecurityGroup_1F11YIK8M6FNS:
+      hosts:
+        34.249.251.117: {}
+    security_group_aws_cloud9_ZivL_3d66b596ee284c5590beae6fe914b99a_InstanceSecurityGroup_126DTQU0WVYK2:
+      hosts:
+        63.32.206.231: {}
+    security_group_aws_cloud9_yogev_Cloud9_07a82548914f4eb5b69482acf2af5769_InstanceSecurityGroup_1J3VOMWNZNCHK:
+      hosts:
+        3.16.173.0: {}
+    security_group_default:
+      hosts:
+        18.144.64.168: {}
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.248.22.210: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    security_group_hackathon_2018_web:
+      hosts:
+        18.223.61.101: {}
+    security_group_kitchen_4gq1s4nd:
+      hosts:
+        34.201.116.43: {}
+    security_group_kitchen_cibxqglz:
+      hosts:
+        52.87.238.242: {}
+    security_group_kitchen_gkoakfa0:
+      hosts:
+        3.85.99.51: {}
+    security_group_kitchen_mr80iwp6:
+      hosts:
+        3.83.235.19: {}
+    security_group_kitchen_rofri9ag:
+      hosts:
+        54.163.15.214: {}
+    security_group_kitchen_yc6vqpot:
+      hosts:
+        100.26.104.79: {}
+    tag_Name_2018_hackathon_web:
+      hosts:
+        18.223.61.101: {}
+    tag_Name_EPV_HAIM_CASE:
+      hosts:
+        34.248.22.210: {}
+    tag_Name_RDGW1:
+      hosts:
+        52.27.54.251: {}
+    tag_Name_Transit:
+      hosts:
+        35.158.145.179: {}
+    tag_Name__Avishay__Gogs:
+      hosts:
+        3.8.42.179: {}
+    tag_Name__Avishay__Jenkins_Server:
+      hosts:
+        18.130.95.46: {}
+    tag_Name__Avishay__Windows_Webserver:
+      hosts:
+        34.245.105.204: {}
+    tag_Name__Yogev__Cloud9:
+      hosts:
+        3.16.173.0: {}
+    tag_Name__orch__instance_with_drive_D:
+      hosts:
+        34.245.124.244: {}
+        52.215.204.140: {}
+    tag_Name_aws_cloud9_Avishay_Cloud9_d2b70bb8c0df49c2b486005187e1472c:
+      hosts:
+        54.158.105.77: {}
+    tag_Name_aws_cloud9_Nimrod_Cloud9_25e5350a1eb341fdb88c2933e3c9f23e:
+      hosts:
+        34.249.251.117: {}
+    tag_Name_aws_cloud9_ZivL_3d66b596ee284c5590beae6fe914b99a:
+      hosts:
+        63.32.206.231: {}
+    tag_Name_cpm_Machine_2018_12_27_08_36_33:
+      hosts:
+        34.241.59.133: {}
+        34.242.150.246: {}
+        34.243.248.109: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.250.59.158: {}
+        52.211.240.60: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+    tag_Name_pvwa_Machine_2018_12_27_08_37_48:
+      hosts:
+        34.242.110.15: {}
+        34.243.0.38: {}
+        34.244.145.190: {}
+        34.245.123.27: {}
+        34.252.101.254: {}
+        52.213.202.31: {}
+        52.30.223.38: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    tag_Name_pvwa_Machine_2018_12_27_08_35_34:
+      hosts:
+        34.240.15.120: {}
+        34.242.222.132: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.96.217: {}
+        52.214.117.119: {}
+        54.171.68.131: {}
+        63.33.164.190: {}
+    tag_Name_transit_2:
+      hosts:
+        18.144.64.168: {}
+    tag_Requester_Haim_Cohen_EPV:
+      hosts:
+        34.248.22.210: {}
+    tag_Role_auto:
+      hosts:
+        34.249.251.117: {}
+    tag_Role_retain:
+      hosts:
+        18.130.95.46: {}
+        18.144.64.168: {}
+        18.223.61.101: {}
+        3.16.173.0: {}
+        3.8.42.179: {}
+        34.245.105.204: {}
+        34.248.22.210: {}
+        35.158.145.179: {}
+        52.27.54.251: {}
+        63.32.206.231: {}
+    tag_Type_cpm:
+      hosts:
+        34.241.59.133: {}
+        34.242.150.246: {}
+        34.243.248.109: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.250.59.158: {}
+        52.211.240.60: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+    tag_Type_pvwa:
+      hosts:
+        34.242.110.15: {}
+        34.243.0.38: {}
+        34.244.145.190: {}
+        34.245.123.27: {}
+        34.252.101.254: {}
+        52.213.202.31: {}
+        52.30.223.38: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    tag_Type_pvwa:
+      hosts:
+        34.240.15.120: {}
+        34.242.222.132: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.96.217: {}
+        52.214.117.119: {}
+        54.171.68.131: {}
+        63.33.164.190: {}
+    tag_auto_start_0_5_____0_4:
+      hosts:
+        52.27.54.251: {}
+    tag_auto_stop_0_20_____0_4:
+      hosts:
+        52.27.54.251: {}
+    tag_aws_cloud9_environment_07a82548914f4eb5b69482acf2af5769:
+      hosts:
+        3.16.173.0: {}
+    tag_aws_cloud9_environment_25e5350a1eb341fdb88c2933e3c9f23e:
+      hosts:
+        34.249.251.117: {}
+    tag_aws_cloud9_environment_3d66b596ee284c5590beae6fe914b99a:
+      hosts:
+        63.32.206.231: {}
+    tag_aws_cloud9_environment_d2b70bb8c0df49c2b486005187e1472c:
+      hosts:
+        54.158.105.77: {}
+    tag_aws_cloud9_owner_AIDAJ35MO4NQFLVKHNPS4:
+      hosts:
+        54.158.105.77: {}
+    tag_aws_cloud9_owner_AIDAJCIP6XQT2LVFUFBG4:
+      hosts:
+        63.32.206.231: {}
+    tag_aws_cloud9_owner_AIDAJQPWXN7JKSHNH6OKE:
+      hosts:
+        34.249.251.117: {}
+    tag_aws_cloud9_owner_AIDAJZHD6BHHEQCQFGQN2:
+      hosts:
+        3.16.173.0: {}
+    tag_aws_cloudformation_logical_id_Instance:
+      hosts:
+        3.16.173.0: {}
+        34.249.251.117: {}
+        54.158.105.77: {}
+        63.32.206.231: {}
+    tag_aws_cloudformation_logical_id_RDGateway1:
+      hosts:
+        52.27.54.251: {}
+    ? tag_aws_cloudformation_stack_id_arn_aws_cloudformation_eu_west_1_138339392836_stack_aws_cloud9_Nimrod_Cloud9_25e5350a1eb341fdb88c2933e3c9f23e_c5cee130_8b34_11e8_b15c_500c41f5908d
+    : hosts:
+        34.249.251.117: {}
+    ? tag_aws_cloudformation_stack_id_arn_aws_cloudformation_eu_west_1_138339392836_stack_aws_cloud9_ZivL_3d66b596ee284c5590beae6fe914b99a_92a44600_8b3f_11e8_91ec_500c4265eed2
+    : hosts:
+        63.32.206.231: {}
+    ? tag_aws_cloudformation_stack_id_arn_aws_cloudformation_us_east_1_138339392836_stack_aws_cloud9_Avishay_Cloud9_d2b70bb8c0df49c2b486005187e1472c_bece8050_f6e8_11e8_9f25_0ad4d2e93658
+    : hosts:
+        54.158.105.77: {}
+    ? tag_aws_cloudformation_stack_id_arn_aws_cloudformation_us_east_2_138339392836_stack_aws_cloud9_yogev_Cloud9_07a82548914f4eb5b69482acf2af5769_619ac9c0_a6ac_11e8_8e9a_06e23ed25c28
+    : hosts:
+        3.16.173.0: {}
+    ? tag_aws_cloudformation_stack_id_arn_aws_cloudformation_us_west_2_138339392836_stack_RDGW_existing_VPC_3addfa60_0ca6_11e7_8af2_50a68a2012f2
+    : hosts:
+        52.27.54.251: {}
+    tag_aws_cloudformation_stack_name_RDGW_existing_VPC:
+      hosts:
+        52.27.54.251: {}
+    tag_aws_cloudformation_stack_name_aws_cloud9_Avishay_Cloud9_d2b70bb8c0df49c2b486005187e1472c:
+      hosts:
+        54.158.105.77: {}
+    tag_aws_cloudformation_stack_name_aws_cloud9_Nimrod_Cloud9_25e5350a1eb341fdb88c2933e3c9f23e:
+      hosts:
+        34.249.251.117: {}
+    tag_aws_cloudformation_stack_name_aws_cloud9_ZivL_3d66b596ee284c5590beae6fe914b99a:
+      hosts:
+        63.32.206.231: {}
+    tag_aws_cloudformation_stack_name_aws_cloud9_yogev_Cloud9_07a82548914f4eb5b69482acf2af5769:
+      hosts:
+        3.16.173.0: {}
+    tag_created_by_test_kitchen:
+      hosts:
+        100.26.104.79: {}
+        3.83.235.19: {}
+        3.85.99.51: {}
+        34.201.116.43: {}
+        52.87.238.242: {}
+        54.163.15.214: {}
+    tag_kitchen_type_windows:
+      hosts:
+        3.83.235.19: {}
+        52.87.238.242: {}
+        54.163.15.214: {}
+    type_m4_2xlarge:
+      hosts:
+        18.144.64.168: {}
+    type_m4_large:
+      hosts:
+        3.16.173.0: {}
+        34.249.251.117: {}
+        52.27.54.251: {}
+        54.158.105.77: {}
+        63.32.206.231: {}
+    type_t2_large:
+      hosts:
+        3.8.42.179: {}
+        35.158.145.179: {}
+    type_t2_medium:
+      hosts:
+        18.130.95.46: {}
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    type_t2_micro:
+      hosts:
+        100.26.104.79: {}
+        3.83.235.19: {}
+        3.85.99.51: {}
+        34.201.116.43: {}
+        34.248.22.210: {}
+        52.87.238.242: {}
+        54.163.15.214: {}
+    type_t2_xlarge:
+      hosts:
+        34.245.105.204: {}
+    type_t3_medium:
+      hosts:
+        18.223.61.101: {}
+    ungrouped: {}
+    us-east-1:
+      hosts:
+        100.26.104.79: {}
+        3.83.235.19: {}
+        3.85.99.51: {}
+        34.201.116.43: {}
+        52.87.238.242: {}
+        54.158.105.77: {}
+        54.163.15.214: {}
+    us-east-1b:
+      hosts:
+        100.26.104.79: {}
+        3.83.235.19: {}
+        3.85.99.51: {}
+        34.201.116.43: {}
+        52.87.238.242: {}
+        54.163.15.214: {}
+    us-east-1c:
+      hosts:
+        54.158.105.77: {}
+    us-east-2:
+      hosts:
+        18.223.61.101: {}
+        3.16.173.0: {}
+    us-east-2a:
+      hosts:
+        3.16.173.0: {}
+    us-east-2b:
+      hosts:
+        18.223.61.101: {}
+    us-west-1:
+      hosts:
+        18.144.64.168: {}
+    us-west-1c:
+      hosts:
+        18.144.64.168: {}
+    us-west-2:
+      hosts:
+        52.27.54.251: {}
+    us-west-2a:
+      hosts:
+        52.27.54.251: {}
+    vpc_id_vpc_00d3319a06d4a1dc6:
+      hosts:
+        34.245.105.204: {}
+    vpc_id_vpc_00fff1273ed96df40:
+      hosts:
+        3.16.173.0: {}
+    vpc_id_vpc_0a6549f084e920c0f:
+      hosts:
+        18.144.64.168: {}
+    vpc_id_vpc_0d4750ce2edc9a1f6:
+      hosts:
+        100.26.104.79: {}
+        3.83.235.19: {}
+        3.85.99.51: {}
+        34.201.116.43: {}
+        52.87.238.242: {}
+        54.163.15.214: {}
+    vpc_id_vpc_104dd777:
+      hosts:
+        34.240.15.120: {}
+        34.241.59.133: {}
+        34.242.110.15: {}
+        34.242.150.246: {}
+        34.242.222.132: {}
+        34.243.0.38: {}
+        34.243.248.109: {}
+        34.244.145.190: {}
+        34.244.185.73: {}
+        34.244.60.91: {}
+        34.245.123.27: {}
+        34.245.124.244: {}
+        34.248.22.210: {}
+        34.249.251.117: {}
+        34.250.59.158: {}
+        34.252.101.254: {}
+        34.253.160.228: {}
+        34.253.21.95: {}
+        52.211.240.60: {}
+        52.211.96.217: {}
+        52.213.202.31: {}
+        52.214.117.119: {}
+        52.215.204.140: {}
+        52.30.223.38: {}
+        52.50.10.35: {}
+        54.171.173.214: {}
+        54.171.68.131: {}
+        63.32.206.231: {}
+        63.33.164.190: {}
+        63.33.202.129: {}
+        63.33.217.27: {}
+    vpc_id_vpc_31721b59:
+      hosts:
+        18.223.61.101: {}
+    vpc_id_vpc_392bab42:
+      hosts:
+        54.158.105.77: {}
+    vpc_id_vpc_9e9c96f7:
+      hosts:
+        18.130.95.46: {}
+    vpc_id_vpc_ce9b63a7:
+      hosts:
+        3.8.42.179: {}
+    vpc_id_vpc_d1db56b9:
+      hosts:
+        35.158.145.179: {}
+    vpc_id_vpc_eb5d268c:
+      hosts:
+        52.27.54.251: {}

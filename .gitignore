@@ -1,3 +1,4 @@
+# ignore *.retry files
 *.retry
-*/__pycache__
-*.pyc
+.kitchen.local.yml
+.kitchen/
