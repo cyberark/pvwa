@@ -26,6 +26,7 @@
         region: "{{ my_region.stdout }}"
         filters:
           "tag:kitchen-type": windows
+          "instance-state-name": running
       register: ec2_result
 
     - name: Get windows password using keypair
