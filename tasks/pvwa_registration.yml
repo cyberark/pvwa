@@ -5,13 +5,13 @@
   block:
 
     - name: Execute pvwa registration
-      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "C:\\inetpub\\wwwroot\\PasswordVault" /configfilespath "{{ pvwa_installation_path }}"'
+      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}"'
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
       when: dr_vault_ip is not defined
 
     - name: Execute pvwa registration
-      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }},{{ dr_vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "C:\\inetpub\\wwwroot\\PasswordVault" /configfilespath "{{ pvwa_installation_path }}"'
+      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }},{{ dr_vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}"'
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
       when: dr_vault_ip is defined
