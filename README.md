@@ -1,14 +1,18 @@
 # PVWA Ansible Role
-This Playbook will install the [CyberArk PVWA](https://www.cyberark.com/products/privileged-account-security-solution/core-privileged-account-security/) software on a Windows 2016 server / VM / instance.
+This Ansible Role will deploy and install CyberArk Password Vault Web Access including the pre-requisites, application, hardening and connect to an existing Vault environment.
 
 ## Requirements
 ------------
-- The host running the playbook must have network connectivity to the remote hosts in the inventory
-- Windows 2016 must be installed on the remote host
-- Administrator credentials for access to the remote host (either Local or Domain)
-- Network connectivity to the CyberArk vault and the repository server
-- PVWA package version 10.6 and above, including the location of the CD images
-- pywinrm is installed on the workstation running the playbook
+- Windows 2016 installed on the remote host
+- WinRM open on port 5986 (**not 5985**) on the remote host 
+- Pywinrm is installed on the workstation running the playbook
+- The workstation running the playbook must have network connectivity to the remote host
+- The remote host must have Network connectivity to the CyberArk vault and the repository server
+  - 443 port outbound
+  - 445 port inbound
+  - 1858 port outbound 
+- Administrator access to the remote host 
+- PVWA CD image
 
 ## Role Variables
 These are the variables used in this playbook:
@@ -18,11 +22,11 @@ Variable                          | Required     | Default                      
 :----------------------------------|:-------------|:------------------------------------------------|:---------
 pvwa_prerequisites                | no           | false                                           | Install PVWA pre-requisites
 pvwa_install                      | no           | false                                           | Install PVWA
-pvwa_postinstall                  | no           | false                                           | PVWA port install role
-pvwa_hardening                    | no           | false                                           | PVWA hardening role
-pvwa_registration                 | no           | false                                           | PVWA Register with Vault
+pvwa_postinstall                  | no           | false                                           | PVWA post install role
+pvwa_hardening                    | no           | false                                           | Apply PVWA hardening 
+pvwa_registration                 | no           | false                                           | Connect PVWA to the Vault
 pvwa_upgrade                      | no           | false                                           | N/A
-pvwa_clean                        | no           | false                                           | Clean server after deployment
+pvwa_clean                        | no           | false                                           | N/A
 pvwa_uninstall                    | no           | false                                           | N/A
 
 ### Deployment Variables
@@ -39,10 +43,6 @@ pvwa_app_name                     | yes          | **PasswordVault**            
 vault_username                    | no           | **administrator**                               | Vault username to perform registration
 vault_port                        | no           | **1858**                                        | Vault port
 dr_vault_ip                       | no           | None                                            | Vault DR IP address to perform registration
-pvwa_base_bin_drive               | no           | **C:**                                          | Base path to extract CyberArk packages
-pvwa_extract_folder               | no           | **{{pvwa_base_bin_drive}}\\Cyberark\\packages** | Path to extract the CyberArk packages
-pvwa_artifact_name                | no           | **pvwa.zip**                                    | Zip file name of the PVWA package
-pvwa_component_folder             | no           | **Password Vault Web Access**                      | The name of PVWA unzip folder
 pvwa_installation_drive           | no           | **C:**                                          | Base drive to install PVWA
 
 ## Dependencies
