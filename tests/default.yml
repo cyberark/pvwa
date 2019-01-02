@@ -6,7 +6,7 @@
 
     - name: Install pip dependencies
       shell: |
-        sudo pip install boto boto3 botocore pywinrm[credssp] requests-credssp cryptography jmespath
+        /usr/local/bin/pip install boto boto3 botocore pywinrm[credssp] requests-credssp cryptography jmespath
 
     - name: download package from s3
       aws_s3:
