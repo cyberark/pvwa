@@ -2,3 +2,4 @@
 *.retry
 .kitchen.local.yml
 .kitchen/
+tests/inventory/hosts
