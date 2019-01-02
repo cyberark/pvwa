@@ -1,0 +1,60 @@
+---
+
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: Install pip dependencies
+      shell: |
+        pip install boto boto3 botocore pywinrm[credssp] requests-credssp cryptography jmespath --user
+
+    - name: download package from s3
+      aws_s3:
+        bucket: cloud-initiatives-pipeline-bucket
+        object: "Packages/v10.6/Password Vault Web Access-Rls-v10.6.zip"
+        dest: "/tmp/pvwa.zip"
+        mode: get
+
+    - name: Get the current region
+      shell: |
+        REGION=`curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
+        echo $REGION
+      register: my_region
+
+    - name: Get instance facts
+      ec2_instance_facts:
+        region: "{{ my_region.stdout }}"
+        filters:
+          "tag:kitchen-type": windows
+          "instance-state-name": running
+      register: ec2_result
+
+    - name: Get windows password using keypair
+      ec2_win_password:
+        instance_id: "{{ ec2_result.instances[0].instance_id }}"
+        region: "{{ my_region.stdout }}"
+        key_file: ssh_private_keys/default-windows-2016.pem
+        wait: yes
+        wait_timeout: 600
+      register: ec2_win_password
+
+    - name: Set fact for windows password to use in another hosts
+      set_fact:
+        win_password: "{{ ec2_win_password.win_password }}"
+
+- hosts: tag_kitchen_type_windows
+  gather_facts: no
+  tasks:
+
+    - name: pvwa Deployment
+      include_role:
+        name: pvwa
+      vars:
+        - pvwa_extract: true
+        - pvwa_prerequisites: true
+        - pvwa_install: true
+        - pvwa_postinstall: true
+        - pvwa_hardening: true
+        - pvwa_registration: false
+        - pvwa_zip_file_path: "/tmp/pvwa.zip"
+        - accept_eula: "yes"
