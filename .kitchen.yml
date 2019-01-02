@@ -3,6 +3,7 @@
 driver:
   name: ec2
   require_chef_omnibus: false
+  interface: private
 
 platforms:
   - name: windows-2016
