@@ -7,8 +7,14 @@
     {
         $filePath = "{{ pvwa_installationautomation_folder }}\\Installation\\InstallationConfig.xml"
         $xml = [xml](Get-Content $filePath)
-        $step = $xml.SelectSingleNode("//Parameter[@Name = 'PVWAInstallDirectory']")
-        $step.Value = "{{ pvwa_installation_path }}"
+        $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'PVWAInstallDirectory']")
+        $step1.Value = "{{ pvwa_installation_path }}"
+        $step2 = $xml.SelectSingleNode("//Parameter[@Name = 'PVWAApplicationDirectory']")
+        $step2.Value = "{{ pvwa_iis_app_folder }}"
+        $step3 = $xml.SelectSingleNode("//Parameter[@Name = 'PVWAApplicationName']")
+        $step3.Value = "{{ pvwa_app_name }}"
+        $step4 = $xml.SelectSingleNode("//Parameter[@Name = 'PVWAAuthenticationList']")
+        $step4.Value = "{{ pvwa_auth_type }}"
         $xml.Save($filePath)
         exit 0
     }

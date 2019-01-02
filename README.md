@@ -4,14 +4,14 @@ This Ansible Role will deploy and install CyberArk Password Vault Web Access inc
 ## Requirements
 ------------
 - Windows 2016 installed on the remote host
-- WinRM open on port 5986 (**not 5985**) on the remote host 
+- WinRM open on port 5986 (**not 5985**) on the remote host
 - Pywinrm is installed on the workstation running the playbook
 - The workstation running the playbook must have network connectivity to the remote host
 - The remote host must have Network connectivity to the CyberArk vault and the repository server
   - 443 port outbound
   - 445 port inbound
-  - 1858 port outbound 
-- Administrator access to the remote host 
+  - 1858 port outbound
+- Administrator access to the remote host
 - PVWA CD image
 
 ## Role Variables
@@ -23,7 +23,7 @@ Variable                          | Required     | Default                      
 pvwa_prerequisites                | no           | false                                           | Install PVWA pre-requisites
 pvwa_install                      | no           | false                                           | Install PVWA
 pvwa_postinstall                  | no           | false                                           | PVWA post install role
-pvwa_hardening                    | no           | false                                           | Apply PVWA hardening 
+pvwa_hardening                    | no           | false                                           | Apply PVWA hardening
 pvwa_registration                 | no           | false                                           | Connect PVWA to the Vault
 pvwa_upgrade                      | no           | false                                           | N/A
 pvwa_clean                        | no           | false                                           | N/A
@@ -38,7 +38,7 @@ pvwa_url                          | yes          | None                         
 accept_eula                       | yes          | **No**                                          | Accepting EULA condition (Yes/No)
 pvwa_zip_file_path                | yes          | None                                            | Zip File path of CyberArk packages
 pvwa_auth_type                    | yes          | **cyberark;ldap**                               | Authentication Type
-pvwa_iis_app_folder               | yes          | **C:\inetpub\wwwroot\Password\Vault**           | IIS Application Folder
+pvwa_iis_app_folder               | yes          | **C:\inetpub\wwwroot\PasswordVault**            | IIS Application Folder
 pvwa_app_name                     | yes          | **PasswordVault**                               | Web Application Name
 vault_username                    | no           | **administrator**                               | Vault username to perform registration
 vault_port                        | no           | **1858**                                        | Vault port
