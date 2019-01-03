@@ -54,6 +54,7 @@ platforms:
         - .kitchen/default-windows-2016.pem
       require_pip: true
       log_level: debug
+      sudo_command: sudo -E -H
 
 suites:
   - name: default
