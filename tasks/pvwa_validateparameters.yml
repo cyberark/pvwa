@@ -52,3 +52,18 @@
   set_fact:
     pvwa_hardened: true
   when: service_info.exists and service_info.username == ".\\PVWAReportsUser"
+
+- name: Check connection to PVWA to validate registration
+  win_uri:
+    url: "https://127.0.0.1/PasswordVault/api/server"
+    validate_certs: no
+    timeout: 60
+  register: pvwa_server_info
+  ignore_errors: yes
+
+- set_fact:
+    pvwa_registered: true
+  when:
+    - pvwa_server_info is defined
+    - pvwa_server_info.status_code is defined
+    - pvwa_server_info.status_code == 200
