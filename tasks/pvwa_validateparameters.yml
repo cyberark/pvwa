@@ -67,8 +67,3 @@
     - pvwa_server_info is defined
     - pvwa_server_info.status_code is defined
     - pvwa_server_info.status_code == 200
-
-
-- name: Failed to get status 200 from PVWA server
-  set_fact:
-    pvwa_registered: false
