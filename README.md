@@ -33,17 +33,17 @@ pvwa_uninstall                    | no           | false                        
 Variable                          | Required     | Default                                         | Comments
 :----------------------------------|:-------------|:------------------------------------------------|:---------
 vault_ip                          | yes          | None                                            | Vault IP address to perform registration
+vault_port                        | no           | **1858**                                        | Vault port
+vault_username                    | no           | **administrator**                               | Vault username to perform registration
 vault_password                    | yes          | None                                            | Vault password to perform registration
-pvwa_url                          | yes          | None                                            | URL of registered PVWA
+dr_vault_ip                       | no           | None                                            | Vault DR IP address to perform registration
 accept_eula                       | yes          | **No**                                          | Accepting EULA condition (Yes/No)
-pvwa_zip_file_path                | yes          | None                                            | Zip File path of CyberArk packages
+pvwa_url                          | yes          | None                                            | URL of registered PVWA
+pvwa_zip_file_path                | yes          | None                                            | CyberArk PVWA installation Zip file package path
 pvwa_auth_type                    | yes          | **cyberark;ldap**                               | Authentication Type
 pvwa_iis_app_folder               | yes          | **C:\inetpub\wwwroot\PasswordVault**            | IIS Application Folder
 pvwa_app_name                     | yes          | **PasswordVault**                               | Web Application Name
-vault_username                    | no           | **administrator**                               | Vault username to perform registration
-vault_port                        | no           | **1858**                                        | Vault port
-dr_vault_ip                       | no           | None                                            | Vault DR IP address to perform registration
-pvwa_installation_drive           | no           | **C:**                                          | Base drive to install PVWA
+pvwa_installation_drive           | no           | **C:**                                          | Destination installation drive
 
 ## Dependencies
 None
@@ -92,4 +92,4 @@ For an example of how to incorporate this role into a complete playbook, please 
 **[pas-orchestrator](https://github.com/cyberark/pas-orchestrator)** example.
 
 ## License
-[Apache 2](LICENSE)
+Apache License, Version 2.0
