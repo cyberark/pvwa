@@ -20,7 +20,9 @@
 - name: check if package is valid using checksum
   fail:
     msg: "Checksum does not match, please validate your package."
-  when: st.stat.checksum != pvwa_sha1_checksum
+  when:
+    - st.stat.checksum !=  pvwa_sha1_checksum
+    - not pvwa_ignore_checksum
 
 - fail:
     msg: "{{ pvwa_zip_file_path }} not exists, failing..."
