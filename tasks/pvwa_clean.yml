@@ -20,11 +20,26 @@
     - "{{ pvwa_installation_path }}\\CredFiles\\appuser.ini"
     - "{{ pvwa_installation_path }}\\CredFiles\\gwuser.ini"
 
-- name: clean run history
-  win_regedit:
-    path: 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU'
-    state: absent
-    delete_key: yes
+- name: Clean Run History
+  win_shell: |
+    try {
+      $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
+
+      if (& { Test-Path $path } 2>&1) {
+        $arr = (Get-Item -Path $path).Property
+        foreach ($item in $arr)
+        {
+          if ($item -ne "(Default)")
+          {
+            Remove-ItemProperty -Path $path -Name $item -ErrorAction SilentlyContinue
+          }
+        }
+      }
+    } catch {
+      Write-Output "Error occured: $error"
+      exit 1
+    }
+    exit 0
 
 - name: clean event logs
 - win_shell: |
