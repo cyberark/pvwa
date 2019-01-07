@@ -1,2 +1,61 @@
 ---
 # tasks file for pvwa clean
+
+- name: Clean Windows\\Temp Folder
+  win_find:
+    paths: "C:\\Windows\\Temp"
+    patterns: ['PVWA*.*', 'InstallationAutomation*.*']
+  register: files_to_delete
+
+- win_file:
+    path: "{{item.path}}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"
+
+- name: Clean cred files
+  win_file:
+    path: "{{item}}"
+    state: absent
+  with_items:
+    - "{{ pvwa_installation_path }}\\CredFiles\\appuser.ini"
+    - "{{ pvwa_installation_path }}\\CredFiles\\gwuser.ini"
+
+- name: Clean Run History
+  win_shell: |
+    try {
+      $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
+
+      if (& { Test-Path $path } 2>&1) {
+        $arr = (Get-Item -Path $path).Property
+        foreach ($item in $arr)
+        {
+          if ($item -ne "(Default)")
+          {
+            Remove-ItemProperty -Path $path -Name $item -ErrorAction SilentlyContinue
+          }
+        }
+      }
+    } catch {
+      Write-Output "Error occured: $error"
+      exit 1
+    }
+    exit 0
+
+- name: clean event logs
+- win_shell: |
+    try {
+      wevtutil el | ForEach-Object { wevtutil cl "$_" }
+    } catch {
+      Write-Output "Error occured: $error"
+      exit 1
+    }
+
+- name: clean recycle bin
+- win_shell: |
+    try {
+      $Recycler = (New-Object -ComObject Shell.Application).Namespace(0xa)
+      $Recycler.items() | ForEach-Object { rm $_.path -Force -Recurse }
+    } catch {
+      Write-Output "Error occured: $error"
+      exit 1
+    }
