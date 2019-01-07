@@ -46,19 +46,33 @@
   gather_facts: no
   tasks:
 
-    - name: pvwa Deployment
-      include_role:
-        name: pvwa
-      vars:
-        - pvwa_extract: true
-        - pvwa_prerequisites: true
-        - pvwa_install: true
-        - pvwa_postinstall: true
-        - pvwa_hardening: true
-        - pvwa_registration: false
-        - pvwa_zip_file_path: "/tmp/pvwa.zip"
-        - accept_eula: "yes"
-      retries: 3
-      delay: 3
-      register: result
-      until: result.rc == 0
+    - name: Role Block
+      block:
+
+        - name: pvwa Deployment
+          include_role:
+            name: pvwa
+          vars:
+            - pvwa_extract: true
+            - pvwa_prerequisites: true
+            - pvwa_install: true
+            - pvwa_postinstall: true
+            - pvwa_hardening: true
+            - pvwa_registration: false
+            - pvwa_zip_file_path: "/tmp/pvwa.zip"
+            - accept_eula: "yes"
+
+      rescue:
+
+        - name: pvwa Deployment
+          include_role:
+            name: pvwa
+          vars:
+            - pvwa_extract: true
+            - pvwa_prerequisites: true
+            - pvwa_install: true
+            - pvwa_postinstall: true
+            - pvwa_hardening: true
+            - pvwa_registration: false
+            - pvwa_zip_file_path: "/tmp/pvwa.zip"
+            - accept_eula: "yes"
