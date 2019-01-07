@@ -46,7 +46,7 @@ rules:
   key-duplicates: enable
   key-ordering: disable
   line-length:
-    max: 280
+    max: 350
     level: warning
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: false
