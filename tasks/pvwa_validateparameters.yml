@@ -6,28 +6,6 @@
     msg: "You must accept EULA to start the playbook"
   when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
-- name: check if pvwa_zip_file_path is undefined
-  fail:
-    msg: "pvwa_zip_file_path is undefined, failing..."
-  when: pvwa_zip_file_path is not defined
-
-- name: check if pvwa_zip_file_path exists
-  stat:
-    path="{{ pvwa_zip_file_path }}"
-  register: st
-  delegate_to: localhost
-
-- name: check if package is valid using checksum
-  fail:
-    msg: "Checksum does not match, please validate your package."
-  when:
-    - st.stat.checksum !=  pvwa_sha1_checksum
-    - not pvwa_ignore_checksum
-
-- fail:
-    msg: "{{ pvwa_zip_file_path }} not exists, failing..."
-  when: not st.stat.exists
-
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
   win_reg_stat:
     path: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{{ pvwa_guid }}"
