@@ -50,10 +50,12 @@
 
     - name: Validate PVWA installation
       win_lineinfile:
-        path: '{{ log_result.stdout | from_json | json_query("logPath") }}'
+        path: '{{ item.logPath }}'
         regexp: 'Operation Succeeded'
         state: present
         line: 'Operation Succeeded'
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
   rescue:
 
@@ -64,9 +66,11 @@
       register: log_result
 
     - fetch:
-        src: '{{ log_result.stdout | from_json | json_query("logPath") }}'
+        src: '{{ item.logPath }}'
         dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
     - fail:
         msg: 'ERROR: Installation failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_install.log'

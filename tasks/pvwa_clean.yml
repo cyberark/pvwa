@@ -8,13 +8,13 @@
   register: files_to_delete
 
 - win_file:
-    path: "{{item.path}}"
+    path: "{{ item.path }}"
     state: absent
   with_items: "{{ files_to_delete.files }}"
 
 - name: Clean cred files
   win_file:
-    path: "{{item}}"
+    path: "{{ item }}"
     state: absent
   with_items:
     - "{{ pvwa_installation_path }}\\CredFiles\\appuser.ini"
