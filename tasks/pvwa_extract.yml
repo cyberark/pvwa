@@ -10,21 +10,17 @@
   win_copy:
     src: "{{ pvwa_zip_file_path }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
-
-- name: Get information about PVWA package
-  stat:
-    path: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
   register: st
 
 - fail:
     msg: "{{ pvwa_zip_file_path }} not exists, failing..."
-  when: not st.stat.exists
+  when: not st.checksum
 
 - name: check if package is valid using checksum
   fail:
     msg: "Checksum does not match, please validate your package."
   when:
-    - st.stat.checksum !=  pvwa_sha1_checksum
+    - st.checksum !=  pvwa_sha1_checksum
     - not pvwa_ignore_checksum
 
 - name: Unzip the pvwa package
