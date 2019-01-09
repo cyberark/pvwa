@@ -1,13 +1,14 @@
 ---
 # tasks file for pvwa clean
 
-- name: Clean Windows\\Temp Folder
+- name: Find files to delete in Windows Temp folder
   win_find:
     paths: "C:\\Windows\\Temp"
     patterns: ['PVWA*.*', 'InstallationAutomation*.*']
   register: files_to_delete
 
-- win_file:
+- name: Clean Windows Temp Folder
+  win_file:
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ files_to_delete.files }}"
@@ -42,7 +43,7 @@
     exit 0
 
 - name: clean event logs
-- win_shell: |
+  win_shell: |
     try {
       wevtutil el | ForEach-Object { wevtutil cl "$_" }
     } catch {
@@ -51,7 +52,7 @@
     }
 
 - name: clean recycle bin
-- win_shell: |
+  win_shell: |
     try {
       $Recycler = (New-Object -ComObject Shell.Application).Namespace(0xa)
       $Recycler.items() | ForEach-Object { rm $_.path -Force -Recurse }
