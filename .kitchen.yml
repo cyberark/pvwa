@@ -29,7 +29,7 @@ platforms:
     driver_plugin: ec2
     driver_config:
       instance_type: t2.large
-      iam_profile_name: JenkinsRole
+      iam_profile_name: KitchenRole
       block_device_mappings:
         - device_name: /dev/sda1
           ebs:
