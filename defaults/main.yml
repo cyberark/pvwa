@@ -9,7 +9,7 @@ pvwa_registration: false
 pvwa_upgrade: false
 pvwa_clean: false
 pvwa_extract: false
-
+pvwa_ignore_checksum: false
 pvwa_exists: false
 pvwa_hardened: false
 pvwa_registered: false
@@ -22,7 +22,7 @@ pvwa_component_folder: "Password Vault Web Access"
 pvwa_installationautomation_folder: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}\\InstallationAutomation"
 
 pvwa_installation_drive: "C:"
-pvwa_installation_path: "{{ pvwa_installation_drive }}\\Program Files (x86)\\CyberArk\\Password Vault Web Access"
+pvwa_installation_path: "{{ pvwa_installation_drive }}\\CyberArk\\Password Vault Web Access"
 pvwa_registrationtool_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\Components Registration"
 pvwa_auth_type: "cyberark;ldap"
 pvwa_app_name: "PasswordVault"

@@ -1,40 +1,6 @@
 ---
 # tasks file for pvwa prerequisities
 
-- name: Check if Redistributables is already installed (present in appwiz) (64-bit)
-  win_reg_stat:
-    path: "HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{050d4fc8-5d48-4b8f-8972-47c82c46020f}"
-  register: vcredist_x64_appwiz_info_64bit
-
-- name: Check if Redistributables is already installed (present in appwiz) (32-bit)
-  win_reg_stat:
-    path: "HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{f65db027-aff3-4070-886a-0d87064aabb1}"
-  register: vcredist_x64_appwiz_info_32bit
-
-- name: Copy Redistributables for v10.6 x64
-  win_copy:
-    src: ../files/vcredist_x64.exe
-    dest: C:\Windows\Temp\vcredist_x64.exe
-  when: not vcredist_x64_appwiz_info_64bit.exists
-
-- name: Copy Redistributables for v10.6 x86
-  win_copy:
-    src: ../files/vcredist_x86.exe
-    dest: C:\Windows\Temp\vcredist_x86.exe
-  when: not vcredist_x64_appwiz_info_32bit.exists
-
-- name: Install Redistributables for v10.6
-  win_command: vcredist_x64.exe /install /passive /norestart
-  args:
-    chdir: C:\Windows\Temp
-  when: not vcredist_x64_appwiz_info_64bit.exists
-
-- name: Install Redistributables for v10.6
-  win_command: vcredist_x86.exe /install /passive /norestart
-  args:
-    chdir: C:\Windows\Temp
-  when: not vcredist_x64_appwiz_info_32bit.exists
-
 - name: Pre-Installation Block
   block:
 
@@ -70,9 +36,11 @@
       register: log_result
 
     - fetch:
-        src: '{{ log_result.stdout | from_json | json_query("logPath") }}'
+        src: '{{ item.logPath }}'
         dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
         flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
     - fail:
         msg: 'ERROR: Preinstallation failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'

@@ -29,7 +29,7 @@ platforms:
     driver_plugin: ec2
     driver_config:
       instance_type: t2.large
-      iam_profile_name: JenkinsRole
+      iam_profile_name: KitchenRole
       block_device_mappings:
         - device_name: /dev/sda1
           ebs:
@@ -53,6 +53,8 @@ platforms:
       additional_ssh_private_keys:
         - .kitchen/default-windows-2016.pem
       require_pip: true
+      log_level: debug
+      sudo_command: sudo -E -H
 
 suites:
   - name: default

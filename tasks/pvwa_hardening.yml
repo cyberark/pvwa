@@ -27,9 +27,11 @@
       register: log_result
 
     - fetch:
-        src: '{{ log_result.stdout | from_json | json_query("logPath") }}'
+        src: '{{ item.logPath }}'
         dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
         flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
     - fail:
         msg: 'ERROR: Hardening failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'

@@ -6,12 +6,12 @@
 
     - name: Install pip dependencies
       shell: |
-        pip install boto boto3 botocore pywinrm[credssp] requests-credssp cryptography jmespath --user
+        sudo -E -H pip install boto boto3 botocore pywinrm[credssp] requests-credssp cryptography jmespath
 
     - name: download package from s3
       aws_s3:
         bucket: cloud-initiatives-pipeline-bucket
-        object: "Packages/v10.6/Password Vault Web Access-Rls-v10.6.zip"
+        object: "Packages/v10.7/Password Vault Web Access-Rls-v10.7.zip"
         dest: "/tmp/pvwa.zip"
         mode: get
 
@@ -46,15 +46,33 @@
   gather_facts: no
   tasks:
 
-    - name: pvwa Deployment
-      include_role:
-        name: pvwa
-      vars:
-        - pvwa_extract: true
-        - pvwa_prerequisites: true
-        - pvwa_install: true
-        - pvwa_postinstall: true
-        - pvwa_hardening: true
-        - pvwa_registration: false
-        - pvwa_zip_file_path: "/tmp/pvwa.zip"
-        - accept_eula: "yes"
+    - name: Role Block
+      block:
+
+        - name: pvwa Deployment
+          include_role:
+            name: pvwa
+          vars:
+            - pvwa_extract: true
+            - pvwa_prerequisites: true
+            - pvwa_install: true
+            - pvwa_postinstall: true
+            - pvwa_hardening: true
+            - pvwa_registration: false
+            - pvwa_zip_file_path: "/tmp/pvwa.zip"
+            - accept_eula: "yes"
+
+      rescue:
+
+        - name: pvwa Deployment
+          include_role:
+            name: pvwa
+          vars:
+            - pvwa_extract: true
+            - pvwa_prerequisites: true
+            - pvwa_install: true
+            - pvwa_postinstall: true
+            - pvwa_hardening: true
+            - pvwa_registration: false
+            - pvwa_zip_file_path: "/tmp/pvwa.zip"
+            - accept_eula: "yes"

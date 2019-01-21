@@ -1,8 +1,6 @@
 ---
 # tasks file for pvwa_extract
 
-# TODO Extract and get exact paths
-
 - name: Create folder
   win_file:
     path: "{{ pvwa_extract_folder }}"
@@ -12,6 +10,18 @@
   win_copy:
     src: "{{ pvwa_zip_file_path }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
+  register: st
+
+- fail:
+    msg: "{{ pvwa_zip_file_path }} not exists, failing..."
+  when: not st.checksum
+
+- name: check if package is valid using checksum
+  fail:
+    msg: "Checksum does not match, please validate your package."
+  when:
+    - st.checksum !=  pvwa_sha1_checksum
+    - not pvwa_ignore_checksum
 
 - name: Unzip the pvwa package
   win_unzip:
