@@ -15,7 +15,7 @@ pipeline {
             python -m pip install --user virtualenv
             python -m virtualenv --no-site-packages .testenv
             source ./.testenv/bin/activate
-            .testenv/bin/pip install -r tests/requirements.txt --no-cache-dir
+            .testenv/bin/pip install -r tests/requirements.txt
         '''
       }
     }
