@@ -15,6 +15,7 @@ pvwa_hardened: false
 pvwa_registered: false
 
 pvwa_base_bin_drive: "C:"
+pvwa_url: ""
 pvwa_zip_file_path: ""
 pvwa_extract_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\packages"
 pvwa_artifact_name: "pvwa.zip"
