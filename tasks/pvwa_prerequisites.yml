@@ -44,3 +44,8 @@
 
     - fail:
         msg: 'ERROR: Preinstallation failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
+
+- name: Enable HTTP Activation for .net framework
+  win_feature:
+    name: NET-WCF-HTTP-Activation45
+    state: present
