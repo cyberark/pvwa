@@ -59,3 +59,8 @@
 
     - fail:
         msg: 'ERROR: Preinstallation failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_preinstall.log'
+
+- name: Enable HTTP Activation for .net framework
+  win_feature:
+    name: NET-WCF-HTTP-Activation45
+    state: present
