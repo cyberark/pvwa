@@ -21,6 +21,20 @@
         chdir: "{{ pvwa_registrationtool_folder }}"
       when: dr_vault_ip is defined
 
+    - name: Get log path for registration
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_registration_log }}"
+        Write-Output $Result
+      register: log_result
+
+    - name: Fetch registration log from path
+      fetch:
+        src: '{{ item.logPath }}'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
+        flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
+
     - name: Wait for PVWA to become available
       pause:
         seconds: 30
@@ -44,10 +58,13 @@
         Write-Output $Result
       register: log_result
 
-    - fetch:
-        src: '{{ pvwa_registration_log }}'
-        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
+    - name: Fetch registration log from path
+      fetch:
+        src: '{{ item.logPath }}'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
         flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
     - fail:
-        msg: 'ERROR: Registration failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
+        msg: 'ERROR: Registration failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
