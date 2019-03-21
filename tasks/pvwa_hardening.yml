@@ -18,6 +18,20 @@
       args:
         chdir: "{{ pvwa_installationautomation_folder }}"
 
+    - name: Get log path for hardening
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_hardening_log }}"
+        Write-Output $Result
+      register: log_result
+
+    - name: Fetch installation log from path
+      fetch:
+        src: '{{ item.logPath }}'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_hardening.log'
+        flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
+
   rescue:
 
     - name: Get log path for hardening
@@ -26,15 +40,16 @@
         Write-Output $Result
       register: log_result
 
-    - fetch:
+    - name: Fetch installation log from path
+      fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_hardening.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
     - fail:
-        msg: 'ERROR: Hardening failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
+        msg: 'ERROR: Hardening failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_hardening.log'
 
 # Validate PVWA Hardening
 
