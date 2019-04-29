@@ -9,7 +9,7 @@
         $ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWA_Hardening.ps1
         $Action | Out-File -FilePath "{{ pvwa_hardening_log }}"
-        $Result = Get-Content "{{ pvwa_hardening_log }}" | ConvertFrom-Json
+        $Result = Get-Content "{{ pvwa_hardening_log }}" -Raw | ConvertFrom-Json
         if ($Result.isSucceeded -ne 0) {
             exit 1
         } else {

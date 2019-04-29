@@ -33,7 +33,7 @@
         #$ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWAInstallation.ps1
         $Action | Out-File -FilePath "{{ pvwa_install_log }}"
-        $Result = Get-Content "{{ pvwa_install_log }}" | ConvertFrom-Json
+        $Result = Get-Content "{{ pvwa_install_log }}" -Raw | ConvertFrom-Json
         if ($Result.isSucceeded -ne 0) {
           exit 1
         } else {

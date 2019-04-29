@@ -15,7 +15,7 @@
             Set-Location "{{ pvwa_installationautomation_folder }}"
             $Action = .\PVWA_Prerequisites.ps1
             $Action | Out-File -FilePath "{{ pvwa_prerequisites_log }}"
-            $Result = Get-Content "{{ pvwa_prerequisites_log }}" | ConvertFrom-Json
+            $Result = Get-Content "{{ pvwa_prerequisites_log }}" -Raw | ConvertFrom-Json
             if ($Result.isSucceeded -ne 0) {
                 exit 1
             } else {
