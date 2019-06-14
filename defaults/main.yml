@@ -13,6 +13,7 @@ pvwa_ignore_checksum: false
 pvwa_exists: false
 pvwa_hardened: false
 pvwa_registered: false
+pvwa_official: true
 
 pvwa_base_bin_drive: "C:"
 pvwa_zip_file_path: ""
