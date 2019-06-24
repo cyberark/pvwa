@@ -6,7 +6,7 @@
 
     - name: assign pvwa IP
       set_fact:
-        pvwa_url: "https://{{ inventory_hostname }}/PasswordVault"
+        pvwa_url: "https://{{ ansible_host }}/PasswordVault"
       when: pvwa_url is not defined
 
     - name: Execute pvwa registration with Vault only
