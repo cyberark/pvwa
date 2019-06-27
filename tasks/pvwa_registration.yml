@@ -10,13 +10,13 @@
       when: pvwa_url is not defined
 
     - name: Execute pvwa registration with Vault only
-      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}" /pvwaurl "{{ pvwa_url }}"'
+      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}" /pvwaurl "{{ pvwa_url }}" /authenticationlist "{{ pvwa_auth_type }}"'
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
       when: dr_vault_ip is not defined
 
     - name: Execute pvwa registration with Vault DR
-      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }},{{ dr_vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}" /pvwaurl "{{ pvwa_url }}"'
+      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }},{{ dr_vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}" /pvwaurl "{{ pvwa_url }}" /authenticationlist "{{ pvwa_auth_type }}"'
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
       when: dr_vault_ip is defined
