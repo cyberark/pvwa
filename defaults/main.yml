@@ -26,7 +26,7 @@ pvwa_installation_drive: "C:"
 pvwa_installation_path: "{{ pvwa_installation_drive }}\\CyberArk\\Password Vault Web Access"
 pvwa_registrationtool_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\Components Registration\\PVWA"
 
-pvwa_auth_type: "cyberark;ldap"
+pvwa_auth_type: "CyberArk;LDAP;"
 pvwa_app_name: "PasswordVault"
 pvwa_iis_app_folder: "C:\\inetpub\\wwwroot\\{{ pvwa_app_name }}"
 pvwa_guid: "{96B118DF-1B76-4CCE-8D51-731326034D51}"
