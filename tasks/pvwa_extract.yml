@@ -40,9 +40,3 @@
     src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}"
   when: not pvwa_official
-
-- name: Copy registration tool
-  win_copy:
-    src: "{{ pvwa_installationautomation_folder }}\\Registration\\RegistrationTool\\"
-    dest: "{{ pvwa_registrationtool_folder }}"
-    remote_src: yes
