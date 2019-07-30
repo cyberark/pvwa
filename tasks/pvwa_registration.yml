@@ -4,12 +4,12 @@
 - name: Registration Block
   block:
 
-    - name: assign pvwa IP
+    - name: Assign PVWA IP
       set_fact:
         pvwa_url: "https://{{ ansible_host }}/PasswordVault"
       when: pvwa_url is not defined
 
-    - name: Set up pvwa registration configuration file
+    - name: Update PVWA registration configuration file
       win_shell: |
         try
         {
@@ -41,7 +41,7 @@
         }
       when: dr_vault_ip is not defined
 
-    - name: Set up pvwa registration configuration file
+    - name: Update PVWA registration configuration file
       win_shell: |
         try
         {
@@ -73,11 +73,11 @@
         }
       when: dr_vault_ip is defined
 
-    - name: Execute pvwa registration
+    - name: Execute PVWA registration
       win_shell: |
         Set-Location "{{ pvwa_registrationtool_folder }}"
         #$ErrorActionPreference = "SilentlyContinue"
-        $Action = .\PVWARegisterCommponent.ps1 -pwd {{ vault_password }}
+        $Action = .\PVWARegisterCommponent.ps1 -pwd "{{ vault_password }}"
         $Action | Out-File -FilePath "{{ pvwa_registration_log }}"
         $Result = Get-Content "{{ pvwa_registration_log }}" -Raw | ConvertFrom-Json
         if ($Result.isSucceeded -ne 0) {
@@ -86,7 +86,7 @@
           exit 0
         }
 
-    - name: Fetch registration log from path
+    - name: Fetch registration log from original folder
       fetch:
         src: '{{ pvwa_registration_log }}'
         dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'

@@ -4,7 +4,7 @@
 - name: Hardening Block
   block:
 
-    - name: run PVWA hardening
+    - name: Run PVWA hardening
       win_shell: |
         $ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWA_Hardening.ps1
@@ -24,7 +24,7 @@
         Write-Output $Result
       register: log_result
 
-    - name: Fetch hardening log from path
+    - name: Fetch hardening log from original folder
       fetch:
         src: '{{ item.logPath }}'
         dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_hardening.log'
@@ -40,7 +40,7 @@
         Write-Output $Result
       register: log_result
 
-    - name: Fetch hardening log from path
+    - name: Fetch hardening log from original folder
       fetch:
         src: '{{ item.logPath }}'
         dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_hardening.log'

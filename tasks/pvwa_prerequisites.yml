@@ -4,7 +4,7 @@
 - name: Pre-Installation Block
   block:
 
-    - name: Run Preinstall Script
+    - name: Run PVWA prerequisities script
       win_shell: |
         # Script Name: PVWAPreInstall.ps1
         # Description: Initiating pre-installation proccess of PVWA. If success, returns OK
