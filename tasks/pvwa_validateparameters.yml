@@ -18,7 +18,7 @@
     name: Publisher
   register: pvwa_appwiz_info_32bit
 
-- name: Set fact if pvwa is already installed
+- name: Set fact if PVWA is already installed
   set_fact:
     pvwa_exists: true
   when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists
@@ -28,7 +28,7 @@
     name: CyberArk Scheduled Tasks
   register: service_info
 
-- name: Set fact on hardening if correct user running the service
+- name: Set fact on hardening if correct user is running the service
   set_fact:
     pvwa_hardened: true
   when: service_info.exists and service_info.username == ".\\PVWAReportsUser"

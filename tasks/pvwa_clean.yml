@@ -21,7 +21,7 @@
     - "{{ pvwa_installation_path }}\\CredFiles\\appuser.ini"
     - "{{ pvwa_installation_path }}\\CredFiles\\gwuser.ini"
 
-- name: Clean Run History
+- name: Clean run History
   win_shell: |
     try {
       $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
