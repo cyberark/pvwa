@@ -1,7 +1,7 @@
 ---
 # tasks file for pvwa installation
 
-- name: set installation folder on xml config file
+- name: Set installation folder on xml config file
   win_shell: |
     try
     {
@@ -27,7 +27,7 @@
 - name: Installation Block
   block:
 
-    - name: run PVWA installation
+    - name: Run PVWA installation
       win_shell: |
         Set-Location "{{ pvwa_installationautomation_folder }}\Installation"
         #$ErrorActionPreference = "SilentlyContinue"
@@ -48,7 +48,7 @@
         Write-Output $Result
       register: log_result
 
-    - name: Fetch installation log from path
+    - name: Fetch installation log from original folder
       fetch:
         src: '{{ item.logPath }}'
         dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_install.log'
