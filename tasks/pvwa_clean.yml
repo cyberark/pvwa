@@ -42,6 +42,17 @@
     }
     exit 0
 
+- name: Keep installation automation folder
+  win_copy:
+    src: "{{ pvwa_installationautomation_folder }}"
+    dest: "{{ pvwa_base_bin_drive }}\\Cyberark"
+    remote_src: True
+
+- name: Delete the deployment folder
+  win_file:
+    path: "{{ pvwa_extract_folder }}"
+    state: absent
+
 - name: clean event logs
   win_shell: |
     try {
