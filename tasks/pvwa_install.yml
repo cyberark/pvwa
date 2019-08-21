@@ -1,7 +1,7 @@
 ---
 # tasks file for pvwa installation
 
-- name: set installation folder on xml config file
+- name: Set installation folder on xml config file
   win_shell: |
     try
     {
@@ -27,13 +27,13 @@
 - name: Installation Block
   block:
 
-    - name: run PVWA installation
+    - name: Run PVWA installation
       win_shell: |
         Set-Location "{{ pvwa_installationautomation_folder }}\Installation"
         #$ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWAInstallation.ps1
         $Action | Out-File -FilePath "{{ pvwa_install_log }}"
-        $Result = Get-Content "{{ pvwa_install_log }}" | ConvertFrom-Json
+        $Result = Get-Content "{{ pvwa_install_log }}" -Raw | ConvertFrom-Json
         if ($Result.isSucceeded -ne 0) {
           exit 1
         } else {
@@ -47,6 +47,14 @@
         $Result = Get-Content "{{ pvwa_install_log }}"
         Write-Output $Result
       register: log_result
+
+    - name: Fetch installation log from original folder
+      fetch:
+        src: '{{ item.logPath }}'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_install.log'
+        flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
     - name: Validate PVWA installation
       win_lineinfile:
@@ -65,15 +73,16 @@
         Write-Output $Result
       register: log_result
 
-    - fetch:
+    - name: Fetch installation log from path
+      fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_install.log'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
     - fail:
-        msg: 'ERROR: Installation failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_install.log'
+        msg: 'ERROR: Installation failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_install.log'
 
 - name: Set PVWA exists variable
   set_fact:

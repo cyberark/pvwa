@@ -16,20 +16,27 @@
     msg: "{{ pvwa_zip_file_path }} not exists, failing..."
   when: not st.checksum
 
-- name: check if package is valid using checksum
+- name: Check if package is valid using checksum
   fail:
     msg: "Checksum does not match, please validate your package."
   when:
     - st.checksum !=  pvwa_sha1_checksum
     - not pvwa_ignore_checksum
 
-- name: Unzip the pvwa package
+- name: Unzip the PVWA package
   win_unzip:
     src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
     dest: "{{ pvwa_extract_folder }}"
+  when: pvwa_official
 
-- name: Copy registration tool
-  win_copy:
-    src: "{{ pvwa_installationautomation_folder }}\\Registration\\RegistrationTool\\"
-    dest: "{{ pvwa_registrationtool_folder }}"
-    remote_src: yes
+- name: Create component folder
+  win_file:
+    path: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}"
+    state: directory
+  when: not pvwa_official
+
+- name: Unzip the PVWA package
+  win_unzip:
+    src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
+    dest: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}"
+  when: not pvwa_official

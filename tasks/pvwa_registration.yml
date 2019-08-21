@@ -4,22 +4,93 @@
 - name: Registration Block
   block:
 
-    - name: assign pvwa IP
+    - name: Assign PVWA IP
       set_fact:
-        pvwa_url: "https://{{ inventory_hostname }}/PasswordVault"
+        pvwa_url: "https://{{ ansible_host }}/PasswordVault"
       when: pvwa_url is not defined
 
-    - name: Execute pvwa registration with Vault only
-      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}" /pvwaurl "{{ pvwa_url }}"'
-      args:
-        chdir: "{{ pvwa_registrationtool_folder }}"
+    - name: Update PVWA registration configuration file
+      win_shell: |
+        try
+        {
+            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponnetConfig.xml"
+            $xml = [xml](Get-Content $filePath)
+            $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
+            $step1.Value = "{{ vault_ip }}"
+            $step2 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultport']")
+            $step2.Value = "{{ vault_port }}"
+            $step3 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultuser']")
+            $step3.Value = "{{ vault_username }}"
+            $step4 = $xml.SelectSingleNode("//Parameter[@Name = 'installpackagedir']")
+            $step4.Value = "{{ pvwa_iis_app_folder }}"
+            $step5 = $xml.SelectSingleNode("//Parameter[@Name = 'authenticationlist']")
+            $step5.Value = "{{ pvwa_auth_type }}"
+            $step6 = $xml.SelectSingleNode("//Parameter[@Name = 'virtualDirectoryPath']")
+            $step6.Value = "{{ pvwa_iis_app_folder }}"
+            $step7 = $xml.SelectSingleNode("//Parameter[@Name = 'pvwaUrl']")
+            $step7.Value = "{{ pvwa_url }}"
+            $step8 = $xml.SelectSingleNode("//Parameter[@Name = 'configFilesPath']")
+            $step8.Value = "{{ pvwa_installation_path }}"
+            $xml.Save($filePath)
+            exit 0
+        }
+        catch
+        {
+            Write-Output "Error occured While updating registration configuration file"
+            exit 1
+        }
       when: dr_vault_ip is not defined
 
-    - name: Execute pvwa registration with Vault DR
-      win_command: 'RegisterComponent.exe PVWA /accepteula Yes /vaultip {{ vault_ip }},{{ dr_vault_ip }} /vaultport {{ vault_port }} /vaultuser {{ vault_username }} /vaultpassword {{ vault_password }} /virtualdirectorypath  "{{ pvwa_iis_app_folder }}" /configfilespath "{{ pvwa_installation_path }}" /pvwaurl "{{ pvwa_url }}"'
-      args:
-        chdir: "{{ pvwa_registrationtool_folder }}"
+    - name: Update PVWA registration configuration file
+      win_shell: |
+        try
+        {
+            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponnetConfig.xml"
+            $xml = [xml](Get-Content $filePath)
+            $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
+            $step1.Value = "{{ vault_ip }}"
+            $step2 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultport']")
+            $step2.Value = "{{ vault_port }}"
+            $step3 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultuser']")
+            $step3.Value = "{{ vault_username }}"
+            $step4 = $xml.SelectSingleNode("//Parameter[@Name = 'installpackagedir']")
+            $step4.Value = "{{ pvwa_iis_app_folder }}"
+            $step5 = $xml.SelectSingleNode("//Parameter[@Name = 'authenticationlist']")
+            $step5.Value = "{{ pvwa_auth_type }}"
+            $step6 = $xml.SelectSingleNode("//Parameter[@Name = 'virtualDirectoryPath']")
+            $step6.Value = "{{ pvwa_iis_app_folder }}"
+            $step7 = $xml.SelectSingleNode("//Parameter[@Name = 'pvwaUrl']")
+            $step7.Value = "{{ pvwa_url }}"
+            $step8 = $xml.SelectSingleNode("//Parameter[@Name = 'configFilesPath']")
+            $step8.Value = "{{ pvwa_installation_path }}"
+            $xml.Save($filePath)
+            exit 0
+        }
+        catch
+        {
+            Write-Output "Error occured While updating registration configuration file"
+            exit 1
+        }
       when: dr_vault_ip is defined
+
+    - name: Execute PVWA registration
+      win_shell: |
+        Set-Location "{{ pvwa_registrationtool_folder }}"
+        #$ErrorActionPreference = "SilentlyContinue"
+        $Action = .\PVWARegisterCommponent.ps1 -pwd "{{ vault_password }}"
+        $Action | Out-File -FilePath "{{ pvwa_registration_log }}"
+        $Result = Get-Content "{{ pvwa_registration_log }}" -Raw | ConvertFrom-Json
+        if ($Result.isSucceeded -ne 0) {
+          exit 1
+        } else {
+          exit 0
+        }
+
+    - name: Fetch registration log from original folder
+      fetch:
+        src: '{{ pvwa_registration_log }}'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
+        flat: yes
 
     - name: Wait for PVWA to become available
       pause:
@@ -38,16 +109,11 @@
 
   rescue:
 
-    - name: Get log path for registration
-      win_shell: |
-        $Result = Get-Content "{{ pvwa_registration_log }}"
-        Write-Output $Result
-      register: log_result
-
-    - fetch:
+    - name: Fetch registration log from path
+      fetch:
         src: '{{ pvwa_registration_log }}'
-        dest: '{{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
         flat: yes
 
     - fail:
-        msg: 'ERROR: Registration failed. For more info check {{ playbook_dir }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
+        msg: 'ERROR: Registration failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'

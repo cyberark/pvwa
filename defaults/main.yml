@@ -13,6 +13,7 @@ pvwa_ignore_checksum: false
 pvwa_exists: false
 pvwa_hardened: false
 pvwa_registered: false
+pvwa_official: true
 
 pvwa_base_bin_drive: "C:"
 pvwa_zip_file_path: ""
@@ -23,8 +24,9 @@ pvwa_installationautomation_folder: "{{ pvwa_extract_folder }}\\{{ pvwa_componen
 
 pvwa_installation_drive: "C:"
 pvwa_installation_path: "{{ pvwa_installation_drive }}\\CyberArk\\Password Vault Web Access"
-pvwa_registrationtool_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\Components Registration"
-pvwa_auth_type: "cyberark;ldap"
+pvwa_registrationtool_folder: "{{ pvwa_installationautomation_folder }}\\Registration"
+
+pvwa_auth_type: "CyberArk;LDAP;"
 pvwa_app_name: "PasswordVault"
 pvwa_iis_app_folder: "C:\\inetpub\\wwwroot\\{{ pvwa_app_name }}"
 pvwa_guid: "{96B118DF-1B76-4CCE-8D51-731326034D51}"
@@ -32,7 +34,7 @@ pvwa_guid: "{96B118DF-1B76-4CCE-8D51-731326034D51}"
 pvwa_prerequisites_log: "{{ pvwa_installationautomation_folder }}\\pvwa_pre_req_result.txt"
 pvwa_install_log: "{{ pvwa_installationautomation_folder }}\\pvwa_installation_result.txt"
 pvwa_hardening_log: "{{ pvwa_installationautomation_folder }}\\pvwa_hardening_result.txt"
-pvwa_registration_log: "{{ pvwa_registrationtool_folder }}\\Log\\RegisterComponent.log"
+pvwa_registration_log: "{{ pvwa_installationautomation_folder  }}\\pvwa_registration_result.txt"
 
 accept_eula: "No"
 

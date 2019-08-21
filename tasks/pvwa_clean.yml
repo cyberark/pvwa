@@ -21,7 +21,7 @@
     - "{{ pvwa_installation_path }}\\CredFiles\\appuser.ini"
     - "{{ pvwa_installation_path }}\\CredFiles\\gwuser.ini"
 
-- name: Clean Run History
+- name: Clean run History
   win_shell: |
     try {
       $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
@@ -41,6 +41,17 @@
       exit 1
     }
     exit 0
+
+- name: Keep installation automation folder
+  win_copy:
+    src: "{{ pvwa_installationautomation_folder }}"
+    dest: "{{ pvwa_base_bin_drive }}\\Cyberark"
+    remote_src: True
+
+- name: Delete the deployment folder
+  win_file:
+    path: "{{ pvwa_extract_folder }}"
+    state: absent
 
 - name: clean event logs
   win_shell: |
