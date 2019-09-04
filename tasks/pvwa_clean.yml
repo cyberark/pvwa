@@ -45,7 +45,7 @@
 - name: Keep installation automation folder
   win_copy:
     src: "{{ pvwa_installationautomation_folder }}"
-    dest: "{{ pvwa_base_bin_drive }}\\Cyberark"
+    dest: "{{ pvwa_base_bin_drive }}\\Cyberark\\PVWA"
     remote_src: True
 
 - name: Delete the deployment folder
