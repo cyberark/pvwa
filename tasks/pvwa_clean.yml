@@ -47,6 +47,7 @@
     src: "{{ pvwa_installationautomation_folder }}"
     dest: "{{ pvwa_base_bin_drive }}\\Cyberark\\PVWA"
     remote_src: True
+  ignore_errors: yes
 
 - name: Delete the deployment folder
   win_file:
