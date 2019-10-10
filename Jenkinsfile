@@ -26,7 +26,10 @@ pipeline {
     // }
     stage('yamllint validation') {
       steps {
-        sh 'yamllint .'
+        sh '''
+            source .testenv/bin/activate
+            yamllint .
+        '''
       }
     }
     stage('replace tags with commit id') {
@@ -55,6 +58,7 @@ pipeline {
     stage('Update hosts file') {
       steps {
         sh '''
+            source .testenv/bin/activate
             chmod +x tests/inventory/ec2.py
             ansible-inventory -i tests/inventory/ec2.py --list tag_commit_id_${shortCommit} --export -y > ./tests/inventory/hosts
         '''
@@ -66,6 +70,7 @@ pipeline {
           export PATH="$HOME/.rbenv/bin:$PATH"
           eval "$(rbenv init -)"
           rbenv global 2.5.1
+          source .testenv/bin/activate
           kitchen converge
         '''
       }
