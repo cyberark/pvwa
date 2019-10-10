@@ -11,7 +11,7 @@ transport:
   ssl: true
   connect_timeout: 60
   connection_retries: 5
-  
+
 provisioner:
   name: ansible_push
   verbose: "vvv"
