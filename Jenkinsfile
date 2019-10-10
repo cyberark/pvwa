@@ -9,6 +9,17 @@ pipeline {
     shortCommit = sh(script: "git log -n 1 --pretty=format:'%h'", returnStdout: true).trim()
   }
   stages {
+    stage('Get role') {
+      steps {
+        sh '''
+            cd tests
+            mkdir roles
+            cd roles
+            git clone https://github.com/cyberark/pvwa
+            cd pvwa
+            git checkout ${shortCommit}
+      }
+    }
     stage('Install virtual environment') {
       steps {
         sh '''
@@ -41,15 +52,6 @@ pipeline {
           kitchen create
         '''
 
-      }
-    }
-    stage('Update hosts file') {
-      steps {
-        sh '''
-            source .testenv/bin/activate
-            chmod +x tests/inventory/ec2.py
-            ansible-inventory -i tests/inventory/ec2.py --list tag_commit_id_${shortCommit} --export -y > ./tests/inventory/hosts
-        '''
       }
     }
     stage('Run playbook on windows machine') {
