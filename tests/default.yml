@@ -15,20 +15,6 @@
         dest: "/tmp/pvwa.zip"
         mode: get
 
-    - name: Get the current region
-      shell: |
-        REGION=`curl http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
-        echo $REGION
-      register: my_region
-
-    - name: Get instance facts
-      ec2_instance_facts:
-        region: "{{ my_region.stdout }}"
-        filters:
-          "tag:kitchen-type": windows
-          "instance-state-name": running
-      register: ec2_result
-
 - hosts: tag_kitchen_type_windows
   gather_facts: no
   tasks:
