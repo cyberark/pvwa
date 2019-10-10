@@ -1,12 +1,13 @@
 ---
 
-- hosts: localhost
+- hosts: pvwa
   gather_facts: no
   tasks:
 
     - name: Install pip dependencies
       shell: |
         sudo -E -H pip install boto boto3 botocore pywinrm[credssp] requests-credssp cryptography jmespath
+      delegate_to: localhost
 
     - name: download package from s3
       aws_s3:
@@ -14,10 +15,11 @@
         object: "Packages/v11.1/Password Vault Web Access-Rls-v11.1.zip"
         dest: "/tmp/pvwa.zip"
         mode: get
+        delegate_to: localhost
 
-- hosts: tag_kitchen_type_pvwa
-  gather_facts: no
-  tasks:
+
+
+
 
     - name: Role Block
       block:
