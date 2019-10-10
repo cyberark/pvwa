@@ -23,7 +23,7 @@ provisioner:
   ansible_connection: winrm
   pass_transport_password: true
   raw_arguments: "--timeout=3600"
-  ansible_playbook_bin : .testenv/bin/ansible-playbook
+  ansible_playbook_bin: .testenv/bin/ansible-playbook
   playbook: tests/default.yml
 
 platforms:
