@@ -18,6 +18,7 @@ pipeline {
             git clone https://github.com/cyberark/pvwa
             cd pvwa
             git checkout ${shortCommit}
+        '''
       }
     }
     stage('Install virtual environment') {
