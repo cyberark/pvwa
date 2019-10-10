@@ -48,7 +48,7 @@ platforms:
       image_search:
         owner-id: 801119661308
         name: Windows_Server-2016-English-Full-Base-20*
-      user_data: tests/scripts/user_data_windows.ps1
+      user_data: tests/scripts/user_data_windows_2016.ps1
 
 suites:
   - name: default
