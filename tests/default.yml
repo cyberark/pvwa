@@ -11,7 +11,7 @@
     - name: download package from s3
       aws_s3:
         bucket: cloud-initiatives-pipeline-bucket
-        object: "Packages/v10.10/Password Vault Web Access-Rls-v10.10.zip"
+        object: "Packages/v11.1/Password Vault Web Access-Rls-v11.1.zip"
         dest: "/tmp/pvwa.zip"
         mode: get
 
