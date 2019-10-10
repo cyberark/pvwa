@@ -7,7 +7,7 @@ pipeline {
   environment {
     AWS_REGION = sh(script: 'curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python -c "import json,sys;obj=json.load(sys.stdin);print obj[\'region\']"', returnStdout: true).trim()
     shortCommit = sh(script: "git log -n 1 --pretty=format:'%h'", returnStdout: true).trim()
-    PATH = '$HOME/.rbenv/bin:$PATH'
+    PATH = 'PATH+EXTRA=$HOME/.rbenv/bin'
   }
   stages {
     stage('Install virtual environment') {
