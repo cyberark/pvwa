@@ -15,7 +15,7 @@ pipeline {
             python -m pip install --user virtualenv
             python -m virtualenv --no-site-packages .testenv
             . .testenv/bin/activate
-            .testenv/bin/pip install -r tests/requirements.txt
+            .testenv/bin/pip install -r tests/requirements.txt --ignore-installed
         '''
       }
     }
