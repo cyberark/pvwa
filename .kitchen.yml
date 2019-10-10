@@ -11,13 +11,14 @@ transport:
   ssl: true
   connect_timeout: 60
   connection_retries: 5
+  username: Administrator
+  password: Nopass123
 
 provisioner:
   name: ansible_push
   verbose: "vvv"
   chef_bootstrap_url: nil
   remote_user: Administrator
-  password: Nopass123
   ansible_port: 5986
   ansible_connection: winrm
   pass_transport_password: true
