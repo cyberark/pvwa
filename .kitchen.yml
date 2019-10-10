@@ -29,6 +29,8 @@ platforms:
     driver_config:
       instance_type: m4.large
       associate_public_ip: true
+      security_group_filter:
+        name:   'ansible-sg'
       tags:
         created-by: test-kitchen
         component-type: pvwa
