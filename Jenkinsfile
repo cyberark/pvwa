@@ -7,17 +7,11 @@ pipeline {
   environment {
     AWS_REGION = sh(script: 'curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python -c "import json,sys;obj=json.load(sys.stdin);print obj[\'region\']"', returnStdout: true).trim()
     shortCommit = sh(script: "git log -n 1 --pretty=format:'%h'", returnStdout: true).trim()
+    PATH = '$HOME/.rbenv/bin:$PATH'
   }
   stages {
     stage('Install virtual environment') {
       steps {
-        sh '''
-          export PATH="$HOME/.rbenv/bin:$PATH"
-          eval "$(rbenv init -)"
-          echo $PATH
-          rbenv global 2.5.1
-          ruby -v          
-        '''
         sh '''
             python -m pip install --user virtualenv
             python -m virtualenv --no-site-packages .testenv
