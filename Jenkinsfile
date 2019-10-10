@@ -12,6 +12,8 @@ pipeline {
     stage('Install virtual environment') {
       steps {
         sh '''
+          export PATH="$HOME/.rbenv/bin:$PATH"
+          eval "$(rbenv init -)"
           echo $PATH
           rbenv global 2.5.1
           ruby -v          
