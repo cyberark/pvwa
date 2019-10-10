@@ -7,7 +7,6 @@ pipeline {
   environment {
     AWS_REGION = sh(script: 'curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python -c "import json,sys;obj=json.load(sys.stdin);print obj[\'region\']"', returnStdout: true).trim()
     shortCommit = sh(script: "git log -n 1 --pretty=format:'%h'", returnStdout: true).trim()
-    PATH = '$HOME/.rbenv/bin:$PATH'
   }
   stages {
     stage('Install virtual environment') {
@@ -44,6 +43,7 @@ pipeline {
     }
     stage('Provision testing environment') {
       steps {
+        sh 'export PATH=$HOME/.rbenv/bin:$PATH'
         sh 'kitchen create'
       }
     }
@@ -57,17 +57,20 @@ pipeline {
     }
     stage('Run playbook on windows machine') {
       steps {
+        sh 'export PATH=$HOME/.rbenv/bin:$PATH'
         sh 'kitchen converge'
       }
     }
     stage('Run pester tests') {
       steps {
+        sh 'export PATH=$HOME/.rbenv/bin:$PATH'
         sh 'kitchen verify'
       }
     }
   }
   post {
     always {
+      sh 'export PATH=$HOME/.rbenv/bin:$PATH'
       sh 'kitchen destroy'
     }
   }
