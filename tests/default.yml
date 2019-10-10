@@ -17,10 +17,6 @@
         mode: get
         delegate_to: localhost
 
-
-
-
-
     - name: Role Block
       block:
 
