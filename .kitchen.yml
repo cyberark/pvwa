@@ -2,7 +2,7 @@
 
 driver:
   name: ec2
-  require_chef_omnibus: false
+  interface: private
 
 transport:
   name: winrm
@@ -28,9 +28,10 @@ platforms:
     driver_plugin: ec2
     driver_config:
       instance_type: m4.large
-      associate_public_ip: true
-      security_group_filter:
-        name: 'ansible-sg'
+      associate_public_ip: false
+      subnet_filter:
+        tag:   'Name'
+        value: 'Jenkins Private Subnet'
       tags:
         created-by: test-kitchen
         component-type: pvwa
