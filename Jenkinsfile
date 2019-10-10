@@ -12,6 +12,11 @@ pipeline {
     stage('Install virtual environment') {
       steps {
         sh '''
+          ruby -v
+          echo $PATH
+          rbenv
+        '''
+        sh '''
             python -m pip install --user virtualenv
             python -m virtualenv --no-site-packages .testenv
             . .testenv/bin/activate
