@@ -42,9 +42,6 @@ platforms:
         owner-id: 801119661308
         name: Windows_Server-2016-English-Full-Base-20*
       user_data: tests/scripts/user_data_windows.ps1
-    verifier:
-      name: pester
-      test_folder: tests
 
 suites:
   - name: default

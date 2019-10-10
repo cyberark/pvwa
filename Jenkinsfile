@@ -70,16 +70,16 @@ pipeline {
         '''
       }
     }
-    stage('Run pester tests') {
-      steps {
-        sh '''
-          export PATH="$HOME/.rbenv/bin:$PATH"
-          eval "$(rbenv init -)"
-          rbenv global 2.5.1
-          kitchen verify
-        '''
-      }
-    }
+    // stage('Run pester tests') {
+    //   steps {
+    //     sh '''
+    //       export PATH="$HOME/.rbenv/bin:$PATH"
+    //       eval "$(rbenv init -)"
+    //       rbenv global 2.5.1
+    //       kitchen verify
+    //     '''
+    //   }
+    // }
   }
   post {
     always {
