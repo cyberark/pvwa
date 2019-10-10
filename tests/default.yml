@@ -4,11 +4,6 @@
   gather_facts: no
   tasks:
 
-    - name: Install pip dependencies
-      shell: |
-        sudo -E -H pip install boto boto3 botocore pywinrm[credssp] requests-credssp cryptography jmespath
-      delegate_to: localhost
-
     - name: download package from s3
       aws_s3:
         bucket: cloud-initiatives-pipeline-bucket
