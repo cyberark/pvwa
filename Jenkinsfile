@@ -13,6 +13,7 @@ pipeline {
       steps {
         sh '''
             cd tests
+            rm -rf roles
             mkdir roles
             cd roles
             git clone https://github.com/cyberark/pvwa
