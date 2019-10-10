@@ -15,7 +15,7 @@
         dest: "/tmp/pvwa.zip"
         mode: get
 
-- hosts: tag_kitchen_type_windows
+- hosts: tag_kitchen_type_pvwa
   gather_facts: no
   tasks:
 
