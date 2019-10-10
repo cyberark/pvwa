@@ -10,7 +10,7 @@
         object: "Packages/v11.1/Password Vault Web Access-Rls-v11.1.zip"
         dest: "/tmp/pvwa.zip"
         mode: get
-        delegate_to: localhost
+      delegate_to: localhost
 
     - name: Role Block
       block:
