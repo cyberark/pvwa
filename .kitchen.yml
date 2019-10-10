@@ -30,7 +30,7 @@ platforms:
       instance_type: m4.large
       associate_public_ip: false
       subnet_filter:
-        tag:   'Name'
+        tag: 'Name'
         value: 'Jenkins Private Subnet'
       tags:
         created-by: test-kitchen
