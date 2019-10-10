@@ -12,9 +12,9 @@ pipeline {
     stage('Install virtual environment') {
       steps {
         sh '''
-          ruby -v
           echo $PATH
-          rbenv
+          rbenv global 2.5.1
+          ruby -v          
         '''
         sh '''
             python -m pip install --user virtualenv
