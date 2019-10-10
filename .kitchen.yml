@@ -32,6 +32,8 @@ platforms:
       subnet_filter:
         tag: 'Name'
         value: 'Jenkins Private Subnet'
+      security_group_filter:
+        name: 'ansible-sg'
       tags:
         created-by: test-kitchen
         component-type: pvwa
