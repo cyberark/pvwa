@@ -56,7 +56,7 @@ pipeline {
       steps {
         sh '''
             chmod +x tests/inventory/ec2.py
-            ansible-inventory -i tests/inventory/ec2.py --list tag_commit_id_${shortCommit} --export -y > ./tests/inventory/hosts
+            .testenv/bin/ansible-inventory -i tests/inventory/ec2.py --list tag_commit_id_${shortCommit} --export -y > ./tests/inventory/hosts
         '''
       }
     }
