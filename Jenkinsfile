@@ -15,7 +15,7 @@ pipeline {
             python -m pip install --user virtualenv
             python -m virtualenv --no-site-packages .testenv
             . .testenv/bin/activate
-            .testenv/bin/pip install -r tests/requirements.txt
+            pip install -r tests/requirements.txt
         '''
       }
     }
@@ -26,7 +26,7 @@ pipeline {
     // }
     stage('yamllint validation') {
       steps {
-        sh '.testenv/bin/yamllint .'
+        sh 'yamllint .'
       }
     }
     stage('replace tags with commit id') {
@@ -56,7 +56,7 @@ pipeline {
       steps {
         sh '''
             chmod +x tests/inventory/ec2.py
-            .testenv/bin/ansible-inventory -i tests/inventory/ec2.py --list tag_commit_id_${shortCommit} --export -y > ./tests/inventory/hosts
+            ansible-inventory -i tests/inventory/ec2.py --list tag_commit_id_${shortCommit} --export -y > ./tests/inventory/hosts
         '''
       }
     }
