@@ -43,8 +43,13 @@ pipeline {
     }
     stage('Provision testing environment') {
       steps {
-        sh 'export PATH=$HOME/.rbenv/bin:$PATH'
-        sh 'kitchen create'
+        sh '''
+          export PATH="$HOME/.rbenv/bin:$PATH"
+          eval "$(rbenv init -)"
+          rbenv global 2.5.1
+          kitchen create
+        '''
+
       }
     }
     stage('Update hosts file') {
@@ -57,21 +62,33 @@ pipeline {
     }
     stage('Run playbook on windows machine') {
       steps {
-        sh 'export PATH=$HOME/.rbenv/bin:$PATH'
-        sh 'kitchen converge'
+        sh '''
+          export PATH="$HOME/.rbenv/bin:$PATH"
+          eval "$(rbenv init -)"
+          rbenv global 2.5.1
+          kitchen converge
+        '''
       }
     }
     stage('Run pester tests') {
       steps {
-        sh 'export PATH=$HOME/.rbenv/bin:$PATH'
-        sh 'kitchen verify'
+        sh '''
+          export PATH="$HOME/.rbenv/bin:$PATH"
+          eval "$(rbenv init -)"
+          rbenv global 2.5.1
+          kitchen verify
+        '''
       }
     }
   }
   post {
     always {
-      sh 'export PATH=$HOME/.rbenv/bin:$PATH'
-      sh 'kitchen destroy'
+      sh '''
+        export PATH="$HOME/.rbenv/bin:$PATH"
+        eval "$(rbenv init -)"
+        rbenv global 2.5.1
+        kitchen destroy
+      '''
     }
   }
 }
