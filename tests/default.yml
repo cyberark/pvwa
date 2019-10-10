@@ -29,19 +29,6 @@
           "instance-state-name": running
       register: ec2_result
 
-    - name: Get windows password using keypair
-      ec2_win_password:
-        instance_id: "{{ ec2_result.instances[0].instance_id }}"
-        region: "{{ my_region.stdout }}"
-        key_file: ssh_private_keys/default-windows-2016.pem
-        wait: yes
-        wait_timeout: 600
-      register: ec2_win_password
-
-    - name: Set fact for windows password to use in another hosts
-      set_fact:
-        win_password: "{{ ec2_win_password.win_password }}"
-
 - hosts: tag_kitchen_type_windows
   gather_facts: no
   tasks:
