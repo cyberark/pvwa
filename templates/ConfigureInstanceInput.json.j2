@@ -1,10 +1,10 @@
 {
-  'isUpgrade': '{{ pvwa_upgrade }}',
-  'configDirPath': '{{ pvwa_installation_path }}',
-  'websiteDirPath': '{{ pvwa_iis_app_folder }}',
+  'isUpgrade': {{ pvwa_upgrade|lower }},
+  'configDirPath': '{{ pvwa_installation_path|e }}',
+  'websiteDirPath': '{{ pvwa_iis_app_folder|e }}',
   'applicationName': '{{ pvwa_app_name }}',
-  'enableFullVersion': '{{ pvwa_enable_full_version }}',
-  'enableMobileVersion': '{{ pvwa_enable_mobile_version }}',
+  'enableFullVersion': {{ pvwa_enable_full_version|lower }},
+  'enableMobileVersion': {{ pvwa_enable_mobile_version|lower }},
   'vaultParams': {
     'address': '{{ vault_ip }}',
     'port': '{{ vault_port }}',
