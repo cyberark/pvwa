@@ -4,97 +4,67 @@
 - name: Registration Block
   block:
 
+     - set_fact:
+        pvwa_registration_configure_instance: true
+        pvwa_registration_configure_vault: true
+        pvwa_registration_register_instance: true
+      when: pvwa_registration
+
     - name: Assign PVWA IP
       set_fact:
         pvwa_url: "https://{{ ansible_host }}/PasswordVault"
       when: pvwa_url is not defined
 
-    - name: Update PVWA registration configuration file
+    - name: Create configure instance input json
+      win_template:
+        src: configureInstance.json.j2
+        dest: {{ pvwa_installation_path }}\Env\configureInstance.json
+      when:
+        - pvwa_registration_configure_instance
+    
+    - name: Configure instance
       win_shell: |
-        try
-        {
-            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponnetConfig.xml"
-            $xml = [xml](Get-Content $filePath)
-            $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
-            $step1.Value = "{{ vault_ip }}"
-            $step2 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultport']")
-            $step2.Value = "{{ vault_port }}"
-            $step3 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultuser']")
-            $step3.Value = "{{ vault_username }}"
-            $step4 = $xml.SelectSingleNode("//Parameter[@Name = 'installpackagedir']")
-            $step4.Value = "{{ pvwa_iis_app_folder }}"
-            $step5 = $xml.SelectSingleNode("//Parameter[@Name = 'authenticationlist']")
-            $step5.Value = "{{ pvwa_auth_type }}"
-            $step6 = $xml.SelectSingleNode("//Parameter[@Name = 'virtualDirectoryPath']")
-            $step6.Value = "{{ pvwa_iis_app_folder }}"
-            $step7 = $xml.SelectSingleNode("//Parameter[@Name = 'pvwaUrl']")
-            $step7.Value = "{{ pvwa_url }}"
-            $step8 = $xml.SelectSingleNode("//Parameter[@Name = 'configFilesPath']")
-            $step8.Value = "{{ pvwa_installation_path }}"
-            $xml.Save($filePath)
-            exit 0
-        }
-        catch
-        {
-            Write-Output "Error occured While updating registration configuration file"
-            exit 1
-        }
-      when: dr_vault_ip is not defined
+        ConfigureInstance.exe configureInstance.json
+      args:
+        chdir: {{ pvwa_installation_path }}\Env
+      when:
+        - pvwa_registration_configure_instance
 
-    - name: Update PVWA registration configuration file
+    - name: Create configure vault input json
+      win_template:
+        src: configureVault.json.j2
+        dest: {{ pvwa_installation_path }}\Env\configureVault.json
+      when:
+        - pvwa_registration_configure_vault
+    
+    - name: Configure vault
       win_shell: |
-        try
-        {
-            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponnetConfig.xml"
-            $xml = [xml](Get-Content $filePath)
-            $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
-            $step1.Value = "{{ vault_ip }}"
-            $step2 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultport']")
-            $step2.Value = "{{ vault_port }}"
-            $step3 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultuser']")
-            $step3.Value = "{{ vault_username }}"
-            $step4 = $xml.SelectSingleNode("//Parameter[@Name = 'installpackagedir']")
-            $step4.Value = "{{ pvwa_iis_app_folder }}"
-            $step5 = $xml.SelectSingleNode("//Parameter[@Name = 'authenticationlist']")
-            $step5.Value = "{{ pvwa_auth_type }}"
-            $step6 = $xml.SelectSingleNode("//Parameter[@Name = 'virtualDirectoryPath']")
-            $step6.Value = "{{ pvwa_iis_app_folder }}"
-            $step7 = $xml.SelectSingleNode("//Parameter[@Name = 'pvwaUrl']")
-            $step7.Value = "{{ pvwa_url }}"
-            $step8 = $xml.SelectSingleNode("//Parameter[@Name = 'configFilesPath']")
-            $step8.Value = "{{ pvwa_installation_path }}"
-            $xml.Save($filePath)
-            exit 0
-        }
-        catch
-        {
-            Write-Output "Error occured While updating registration configuration file"
-            exit 1
-        }
-      when: dr_vault_ip is defined
+        ConfigureVault.exe configureVault.json "{{ vault_password }}"
+      args:
+        chdir: {{ pvwa_installation_path }}\Env
+      when:
+        - pvwa_registration_configure_vault
 
-    - name: Execute PVWA registration
+    - name: Create register instance input json
+      win_template:
+        src: registerInstance.json.j2
+        dest: {{ pvwa_installation_path }}\Env\registerInstance.json
+      when:
+        - pvwa_registration_register_instance
+    
+    - name: Register instance
       win_shell: |
-        Set-Location "{{ pvwa_registrationtool_folder }}"
-        #$ErrorActionPreference = "SilentlyContinue"
-        $Action = .\PVWARegisterCommponent.ps1 -pwd "{{ vault_password }}"
-        $Action | Out-File -FilePath "{{ pvwa_registration_log }}"
-        $Result = Get-Content "{{ pvwa_registration_log }}" -Raw | ConvertFrom-Json
-        if ($Result.isSucceeded -ne 0) {
-          exit 1
-        } else {
-          exit 0
-        }
-
-    - name: Fetch registration log from original folder
-      fetch:
-        src: '{{ pvwa_registration_log }}'
-        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
-        flat: yes
+        RegisterInstance.exe registerInstance.json "{{ vault_password }}"
+      args:
+        chdir: {{ pvwa_installation_path }}\Env
+      when:
+        - pvwa_registration_register_instance
 
     - name: Wait for PVWA to become available
       pause:
         seconds: 30
+      when:
+        - pvwa_registration_register_instance
 
     - name: Check that you can connect (GET) to pvwa and it returns a status 200
       win_uri:
@@ -102,6 +72,8 @@
         validate_certs: no
         timeout: 60
       register: pvwa_server_info
+      when:
+        - pvwa_registration_register_instance
       failed_when: pvwa_server_info is not defined or pvwa_server_info.status_code != 200
 
     - set_fact:
