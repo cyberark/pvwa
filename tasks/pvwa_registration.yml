@@ -4,7 +4,7 @@
 - name: Registration Block
   block:
 
-     - set_fact:
+    - set_fact:
         pvwa_registration_configure_instance: true
         pvwa_registration_configure_vault: true
         pvwa_registration_register_instance: true
