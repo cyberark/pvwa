@@ -17,8 +17,8 @@
 
     - name: Create configure instance input json
       win_template:
-        src: 'configureInstance.json.j2'
-        dest: '{{ pvwa_installation_path }}\Env\configureInstance.json'
+        src: 'ConfigureInstanceInput.json.j2'
+        dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
       when:
         - pvwa_registration_configure_instance
     
@@ -32,8 +32,8 @@
 
     - name: Create configure vault input json
       win_template:
-        src: 'configureVault.json.j2'
-        dest: '{{ pvwa_installation_path }}\Env\configureVault.json'
+        src: 'ConfigureVaultInput.json.j2'
+        dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
       when:
         - pvwa_registration_configure_vault
     
@@ -47,8 +47,8 @@
 
     - name: Create register instance input json
       win_template:
-        src: 'registerInstance.json.j2'
-        dest: '{{ pvwa_installation_path }}\Env\registerInstance.json'
+        src: 'RegisterInstanceInput.json.j2'
+        dest: '{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json'
       when:
         - pvwa_registration_register_instance
     
