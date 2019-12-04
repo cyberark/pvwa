@@ -16,8 +16,8 @@
       when: pvwa_url is not defined
 
     - name: Create configure instance input json
-      win_template:
-        src: 'ConfigureInstanceInput.json.j2'
+      win_copy:
+        content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2') | to_nice_json }}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
       when:
         - pvwa_registration_configure_instance
@@ -31,8 +31,8 @@
         - pvwa_registration_configure_instance
 
     - name: Create configure vault input json
-      win_template:
-        src: 'ConfigureVaultInput.json.j2'
+      win_copy:
+        content: "{{ lookup('template', 'templates/ConfigureVaultInput.json.j2') | to_nice_json }}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
       when:
         - pvwa_registration_configure_vault
@@ -46,8 +46,8 @@
         - pvwa_registration_configure_vault
 
     - name: Create register instance input json
-      win_template:
-        src: 'RegisterInstanceInput.json.j2'
+      win_copy:
+        content: "{{ lookup('template', 'templates/RegisterInstanceInput.json.j2') | to_nice_json }}"
         dest: '{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json'
       when:
         - pvwa_registration_register_instance
@@ -80,12 +80,6 @@
         pvwa_registered: true
 
   rescue:
-
-    - name: Fetch registration log from path
-      fetch:
-        src: '{{ pvwa_registration_log }}'
-        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
-        flat: yes
 
     - fail:
         msg: 'ERROR: Registration failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
