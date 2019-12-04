@@ -76,7 +76,7 @@ pipeline {
     //       kitchen verify
     //     '''
     //   }
-    // }
+    // }Add 
   }
   post {
     always {
