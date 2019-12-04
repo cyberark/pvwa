@@ -13,7 +13,7 @@
       win_shell: |
         try
         {
-            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponetConfig.xml"
+            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponentConfig.xml"
             $xml = [xml](Get-Content $filePath)
             $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
             $step1.Value = "{{ vault_ip }}"
@@ -45,7 +45,7 @@
       win_shell: |
         try
         {
-            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponetConfig.xml"
+            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponentConfig.xml"
             $xml = [xml](Get-Content $filePath)
             $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
             $step1.Value = "{{ vault_ip }}"
