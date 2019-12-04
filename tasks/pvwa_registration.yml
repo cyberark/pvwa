@@ -13,7 +13,7 @@
       win_shell: |
         try
         {
-            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponnetConfig.xml"
+            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponentConfig.xml"
             $xml = [xml](Get-Content $filePath)
             $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
             $step1.Value = "{{ vault_ip }}"
@@ -45,7 +45,7 @@
       win_shell: |
         try
         {
-            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponnetConfig.xml"
+            $filePath = "{{ pvwa_registrationtool_folder }}\\PVWARegisterComponentConfig.xml"
             $xml = [xml](Get-Content $filePath)
             $step1 = $xml.SelectSingleNode("//Parameter[@Name = 'vaultip']")
             $step1.Value = "{{ vault_ip }}"
@@ -77,7 +77,7 @@
       win_shell: |
         Set-Location "{{ pvwa_registrationtool_folder }}"
         #$ErrorActionPreference = "SilentlyContinue"
-        $Action = .\PVWARegisterCommponent.ps1 -pwd "{{ vault_password }}"
+        $Action = .\PVWARegisterComponent.ps1 -pwd "{{ vault_password }}"
         $Action | Out-File -FilePath "{{ pvwa_registration_log }}"
         $Result = Get-Content "{{ pvwa_registration_log }}" -Raw | ConvertFrom-Json
         if ($Result.isSucceeded -ne 0) {
