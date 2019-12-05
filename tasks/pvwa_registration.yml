@@ -96,7 +96,7 @@
     - name: Fetch installation log from path
       fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/cpm/{{ inventory_hostname }}_registration.log'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
@@ -128,7 +128,7 @@
     - name: Fetch installation log from path
       fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/cpm/{{ inventory_hostname }}_registration.log'
+        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
