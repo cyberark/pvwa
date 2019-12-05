@@ -86,11 +86,20 @@
           exit 0
         }
 
-    - name: Fetch registration log from original folder
+    - name: Get log path for registration
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_registration_log }}"
+        Write-Output $Result
+      register: log_result
+      no_log: true
+
+    - name: Fetch registration log from path
       fetch:
-        src: '{{ pvwa_registration_log }}'
+        src: '{{ item.logPath }}'
         dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
         flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
     - name: Wait for PVWA to become available
       pause:
@@ -109,11 +118,20 @@
 
   rescue:
 
+    - name: Get log path for registration
+      win_shell: |
+        $Result = Get-Content "{{ pvwa_registration_log }}"
+        Write-Output $Result
+      register: log_result
+      no_log: true
+
     - name: Fetch registration log from path
       fetch:
-        src: '{{ pvwa_registration_log }}'
+        src: '{{ item.logPath }}'
         dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
         flat: yes
+      with_items:
+        - "{{ log_result.stdout | from_json }}"
 
     - fail:
         msg: 'ERROR: Registration failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
