@@ -62,7 +62,7 @@
 
     - name: Wait for PVWA to become available
       pause:
-        seconds: 30
+        seconds: 60
       when:
         - pvwa_registration_register_instance
 
@@ -78,6 +78,8 @@
 
     - set_fact:
         pvwa_registered: true
+      when:
+        - pvwa_registration_register_instance
 
   rescue:
 
