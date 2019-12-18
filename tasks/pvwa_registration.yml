@@ -60,21 +60,17 @@
       when:
         - pvwa_registration_register_instance
 
-    - name: Wait for PVWA to become available
-      pause:
-        seconds: 60
-      when:
-        - pvwa_registration_register_instance
-
     - name: Check that you can connect (GET) to pvwa and it returns a status 200
       win_uri:
         url: "https://127.0.0.1/PasswordVault/api/server"
         validate_certs: no
         timeout: 60
       register: pvwa_server_info
+      until: pvwa_server_info.status_code == 200
+      retries: 12
+      delay: 10
       when:
         - pvwa_registration_register_instance
-      failed_when: pvwa_server_info is not defined or pvwa_server_info.status_code != 200
 
     - set_fact:
         pvwa_registered: true
