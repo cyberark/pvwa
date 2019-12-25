@@ -15,6 +15,13 @@
         pvwa_url: "https://{{ ansible_host }}/PasswordVault"
       when: pvwa_url is not defined
 
+    - name: Stop report service
+      win_service:
+        name: "CyberArk Scheduled Tasks"
+        state: stopped
+      when:
+        - pvwa_registration_configure_instance
+
     - name: Create configure instance input json
       win_copy:
         content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2') | to_nice_json }}"
@@ -69,6 +76,13 @@
       until: pvwa_server_info.status_code == 200
       retries: 12
       delay: 10
+      when:
+        - pvwa_registration_register_instance
+
+    - name: Start report service
+      win_service:
+        name: "CyberArk Scheduled Tasks"
+        state: started
       when:
         - pvwa_registration_register_instance
 
