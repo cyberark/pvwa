@@ -27,6 +27,7 @@
             - pvwa_registration: false
             - pvwa_zip_file_path: "/tmp/pvwa.zip"
             - accept_eula: "yes"
+            - pvwa_official: false
 
       rescue:
 
@@ -42,3 +43,4 @@
             - pvwa_registration: false
             - pvwa_zip_file_path: "/tmp/pvwa.zip"
             - accept_eula: "yes"
+            - pvwa_official: false
