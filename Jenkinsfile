@@ -32,6 +32,7 @@ pipeline {
         '''
       }
     }
+    
     // stage('ansible-lint validation') {
     //   steps {
     //     sh '.testenv/bin/ansible-lint tasks/* defaults/* meta/*'

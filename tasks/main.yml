@@ -42,7 +42,7 @@
 - name: Running PVWA registration
   include_tasks: pvwa_registration.yml
   when:
-    - pvwa_registration
+    - pvwa_registration or pvwa_registration_configure_instance or pvwa_registration_configure_vault or pvwa_registration_register_instance
     - pvwa_exists
     - not pvwa_registered
 
