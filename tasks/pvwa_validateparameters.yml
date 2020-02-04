@@ -6,6 +6,19 @@
     msg: "You must accept EULA to start the playbook"
   when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
+- name: check if password is secured
+  fail:
+    msg: "You must provid vault_password OR secure_vault_password parameter"
+  when: vault_password is defined and secure_vault_password is defined
+
+- name: convert to securestring
+  tasks:
+    win_shell:|
+      $secure_vault_password = ConvertTo-SecureString "{{vault_password}}" -AsPlainText -Force
+      #"{{secure_vault_password}}" = ConvertTo-SecureString "{{vault_password}}" -AsPlainText -Force
+  whan: vault_password is defined
+  register: secure_vault_password
+
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
   win_reg_stat:
     path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{{ pvwa_guid }}
