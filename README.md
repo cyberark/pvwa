@@ -36,6 +36,7 @@ vault_ip                          | yes          | None                         
 vault_port                        | no           | **1858**                                        | Vault port
 vault_username                    | no           | **administrator**                               | Vault username to perform registration
 vault_password                    | yes          | None                                            | Vault password to perform registration
+secure_vault_password             | no           | None                                            | Secure Vault password to perform registration
 dr_vault_ip                       | no           | None                                            | Vault DR IP address to perform registration
 accept_eula                       | yes          | **No**                                          | Accepting EULA condition (Yes/No)
 pvwa_url                          | yes          | None                                            | URL of registered PVWA
