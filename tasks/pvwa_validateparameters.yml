@@ -14,11 +14,6 @@
   set_fact:
     secure_vault_password: ''
     vault_password: ''
-    
-- name: check if password is secured
-  fail:
-    msg: "Working with secured password"
-  when: secure_vault_password == ''
 
 - name: check if the user use 2 passwords
   fail:
