@@ -10,6 +10,11 @@
     msg:
       - "Vault password: {{vault_password}}"
 
+- name: check if password is secured
+  fail:
+    msg: "Working with secured password"
+  when: secure_vault_password is defined
+
 - name: check if the user use 2 passwords
   fail:
     msg: "You must provid vault_password OR secure_vault_password parameter"
