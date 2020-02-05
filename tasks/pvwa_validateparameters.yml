@@ -7,8 +7,9 @@
   when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
 - debug:
-    var: vault_password
-    var: secure_vault_password
+    msg:
+      - "Vault password: {{vault_password}}"
+      - "Secure Password: {{secure_vault_password}}"
 
 - name: check if the user use 2 passwords
   fail:
