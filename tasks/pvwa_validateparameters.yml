@@ -9,21 +9,11 @@
 - debug:
     msg:
       - "Vault password: {{vault_password}}"
-      - "Secure Password: {{secure_vault_password}}"
 
 - name: check if the user use 2 passwords
   fail:
     msg: "You must provid vault_password OR secure_vault_password parameter"
-  when:
-    - vault_password is defined
-    - secure_vault_password is defined
-
-- name: check if password is secured
-  fail:
-    msg: "You must provid vault_password OR secure_vault_password parameter"
-  when: 
-    - vault_password is defined
-    - secure_vault_password is defined
+  when: (vault_password is defined) and (secure_vault_password is defined)
 
 - name: convert to securestring
   win_shell: |
