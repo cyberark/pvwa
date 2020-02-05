@@ -8,12 +8,13 @@
 
 - debug:
     var: vault_password
+    var: secure_vault_password
 
-- name: check if password is secured
+- name: check if the user use 2 passwords
   fail:
     msg: "You must provid vault_password OR secure_vault_password parameter"
   when:
-    - vault_password is defined 
+    - vault_password is defined
     - secure_vault_password is defined
 
 - name: check if password is secured
