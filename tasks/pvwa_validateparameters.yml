@@ -9,7 +9,9 @@
 - name: check if password is secured
   fail:
     msg: "You must provid vault_password OR secure_vault_password parameter"
-  when: "{{ vault_password }}" is defined and "{{ secure_vault_password }}" is defined
+  when: 
+    - "{{ vault_password }}" is defined
+    - "{{ secure_vault_password }}" is defined
 
 - name: convert to securestring
   win_shell: |
