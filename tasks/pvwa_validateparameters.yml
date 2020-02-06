@@ -22,7 +22,7 @@
 
 - name: convert to securestring
   win_shell: |
-    $secure_vault_password = ConvertTo-SecureString {{vault_password}} -AsPlainText -Force
+    {{secure_vault_password}} = ConvertTo-SecureString {{vault_password}} -AsPlainText -Force
     #"{{secure_vault_password}}" = ConvertTo-SecureString "{{vault_password}}" -AsPlainText -Force
   register: secure_vault_password
   when: vault_password is defined
