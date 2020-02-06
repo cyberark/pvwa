@@ -1,0 +1,3 @@
+vars:
+    secure_vault_password: ''
+    vault_password: ''
