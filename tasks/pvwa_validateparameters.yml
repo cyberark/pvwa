@@ -10,11 +10,6 @@
     msg:
       - "Vault password: {{vault_password}}"
 
-- name:
-  set_fact:
-    secure_vault_password: ''
-    vault_password: ''
-
 - name: check if the user use 2 passwords
   fail:
     msg: "You must provid vault_password OR secure_vault_password parameter"
@@ -25,7 +20,7 @@
     $secure_vault_password = ConvertTo-SecureString "{{ vault_password }}" -AsPlainText -Force
     #"{{secure_vault_password}}" = ConvertTo-SecureString "{{vault_password}}" -AsPlainText -Force
   register: secure_vault_password
-  when: vault_password is defined
+  when: vault_password != ''
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
   win_reg_stat:
