@@ -25,7 +25,6 @@
     $secure_vault_password = ConvertTo-SecureString "{{vault_password}}" -AsPlainText -Force
     #"{{secure_vault_password}}" = ConvertTo-SecureString "{{vault_password}}" -AsPlainText -Force
   register: secure_vault_password
-  no_log: true
   when: vault_password is defined
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
