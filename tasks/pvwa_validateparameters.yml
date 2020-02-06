@@ -10,10 +10,14 @@
     msg:
       - "Vault password: {{vault_password}}"
 
-- set_fact: vault_password: ''
+- name: set default value for vault_password
+  set_fact:
+    vault_password: ''
   when: vault_password is undefined
-  
-- set_fact: secure_vault_password: ''
+
+- name: set default value for secure_vault_password
+  set_fact:
+    secure_vault_password: ''
   when: secure_vault_password is undefined  
 
 - name: check if the user use 2 passwords
