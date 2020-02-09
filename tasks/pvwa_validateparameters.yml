@@ -28,9 +28,13 @@
 - name: convert to securestring
   win_shell: |
     $secure_vault_password = ConvertTo-SecureString "{{ vault_password }}" -AsPlainText -Force
-    #"{{secure_vault_password}}" = ConvertTo-SecureString "{{vault_password}}" -AsPlainText -Force
-  register: secure_vault_password
+    write-output $secure_vault_password
+  register: secure_vault_password_ps
   when: vault_password != ''
+
+- name: set varible for secured vault password
+  set_fact:
+    secure_vault_password: "{{ secure_vault_password_ps.stdout }}"
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
   win_reg_stat:
