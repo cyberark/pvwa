@@ -18,7 +18,7 @@
 - name: set default value for secure_vault_password
   set_fact:
     secure_vault_password: ''
-  when: secure_vault_password is undefined
+  when: secure_vault_password is undefined  
 
 - name: check if the user use 2 passwords
   fail:
