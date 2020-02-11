@@ -26,13 +26,12 @@ pipeline {
       steps {
         sh '''
             python -m pip install --user virtualenv
-            python -m virtualenv --no-site-packages .testenv
+            python -m virtualenv .testenv
             source .testenv/bin/activate
             pip install -r tests/requirements.txt
         '''
       }
-    }
-    
+    }    
     // stage('ansible-lint validation') {
     //   steps {
     //     sh '.testenv/bin/ansible-lint tasks/* defaults/* meta/*'
