@@ -78,7 +78,8 @@
         Set-Location "{{ pvwa_registrationtool_folder }}"
         #$ErrorActionPreference = "SilentlyContinue"
         # $Action = .\PVWARegisterComponent.ps1 -pwd "{{ vault_password }}"
-        $Action = .\PVWARegisterComponent.ps1 -spwdObj "{{ secure_vault_password }}"
+        $secStrObj = ConvertTo-SecureString -String "{{ secure_vault_password }}" -Force
+        $Action = .\PVWARegisterComponent.ps1 -spwdObj $secStrObj
         $Action | Out-File -FilePath "{{ pvwa_registration_log }}"
         $Result = Get-Content "{{ pvwa_registration_log }}" -Raw | ConvertFrom-Json
         if ($Result.isSucceeded -ne 0) {
@@ -86,6 +87,7 @@
         } else {
           exit 0
         }
+      no_log: true
 
     - name: Get log path for registration
       win_shell: |

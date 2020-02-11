@@ -6,35 +6,41 @@
     msg: "You must accept EULA to start the playbook"
   when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
-- debug:
-    msg:
-      - "Vault password: {{vault_password}}"
-
 - name: set default value for vault_password
   set_fact:
     vault_password: ''
   when: vault_password is undefined
+  no_log: true
 
 - name: set default value for secure_vault_password
   set_fact:
     secure_vault_password: ''
-  when: secure_vault_password is undefined  
+  when: secure_vault_password is undefined
+  no_log: true
 
 - name: check if the user use 2 passwords
   fail:
-    msg: "You must provid vault_password OR secure_vault_password parameter"
-  when: (vault_password != '') and (secure_vault_password != '')
+    msg: "You must provide either vault_password or secure_vault_password parameter"
+  when: 
+    - (vault_password != '')
+    - (secure_vault_password != '')
+  no_log: true  
 
 - name: convert to securestring
   win_shell: |
-    $secure_vault_password = ConvertTo-SecureString "{{ vault_password }}" -AsPlainText -Force
-    write-output $secure_vault_password
-  register: secure_vault_password_ps
+    $secure_vault_password_object = ConvertTo-SecureString "{{ vault_password }}" -AsPlainText -Force
+    $secure_vault_password_string = ConvertFrom-SecureString $secure_vault_password_object
+    write-output $secure_vault_password_string
+  register: secure_vault_password_string
   when: vault_password != ''
+  no_log: true
 
 - name: set varible for secured vault password
   set_fact:
-    secure_vault_password: "{{ secure_vault_password_ps.stdout }}"
+    secure_vault_password: "{{ secure_vault_password_string.stdout_lines[0] }}"
+    vault_password: ''
+  when: secure_vault_password == ''
+  no_log: true
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
   win_reg_stat:
