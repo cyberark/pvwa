@@ -52,6 +52,7 @@
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
         - pvwa_registration_configure_vault
+      no_log: true
 
     - name: Create register instance input json
       win_copy:
@@ -68,6 +69,7 @@
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
         - pvwa_registration_register_instance
+      no_log: true
 
     - name: Check that you can connect (GET) to pvwa and it returns a status 200
       win_uri:
