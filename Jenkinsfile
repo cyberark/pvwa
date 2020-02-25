@@ -34,14 +34,17 @@ pipeline {
     }    
     stage('ansible-lint validation') {
       steps {
-        sh '.testenv/bin/ansible-lint tasks/* defaults/* meta/*'
+        sh '''
+          source .testenv/bin/activate
+          ansible-lint tasks/* defaults/* meta/*
+        '''
       }
     }
     stage('yamllint validation') {
       steps {
         sh '''
-            source .testenv/bin/activate
-            yamllint .
+          source .testenv/bin/activate
+          yamllint .
         '''
       }
     }
