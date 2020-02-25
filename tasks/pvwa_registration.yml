@@ -24,7 +24,7 @@
 
     - name: Create configure instance input json
       win_copy:
-        content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2') | to_nice_json }}"
+        content: "{{ lookup('template', 'ConfigureInstanceInput.json.j2') | to_nice_json }}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
       when:
         - pvwa_registration_configure_instance
@@ -39,7 +39,7 @@
 
     - name: Create configure vault input json
       win_copy:
-        content: "{{ lookup('template', 'templates/ConfigureVaultInput.json.j2') | to_nice_json }}"
+        content: "{{ lookup('template', 'ConfigureVaultInput.json.j2') | to_nice_json }}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
       when:
         - pvwa_registration_configure_vault
@@ -54,7 +54,7 @@
 
     - name: Create register instance input json
       win_copy:
-        content: "{{ lookup('template', 'templates/RegisterInstanceInput.json.j2') | to_nice_json }}"
+        content: "{{ lookup('template', 'RegisterInstanceInput.json.j2') | to_nice_json }}"
         dest: '{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json'
       when:
         - pvwa_registration_register_instance
