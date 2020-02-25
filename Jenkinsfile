@@ -26,17 +26,17 @@ pipeline {
       steps {
         sh '''
             python -m pip install --user virtualenv
-            python -m virtualenv .testenv
+            python -m virtualenv --no-site-packages .testenv
             source .testenv/bin/activate
             pip install -r tests/requirements.txt
         '''
       }
     }    
-    // stage('ansible-lint validation') {
-    //   steps {
-    //     sh '.testenv/bin/ansible-lint tasks/* defaults/* meta/*'
-    //   }
-    // }
+    stage('ansible-lint validation') {
+      steps {
+        sh '.testenv/bin/ansible-lint tasks/* defaults/* meta/*'
+      }
+    }
     stage('yamllint validation') {
       steps {
         sh '''
@@ -67,16 +67,6 @@ pipeline {
         '''
       }
     }
-    // stage('Run pester tests') {
-    //   steps {
-    //     sh '''
-    //       export PATH="$HOME/.rbenv/bin:$PATH"
-    //       eval "$(rbenv init -)"
-    //       rbenv global 2.5.1
-    //       kitchen verify
-    //     '''
-    //   }
-    // }
   }
   post {
     always {
