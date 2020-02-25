@@ -23,7 +23,7 @@ pipeline {
       steps {
         sh '''
           source .testenv/bin/activate
-          ansible-lint tasks/* defaults/* meta/* -vvvvv
+          ansible-lint tasks/* defaults/* meta/*
         '''
       }
     }
