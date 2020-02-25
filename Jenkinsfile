@@ -18,14 +18,6 @@ pipeline {
             pip install -r tests/requirements.txt
         '''
       }
-    }    
-    stage('ansible-lint validation') {
-      steps {
-        sh '''
-          source .testenv/bin/activate
-          ansible-lint tasks/* defaults/* meta/*
-        '''
-      }
     }
     stage('yamllint validation') {
       steps {
