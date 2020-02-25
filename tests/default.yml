@@ -4,6 +4,10 @@
   gather_facts: no
   tasks:
 
+    - name: Get roles directory dirname
+      set_fact:
+        roles_dirname: "{{ playbook_dir | dirname | basename }}"
+
     - name: download package from s3
       aws_s3:
         bucket: cloud-initiatives-pipeline-bucket
@@ -17,7 +21,7 @@
 
         - name: pvwa Deployment
           include_role:
-            name: pvwa
+            name: "{{ roles_dirname }}"
           vars:
             - pvwa_extract: true
             - pvwa_prerequisites: true
@@ -33,7 +37,7 @@
 
         - name: pvwa Deployment
           include_role:
-            name: pvwa
+            name: "{{ roles_dirname }}"
           vars:
             - pvwa_extract: true
             - pvwa_prerequisites: true
