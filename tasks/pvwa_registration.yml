@@ -31,7 +31,7 @@
 
     - name: Configure instance
       win_shell: |
-        powershell.exe .\ConfigureInstance.exe ConfigureInstanceInput.json
+        .\ConfigureInstance.exe ConfigureInstanceInput.json
       args:
         chdir: '{{ pvwa_installation_path }}\Env'
       when:
@@ -46,7 +46,7 @@
 
     - name: Configure vault
       win_shell: |
-        powershell.exe .\ConfigureVault.exe ConfigureVaultInput.json "{{ vault_password }}"
+        .\ConfigureVault.exe ConfigureVaultInput.json "{{ vault_password }}"
       args:
         chdir: '{{ pvwa_installation_path }}\Env'
       when:
@@ -61,7 +61,7 @@
 
     - name: Register instance
       win_shell: |
-        powershell.exe .\RegisterInstance.exe RegisterInstanceInput.json "{{ vault_password }}"
+        .\RegisterInstance.exe RegisterInstanceInput.json "{{ vault_password }}"
       args:
         chdir: '{{ pvwa_installation_path }}\Env'
       when:
