@@ -55,4 +55,3 @@ rules:
     type: unix
   trailing-spaces: enable
   truthy: disable
-  
