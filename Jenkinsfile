@@ -5,7 +5,7 @@ pipeline {
     }
   }
   environment {
-    AWS_REGION = sh(script: 'curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python3 -c "import json,sys;obj=json.load(sys.stdin);print obj[\'region\']"', returnStdout: true).trim()
+    AWS_REGION = sh(script: 'curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python3 -c "import json,sys;obj=json.load(sys.stdin);print (obj[\'region\'])"', returnStdout: true).trim()
     shortCommit = sh(script: "git log -n 1 --pretty=format:'%h'", returnStdout: true).trim()
   }
   stages {
