@@ -52,7 +52,7 @@
 
     - name: Configure vault
       win_shell: |
-        $secure_vault_password_object = ConvertTo-SecureString "{{ vault_password }}" -AsPlainText -Force
+        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
         .\PVWADeploy.ps1 -Action ConfigureVault -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
@@ -75,7 +75,7 @@
 
     - name: Register instance
       win_shell: |
-        $secure_vault_password_object = ConvertTo-SecureString "{{ vault_password }}" -AsPlainText -Force
+        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
         .\PVWADeploy.ps1 -Action RegisterInstance -ParametersFile "{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
