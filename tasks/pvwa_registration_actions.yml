@@ -1,0 +1,25 @@
+---
+- name: Create {{ action }} input json
+  win_copy:
+    content: "{{ lookup('template', 'templates/{{ action }}Input.json.j2') | to_nice_json }}"
+    dest: '{{ pvwa_installation_path }}\Env\{{ action }}Input.json'
+  when:
+    - '{{ condition }}'
+
+# PVWADeploy.ps1 output exposes the password so it also should be suppressed with no_log
+- name: Running {{ action }}
+  win_shell: |
+    $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
+    .\PVWADeploy.ps1 -Action {{ action }} -ParametersFile "{{ pvwa_installation_path }}\Env\{{ action }}Input.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
+  args:
+    chdir: "{{ pvwa_registrationtool_folder }}"
+  when:
+    - '{{ condition }}'
+  register: pvwa_deploy_output
+  no_log: true
+
+- fail:
+    msg: "failed to run PVWADeploy.ps1 {{ action }}. Please refer to C:\\Cyberark\\packages\\Password Vault Web Access\\InstallationAutomation\\Registration\\Script.log for more information."
+  when:
+    - pvwa_deploy_output.stdout.find("isSucceeded\"':'  0") != -1
+    - '{{ condition }}'
