@@ -36,6 +36,12 @@
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
         - pvwa_registration_configure_instance
+      register: pvwa_deploy_output
+
+    - fail:
+        msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to C:\\Cyberark\\packages\\Password Vault Web Access\\InstallationAutomation\\Registration\\Script.log for more information."
+      when:
+        - pvwa_deploy_output.stdout.find('Failed to run') != -1
 
     - name: Create configure vault input json
       win_copy:
@@ -52,7 +58,13 @@
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
         - pvwa_registration_configure_vault
+      register: pvwa_deploy_output
       no_log: true
+
+    - fail:
+        msg: "failed to run PVWADeploy.ps1 ConfigureVault. Please refer to C:\\Cyberark\\packages\\Password Vault Web Access\\InstallationAutomation\\Registration\\Script.log for more information."
+      when:
+        - pvwa_deploy_output.stdout.find('Failed to run') != -1
 
     - name: Create register instance input json
       win_copy:
@@ -69,7 +81,13 @@
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
         - pvwa_registration_register_instance
+      register: pvwa_deploy_output
       no_log: true
+
+    - fail:
+        msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to C:\\Cyberark\\packages\\Password Vault Web Access\\InstallationAutomation\\Registration\\Script.log for more information."
+      when:
+        - pvwa_deploy_output.stdout.find('Failed to run') != -1
 
     - name: Check that you can connect (GET) to pvwa and it returns a status 200
       win_uri:
