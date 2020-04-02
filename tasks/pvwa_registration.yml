@@ -39,7 +39,7 @@
       register: pvwa_deploy_output
 
     - fail:
-        msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to C:\\Cyberark\\packages\\Password Vault Web Access\\InstallationAutomation\\Registration\\Script.log for more information."
+        msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureInstance.log for more information."
       when:
         - pvwa_deploy_output.stdout.find('Failed to run') != -1
         - pvwa_registration_configure_instance
@@ -63,7 +63,7 @@
       no_log: true
 
     - fail:
-        msg: "failed to run PVWADeploy.ps1 ConfigureVault. Please refer to C:\\Cyberark\\packages\\Password Vault Web Access\\InstallationAutomation\\Registration\\Script.log for more information."
+        msg: "failed to run PVWADeploy.ps1 ConfigureVault. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureVault.log for more information."
       when:
         - pvwa_deploy_output.stdout.find('Failed to run') != -1
         - pvwa_registration_configure_vault
@@ -87,7 +87,7 @@
       no_log: true
 
     - fail:
-        msg: "failed to run PVWADeploy.ps1 RegisterInstance. Please refer to C:\\Cyberark\\packages\\Password Vault Web Access\\InstallationAutomation\\Registration\\Script.log for more information."
+        msg: "failed to run PVWADeploy.ps1 RegisterInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\RegisterInstance.log for more information."
       when:
         - pvwa_deploy_output.stdout.find('Failed to run') != -1
         - pvwa_registration_register_instance
