@@ -22,75 +22,15 @@
       when:
         - pvwa_registration_configure_instance
 
-    - name: Create configure instance input json
-      win_copy:
-        content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2') | to_nice_json }}"
-        dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
-      when:
-        - pvwa_registration_configure_instance
-
-    - name: Configure instance
-      win_shell: |
-        .\PVWADeploy.ps1 -Action ConfigureInstance -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}"
-      args:
-        chdir: "{{ pvwa_registrationtool_folder }}"
-      when:
-        - pvwa_registration_configure_instance
-      register: pvwa_deploy_output
-
-    - fail:
-        msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureInstance.log for more information."
-      when:
-        - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('Failed to run') != -1)
-        - pvwa_registration_configure_instance
-
-    - name: Create configure vault input json
-      win_copy:
-        content: "{{ lookup('template', 'templates/ConfigureVaultInput.json.j2') | to_nice_json }}"
-        dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
-      when:
-        - pvwa_registration_configure_vault
-
-    - name: Configure vault
-      win_shell: |
-        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
-        .\PVWADeploy.ps1 -Action ConfigureVault -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
-      args:
-        chdir: "{{ pvwa_registrationtool_folder }}"
-      when:
-        - pvwa_registration_configure_vault
-      register: pvwa_deploy_output
-      no_log: true
-
-    - fail:
-        msg: "failed to run PVWADeploy.ps1 ConfigureVault. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureVault.log for more information."
-      when:
-        - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('Failed to run') != -1)
-        - pvwa_registration_configure_vault
-
-    - name: Create register instance input json
-      win_copy:
-        content: "{{ lookup('template', 'templates/RegisterInstanceInput.json.j2') | to_nice_json }}"
-        dest: '{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json'
-      when:
-        - pvwa_registration_register_instance
-
-    - name: Register instance
-      win_shell: |
-        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
-        .\PVWADeploy.ps1 -Action RegisterInstance -ParametersFile "{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
-      args:
-        chdir: "{{ pvwa_registrationtool_folder }}"
-      when:
-        - pvwa_registration_register_instance
-      register: pvwa_deploy_output
-      no_log: true
-
-    - fail:
-        msg: "failed to run PVWADeploy.ps1 RegisterInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\RegisterInstance.log for more information."
-      when:
-        - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('Failed to run') != -1)
-        - pvwa_registration_register_instance
+    - name: Run {{ action }}
+      include_tasks: pvwa_registration_actions.yml
+      with_items:
+        - { action: ConfigureInstance, condition: pvwa_registration_configure_instance }
+        - { action: ConfigureVault, condition: pvwa_registration_configure_vault }
+        - { action: RegisterInstance, condition: pvwa_registration_register_instance }
+      vars:
+        - action: "{{ item.action }}"
+        - condition: "{{ item.condition }}"
 
     - name: Check that you can connect (GET) to pvwa and it returns a status 200
       win_uri:
