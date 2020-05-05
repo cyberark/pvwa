@@ -6,10 +6,23 @@
   when:
     - '{{ condition }}'
 
-- name: Running {{ action }}
+- name: Save secured password
   win_shell: |
     $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
-    .\PVWADeploy.ps1 -Action {{ action }} -ParametersFile "{{ pvwa_installation_path }}\Env\{{ action }}Input.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
+    $secure_vault_password_string = ConvertFrom-SecureString $secure_vault_password_object
+    write-output $secure_vault_password_string
+  register: secure_vault_password_string
+  no_log: true
+
+- name: Set varible for secured vault password
+  set_fact:
+    secure_vault_password: "{{ secure_vault_password_string.stdout_lines[0] }}"
+  no_log: true
+
+- name: Running {{ action }}
+  win_shell: |
+    $secStrObj = ConvertTo-SecureString -String '{{ secure_vault_password }}' -Force
+    .\PVWADeploy.ps1 -Action {{ action }} -ParametersFile "{{ pvwa_installation_path }}\Env\{{ action }}Input.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secStrObj
   args:
     chdir: "{{ pvwa_registrationtool_folder }}"
   when:
