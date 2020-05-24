@@ -30,7 +30,8 @@
   register: pvwa_deploy_output
   no_log: true
 
-- fail:
+- name: Test if {{ action }} was successful
+  fail:
     msg: "failed to run PVWADeploy.ps1 {{ action }}. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\{{ action }}.log for more information."
   when:
     - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('finished successfully') == -1)
