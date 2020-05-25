@@ -25,9 +25,9 @@
     - name: Run {{ action }}
       include_tasks: pvwa_registration_actions.yml
       with_items:
-        - { action: ConfigureInstance, condition: pvwa_registration_configure_instance }
-        - { action: ConfigureVault, condition: pvwa_registration_configure_vault }
-        - { action: RegisterInstance, condition: pvwa_registration_register_instance }
+        - {action: ConfigureInstance, condition: pvwa_registration_configure_instance}
+        - {action: ConfigureVault, condition: pvwa_registration_configure_vault}
+        - {action: RegisterInstance, condition: pvwa_registration_register_instance}
       vars:
         - action: "{{ item.action }}"
         - condition: "{{ item.condition }}"
