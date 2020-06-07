@@ -1,0 +1,38 @@
+---
+- name: Create {{ action }} input json
+  win_copy:
+    content: "{{ lookup('template', 'templates/{{ action }}Input.json.j2') | to_nice_json }}"
+    dest: '{{ pvwa_installation_path }}\Env\{{ action }}Input.json'
+  when:
+    - '{{ condition }}'
+
+- name: Save secured password
+  win_shell: |
+    $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
+    $secure_vault_password_string = ConvertFrom-SecureString $secure_vault_password_object
+    write-output $secure_vault_password_string
+  register: secure_vault_password_string
+  no_log: true
+
+- name: Set varible for secured vault password
+  set_fact:
+    secure_vault_password: "{{ secure_vault_password_string.stdout_lines[0] }}"
+  no_log: true
+
+- name: Running {{ action }}
+  win_shell: |
+    $secStrObj = ConvertTo-SecureString -String '{{ secure_vault_password }}' -Force
+    .\PVWADeploy.ps1 -Action {{ action }} -ParametersFile "{{ pvwa_installation_path }}\Env\{{ action }}Input.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secStrObj
+  args:
+    chdir: "{{ pvwa_registrationtool_folder }}"
+  when:
+    - '{{ condition }}'
+  register: pvwa_deploy_output
+  no_log: true
+
+- name: Test if {{ action }} was successful
+  fail:
+    msg: "failed to run PVWADeploy.ps1 {{ action }}. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\{{ action }}.log for more information."
+  when:
+    - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('finished successfully') == -1)
+    - '{{ condition }}'
