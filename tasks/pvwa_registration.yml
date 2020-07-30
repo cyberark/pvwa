@@ -79,6 +79,7 @@
       win_shell: |
         $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
         .\PVWADeploy.ps1 -Action RegisterInstance -ParametersFile "{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
+        issreset
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
