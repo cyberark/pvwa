@@ -1,15 +1,15 @@
 ---
 # defaults file for pvwa
-pvwa_uninstall: false
+# pvwa_uninstall: false
 pvwa_prerequisites: false
 pvwa_install: false
-pvwa_postinstall: false
+# pvwa_postinstall: false
 pvwa_hardening: false
 pvwa_registration: false
 pvwa_registration_configure_instance: false
 pvwa_registration_configure_vault: false
 pvwa_registration_register_instance: false
-pvwa_upgrade: false
+# pvwa_upgrade: false
 pvwa_clean: false
 pvwa_extract: false
 pvwa_ignore_checksum: false
