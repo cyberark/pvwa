@@ -14,23 +14,11 @@
   when:
     - pvwa_prerequisites
 
-- name: Running PVWA uninstall
-  include_tasks: pvwa_uninstall.yml
-  when:
-    - pvwa_exists
-    - pvwa_uninstall
-
 - name: Running PVWA install
   include_tasks: pvwa_install.yml
   when:
     - pvwa_install
     - not pvwa_exists
-
-- name: Running PVWA postinstall
-  include_tasks: pvwa_postinstall.yml
-  when:
-    - pvwa_postinstall
-    - pvwa_exists
 
 - name: Running PVWA hardening
   include_tasks: pvwa_hardening.yml
@@ -45,11 +33,6 @@
     - pvwa_registration or pvwa_registration_configure_instance or pvwa_registration_configure_vault or pvwa_registration_register_instance
     - pvwa_exists
     - not pvwa_registered
-
-- name: Running PVWA upgrade
-  include_tasks: pvwa_upgrade.yml
-  when:
-    - pvwa_upgrade
 
 - name: Running PVWA clean
   include_tasks: pvwa_clean.yml
