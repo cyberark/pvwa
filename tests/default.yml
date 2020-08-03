@@ -11,7 +11,7 @@
     - name: download package from s3
       aws_s3:
         bucket: cloud-initiatives-pipeline-bucket
-        object: "Packages/v11.5/Password Vault Web Access-Rls-v11.5.zip"
+        object: "Packages/v11.6/Password Vault Web Access-Rls-v11.6.zip"
         dest: "/tmp/pvwa.zip"
         mode: get
       delegate_to: localhost
@@ -23,7 +23,6 @@
         - pvwa_extract: true
         - pvwa_prerequisites: true
         - pvwa_install: true
-        - pvwa_postinstall: true
         - pvwa_hardening: true
         - pvwa_registration: false
         - pvwa_zip_file_path: "/tmp/pvwa.zip"

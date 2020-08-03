@@ -22,12 +22,9 @@ Variable                          | Required     | Default                      
 :----------------------------------|:-------------|:------------------------------------------------|:---------
 pvwa_prerequisites                | no           | false                                           | Install PVWA pre-requisites
 pvwa_install                      | no           | false                                           | Install PVWA
-pvwa_postinstall                  | no           | false                                           | PVWA post install role
 pvwa_hardening                    | no           | false                                           | Apply PVWA hardening
 pvwa_registration                 | no           | false                                           | Connect PVWA to the Vault
-pvwa_upgrade                      | no           | false                                           | N/A
 pvwa_clean                        | no           | false                                           | N/A
-pvwa_uninstall                    | no           | false                                           | N/A
 
 ### Deployment Variables
 Variable                          | Required     | Default                                         | Comments
