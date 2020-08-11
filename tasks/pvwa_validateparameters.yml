@@ -33,6 +33,11 @@
     pvwa_hardened: true
   when: service_info.exists and service_info.username == ".\\PVWAReportsUser"
 
+- name: Set pvwa_upgrade to false if undefined
+  set_fact:
+    pvwa_upgrade: false
+  when: pvwa_upgrade is undefined
+
 - name: Check connection to PVWA to validate registration
   win_uri:
     url: "https://127.0.0.1/PasswordVault/api/server"
