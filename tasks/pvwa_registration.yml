@@ -84,6 +84,7 @@
       when:
         - pvwa_registration_register_instance
       register: pvwa_deploy_output
+      no_log: true
 
     - name: IIS Restart
       win_shell: |
