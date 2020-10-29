@@ -85,13 +85,6 @@
         - pvwa_registration_register_instance
       register: pvwa_deploy_output
 
-    - name: Restart World Wide Web service using Ansible task
-      win_service:
-        name: W3SVC
-        state: restarted
-      when:
-        - pvwa_registration_register_instance
-
     - name: IIS Restart
       win_shell: |
         iisreset /stop
