@@ -87,6 +87,13 @@
       register: pvwa_deploy_output
       no_log: true
 
+    - name: IIS Restart
+      win_shell: |
+        iisreset /stop
+        iisreset /start
+      when:
+        - pvwa_registration_register_instance
+
     - fail:
         msg: "failed to run PVWADeploy.ps1 RegisterInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\RegisterInstance.log for more information."
       when:
