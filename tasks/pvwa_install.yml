@@ -51,7 +51,7 @@
     - name: Fetch installation log from original folder
       fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_install.log'
+        dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
@@ -76,13 +76,13 @@
     - name: Fetch installation log from path
       fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_install.log'
+        dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
     - fail:
-        msg: 'ERROR: Installation failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_install.log'
+        msg: 'ERROR: Installation failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
 
 - name: Set PVWA exists variable
   set_fact:
