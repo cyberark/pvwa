@@ -1,4 +1,4 @@
-ansible==2.8.8
+ansible==2.9.20
 ansible-lint==4.2.0
 boto==2.49.0
 boto3==1.12.8
