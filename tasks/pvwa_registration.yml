@@ -23,7 +23,7 @@
         - pvwa_registration_configure_instance
        
        
-    - name: Stop report service
+    - name: debug message -  Create configure instance input json
       ansible.builtin.debug:
       msg:
       - '{{ pvwa_installation_path }}'
