@@ -29,6 +29,8 @@
         output_encoding: ascii
       when:
         - pvwa_registration_configure_instance
+      tags:
+        - debug
 
     - name: Configure instance
       win_shell: |
@@ -38,6 +40,8 @@
       when:
         - pvwa_registration_configure_instance
       register: pvwa_deploy_output
+      tags:
+        - debug
 
     - fail:
         msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureInstance.log for more information."
