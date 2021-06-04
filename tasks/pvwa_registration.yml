@@ -24,7 +24,7 @@
 
     - name: Create configure instance input json
       ansible.windows.win_template:
-        src: '/templates/ConfigureInstanceInput.json.j2'
+        src: 'templates/ConfigureInstanceInput.json.j2'
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
       when:
         - pvwa_registration_configure_instance
@@ -46,7 +46,7 @@
 
     - name: Create configure vault input json
       ansible.windows.win_template:
-        src: '/templates/ConfigureVaultInput.json.j2'
+        src: 'templates/ConfigureVaultInput.json.j2'
         dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
       when:
         - pvwa_registration_configure_vault
