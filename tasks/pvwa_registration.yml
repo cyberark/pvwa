@@ -24,7 +24,7 @@
 
     - name: Create configure instance input json
       ansible.windows.win_template:
-        src: '/templates/ConfigureInstanceInput.json.j22'
+        src: '/templates/ConfigureInstanceInput.json.j2'
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
       when:
         - pvwa_registration_configure_instance
