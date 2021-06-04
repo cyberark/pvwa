@@ -21,7 +21,14 @@
         state: stopped
       when:
         - pvwa_registration_configure_instance
-
+       
+       
+    - name: Stop report service
+      ansible.builtin.debug:
+      msg:
+      - '{{ pvwa_installation_path }}'
+      - '{{ pvwa_iis_app_folder }}'
+       
     - name: Create configure instance input json
       ansible.windows.win_template:
         src: 'templates/ConfigureInstanceInput.json.j2'
