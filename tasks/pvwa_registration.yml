@@ -25,9 +25,9 @@
        
     - name: debug message -  Create configure instance input json
       ansible.builtin.debug:
-      msg:
-      - '{{ pvwa_installation_path }}'
-      - '{{ pvwa_iis_app_folder }}'
+        msg:
+        - '{{ pvwa_installation_path }}'
+        - '{{ pvwa_iis_app_folder }}'
        
     - name: Create configure instance input json
       ansible.windows.win_template:
