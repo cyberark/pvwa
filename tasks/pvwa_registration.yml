@@ -30,14 +30,11 @@
         - '{{ pvwa_iis_app_folder }}'
        
     - name: Create configure instance input json
-      ansible.windows.win_template:
-        src: 'templates/ConfigureInstanceInput.json.j2'
+      win_copy:
+        content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
-        output_encoding: ascii
       when:
         - pvwa_registration_configure_instance
-      tags:
-        - debug
 
     - name: Configure instance
       win_shell: |
