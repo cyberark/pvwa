@@ -26,6 +26,7 @@
       ansible.windows.win_template:
         src: 'templates/ConfigureInstanceInput.json.j2'
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
+        output_encoding: ascii
       when:
         - pvwa_registration_configure_instance
 
