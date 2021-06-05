@@ -21,14 +21,7 @@
         state: stopped
       when:
         - pvwa_registration_configure_instance
-       
-       
-    - name: debug message -  Create configure instance input json
-      ansible.builtin.debug:
-        msg:
-        - '{{ pvwa_installation_path }}'
-        - '{{ pvwa_iis_app_folder }}'
-       
+
     - name: Create configure instance input json
       win_copy:
         content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2')}}"
@@ -44,8 +37,6 @@
       when:
         - pvwa_registration_configure_instance
       register: pvwa_deploy_output
-      tags:
-        - debug
 
     - fail:
         msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureInstance.log for more information."
@@ -54,8 +45,8 @@
         - pvwa_registration_configure_instance
 
     - name: Create configure vault input json
-      ansible.windows.win_template:
-        src: 'templates/ConfigureVaultInput.json.j2'
+      win_copy:
+        content: "{{ lookup('template', 'templates/ConfigureVaultInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
       when:
         - pvwa_registration_configure_vault
@@ -78,8 +69,8 @@
         - pvwa_registration_configure_vault
 
     - name: Create register instance input json
-      ansible.windows.win_template:
-        src: 'templates/RegisterInstanceInput.json.j2'
+      win_copy:
+        content: "{{ lookup('template', 'templates/RegisterInstanceInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json'
       when:
         - pvwa_registration_register_instance
