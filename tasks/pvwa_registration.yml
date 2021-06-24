@@ -117,11 +117,29 @@
         state: started
       when:
         - pvwa_registration_register_instance
+        
+    - name: Reboot the machine
+      win_reboot:
+      when:
+        - pvwa_registration_register_instance
+        
+    - name: Check that you can connect (GET) to pvwa and it returns a status 200 after reboot
+      win_uri:
+        url: "https://127.0.0.1/PasswordVault/api/server"
+        validate_certs: no
+        timeout: 60
+      until: pvwa_server_info.status_code == 200
+      retries: 12
+      delay: 10
+      when:
+        - pvwa_registration_register_instance
 
     - set_fact:
         pvwa_registered: true
       when:
         - pvwa_registration_register_instance
+
+
 
   rescue:
 
