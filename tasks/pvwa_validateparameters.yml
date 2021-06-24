@@ -4,9 +4,6 @@
   set_fact:
     ansible_become: true
     ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
-    ansible_become_method: runas
-    ansible_become_password: '{{ hostvars[''localhost''][''ansible_password''] }}'
-    ansible_become_user: '{{ hostvars[''localhost''][''ansible_user''] }}'
     
 - name: check EULA is accepted
   fail:
