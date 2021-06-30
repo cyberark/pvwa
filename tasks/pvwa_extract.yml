@@ -10,6 +10,7 @@
   win_copy:
     src: "{{ pvwa_zip_file_path }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
+    remote_src: "{{pvwa_zip_file_unc}}" 
   register: st
 
 - fail:
