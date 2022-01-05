@@ -53,14 +53,13 @@
 
     - name: Configure vault
       win_shell: |
-        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
+        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force --quiet --no-verbose | Out-Null
         .\PVWADeploy.ps1 -Action ConfigureVault -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
         - pvwa_registration_configure_vault
       register: pvwa_deploy_output
-      no_log: true
 
     - fail:
         msg: "failed to run PVWADeploy.ps1 ConfigureVault. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureVault.log for more information."
@@ -77,14 +76,13 @@
 
     - name: Register instance
       win_shell: |
-        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
+        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force --quiet --no-verbose | Out-Null
         .\PVWADeploy.ps1 -Action RegisterInstance -ParametersFile "{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
       when:
         - pvwa_registration_register_instance
       register: pvwa_deploy_output
-      no_log: true
 
     - name: IIS Restart
       win_shell: |
