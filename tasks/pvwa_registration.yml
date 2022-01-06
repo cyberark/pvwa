@@ -53,7 +53,17 @@
 
     - name: Configure vault
       win_shell: |
-        $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force | Out-Null
+        ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force  ConvertFrom-SecureString | Out-File c:\a.txt
+      args:
+        chdir: "{{ pvwa_registrationtool_folder }}"
+      when:
+        - pvwa_registration_configure_vault
+      register: pvwa_deploy_var
+#      no_log: yes
+
+    - name: Configure vault
+      win_shell: |
+        $secure_vault_password_object = Get-Content c:\a.txt | ConvertTo-SecureString
         .\PVWADeploy.ps1 -Action ConfigureVault -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
