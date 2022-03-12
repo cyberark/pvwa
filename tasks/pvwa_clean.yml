@@ -47,7 +47,7 @@
     src: "{{ pvwa_installationautomation_folder }}"
     dest: "{{ pvwa_base_bin_drive }}\\Cyberark\\PVWA"
     remote_src: True
-  ignore_errors: yes
+  ignore_errors: True
 
 - name: Delete the deployment folder
   ansible.windows.win_file:

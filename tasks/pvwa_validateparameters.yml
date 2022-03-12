@@ -48,7 +48,7 @@
     validate_certs: no
     timeout: 60
   register: pvwa_server_info
-  ignore_errors: yes
+  ignore_errors: true
 
 - ansible.builtin.set_fact:
     pvwa_registered: true
