@@ -5,7 +5,7 @@
   block:
 
     - name: Run PVWA hardening
-      win_shell: |
+      ansible.windows.win_shell: |
         $ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWA_Hardening.ps1
         $Action | Out-File -FilePath "{{ pvwa_hardening_log }}"
@@ -19,7 +19,7 @@
         chdir: "{{ pvwa_installationautomation_folder }}"
 
     - name: Get log path for hardening
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_hardening_log }}"
         Write-Output $Result
       register: log_result
@@ -35,7 +35,7 @@
   rescue:
 
     - name: Get log path for hardening
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_hardening_log }}"
         Write-Output $Result
       register: log_result
@@ -54,7 +54,7 @@
 # Validate PVWA Hardening
 
 - name: Get PVWA Service Info
-  win_service:
+  ansible.windows.win_service:
     name: CyberArk Scheduled Tasks
   register: service_info
 

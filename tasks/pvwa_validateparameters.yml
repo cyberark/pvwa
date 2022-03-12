@@ -11,13 +11,13 @@
   when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
-  win_reg_stat:
+  ansible.windows.win_reg_stat:
     path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{{ pvwa_guid }}
     name: Publisher
   register: pvwa_appwiz_info_64bit
 
 - name: Check if PVWA is already installed (present in appwiz) (32-bit)
-  win_reg_stat:
+  ansible.windows.win_reg_stat:
     path: HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{{ pvwa_guid }}
     name: Publisher
   register: pvwa_appwiz_info_32bit
@@ -28,7 +28,7 @@
   when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists
 
 - name: Get PVWA Service Info
-  win_service:
+  ansible.windows.win_service:
     name: CyberArk Scheduled Tasks
   register: service_info
 
@@ -43,7 +43,7 @@
   when: pvwa_upgrade is undefined
 
 - name: Check connection to PVWA to validate registration
-  win_uri:
+  ansible.windows.win_uri:
     url: "https://127.0.0.1/PasswordVault/api/server"
     validate_certs: no
     timeout: 60

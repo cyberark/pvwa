@@ -16,21 +16,21 @@
       when: pvwa_url is not defined
 
     - name: Stop report service
-      win_service:
+      ansible.windows.win_service:
         name: "CyberArk Scheduled Tasks"
         state: stopped
       when:
         - pvwa_registration_configure_instance
 
     - name: Create configure instance input json
-      win_copy:
+      ansible.windows.win_copy:
         content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
       when:
         - pvwa_registration_configure_instance
 
     - name: Configure instance
-      win_shell: |
+      ansible.windows.win_shell: |
         .\PVWADeploy.ps1 -Action ConfigureInstance -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}"
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
@@ -45,14 +45,14 @@
         - pvwa_registration_configure_instance
 
     - name: Create configure vault input json
-      win_copy:
+      ansible.windows.win_copy:
         content: "{{ lookup('template', 'templates/ConfigureVaultInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
       when:
         - pvwa_registration_configure_vault
 
     - name: Configure vault
-      win_shell: |
+      ansible.windows.win_shell: |
         $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
         .\PVWADeploy.ps1 -Action ConfigureVault -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
@@ -69,14 +69,14 @@
         - pvwa_registration_configure_vault
 
     - name: Create register instance input json
-      win_copy:
+      ansible.windows.win_copy:
         content: "{{ lookup('template', 'templates/RegisterInstanceInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json'
       when:
         - pvwa_registration_register_instance
 
     - name: Register instance
-      win_shell: |
+      ansible.windows.win_shell: |
         $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
         .\PVWADeploy.ps1 -Action RegisterInstance -ParametersFile "{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
@@ -87,7 +87,7 @@
       no_log: true
 
     - name: IIS Restart
-      win_shell: |
+      ansible.windows.win_shell: |
         iisreset /stop
         iisreset /start
       when:
@@ -100,7 +100,7 @@
         - pvwa_registration_register_instance
 
     - name: Check that you can connect (GET) to pvwa and it returns a status 200
-      win_uri:
+      ansible.windows.win_uri:
         url: "https://127.0.0.1/PasswordVault/api/server"
         validate_certs: no
         timeout: 60
@@ -112,19 +112,19 @@
         - pvwa_registration_register_instance
 
     - name: Start report service
-      win_service:
+      ansible.windows.win_service:
         name: "CyberArk Scheduled Tasks"
         state: started
       when:
         - pvwa_registration_register_instance
         
     - name: Reboot the machine
-      win_reboot:
+      ansible.windows.win_reboot:
       when:
         - pvwa_registration_register_instance
         
     - name: Check that you can connect (GET) to pvwa and it returns a status 200 after reboot
-      win_uri:
+      ansible.windows.win_uri:
         url: "https://127.0.0.1/PasswordVault/api/server"
         validate_certs: no
         timeout: 60

@@ -2,7 +2,7 @@
 # tasks file for pvwa installation
 
 - name: Set installation folder on xml config file
-  win_shell: |
+  ansible.windows.win_shell: |
     try
     {
         $filePath = "{{ pvwa_installationautomation_folder }}\\Installation\\InstallationConfig.xml"
@@ -28,7 +28,7 @@
   block:
 
     - name: Run PVWA installation
-      win_shell: |
+      ansible.windows.win_shell: |
         Set-Location "{{ pvwa_installationautomation_folder }}\Installation"
         #$ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWAInstallation.ps1
@@ -43,7 +43,7 @@
         chdir: "{{ pvwa_installationautomation_folder }}\\Installation"
 
     - name: Get log path for installation
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_install_log }}"
         Write-Output $Result
       register: log_result
@@ -57,7 +57,7 @@
         - "{{ log_result.stdout | from_json }}"
 
     - name: Validate PVWA installation
-      win_lineinfile:
+      ansible.windows.win_lineinfile:
         path: '{{ item.logPath }}'
         regexp: 'Operation Succeeded'
         state: present
@@ -68,7 +68,7 @@
   rescue:
 
     - name: Get log path for installation
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_install_log }}"
         Write-Output $Result
       register: log_result
