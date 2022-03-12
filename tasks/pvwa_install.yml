@@ -57,7 +57,7 @@
         - "{{ log_result.stdout | from_json }}"
 
     - name: Validate PVWA installation
-      ansible.windows.win_lineinfile:
+      community.windows.win_lineinfile:
         path: '{{ item.logPath }}'
         regexp: 'Operation Succeeded'
         state: present
