@@ -25,7 +25,7 @@
     - not pvwa_ignore_checksum
 
 - name: Unzip the PVWA package
-  ansible.windows.win_unzip:
+  community.windows.win_unzip:
     src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
     dest: "{{ pvwa_extract_folder }}"
   when: pvwa_official
@@ -37,7 +37,7 @@
   when: not pvwa_official
 
 - name: Unzip the PVWA package
-  ansible.windows.win_unzip:
+  community.windows.win_unzip:
     src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}"
   when: not pvwa_official
