@@ -13,12 +13,12 @@
     remote_src: "{{pvwa_zip_file_unc}}" 
   register: st
 
-- fail:
+- ansible.builtin.fail:
     msg: "{{ pvwa_zip_file_path }} not exists, failing..."
   when: not st.checksum
 
 - name: Check if package is valid using checksum
-  fail:
+  ansible.builtin.fail:
     msg: "Checksum does not match, please validate your package."
   when:
     - st.checksum !=  pvwa_sha1_checksum

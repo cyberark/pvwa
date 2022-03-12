@@ -49,7 +49,7 @@
       register: log_result
 
     - name: Fetch installation log from original folder
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
@@ -74,16 +74,16 @@
       register: log_result
 
     - name: Fetch installation log from path
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
-    - fail:
+    - ansible.builtin.fail:
         msg: 'ERROR: Installation failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
 
 - name: Set PVWA exists variable
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_exists: true

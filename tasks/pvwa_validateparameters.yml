@@ -1,12 +1,12 @@
 ---
 # tasks file for pvwa_validateparameters
 - name: Set become variables
-  set_fact:
+  ansible.builtin.set_fact:
     ansible_become: true
     ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
     
 - name: check EULA is accepted
-  fail:
+  ansible.builtin.fail:
     msg: "You must accept EULA to start the playbook"
   when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
@@ -23,7 +23,7 @@
   register: pvwa_appwiz_info_32bit
 
 - name: Set fact if PVWA is already installed
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_exists: true
   when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists
 
@@ -33,12 +33,12 @@
   register: service_info
 
 - name: Set fact on hardening if correct user is running the service
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_hardened: true
   when: service_info.exists and service_info.username == ".\\PVWAReportsUser"
 
 - name: Set pvwa_upgrade to false if undefined
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_upgrade: false
   when: pvwa_upgrade is undefined
 
@@ -50,7 +50,7 @@
   register: pvwa_server_info
   ignore_errors: yes
 
-- set_fact:
+- ansible.builtin.set_fact:
     pvwa_registered: true
   when:
     - pvwa_server_info is defined
