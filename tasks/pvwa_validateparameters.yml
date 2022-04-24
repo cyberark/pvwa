@@ -18,10 +18,15 @@
     name: Publisher
   register: pvwa_appwiz_info_32bit
 
+- name: Check if PVWA was installed with scripted installer
+  win_reg_stat:
+    path: HKLM:\SOFTWARE\CyberArk\PVWA
+  register: pvwa_script_installation
+
 - name: Set fact if PVWA is already installed
   set_fact:
     pvwa_exists: true
-  when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists
+  when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists or pvwa_script_installation.exists
 
 - name: Get PVWA Service Info
   win_service:
