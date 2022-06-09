@@ -127,4 +127,4 @@
   rescue:
 
     - fail:
-        msg: 'ERROR: Registration failed. For more info check {{ lookup("config", "DEFAULT_LOG_PATH") | dirname }}/pvwa/{{ inventory_hostname }}_registration.log'
+        msg: 'ERROR: Registration failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_registration.log'
