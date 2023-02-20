@@ -4,23 +4,38 @@
   gather_facts: no
   tasks:
 
-    - name: Copy Vault package from local source
+    - name: Get roles directory dirname
+      set_fact:
+        roles_dirname: "{{ playbook_dir | dirname | basename }}"
+        dotnet_installer_path: "C:\\ndp48-x86-x64-allos-enu.exe"
+
+    - name: Download .NET Framework 4.8
+      win_get_url:
+        url: https://download.visualstudio.microsoft.com/download/pr/014120d7-d689-4305-befd-3cb711108212/0fd66638cde16859462a6243a4629a50/ndp48-x86-x64-allos-enu.exe
+        dest: "{{ dotnet_installer_path }}"
+
+    - name: Install Microsoft .NET Framework 4.8
+      win_package:
+        path: "{{ dotnet_installer_path }}"
+        product_id: '{50e73eb2-10f7-4457-954a-6b06fccc7d04}'
+        arguments: /q /norestart
+      register: dotnet_install
+
+    - name: Delete .NET Framework Installer
+      win_file:
+        path: "{{ dotnet_installer_path }}"
+        state: absent
+
+    - name: Reboot host if required
+      win_reboot:
+      when: dotnet_install.reboot_required
+
+    - name: Copy PVWA package from local source
       copy:
-        src: "../../../{{ item }}.zip"
-        dest: "/tmp/{{ item }}.zip"
-      with_items:
-        - vault
-        - vaultdr
-        - keys
-        - pacli
+        src: "../../../pvwa.zip"
+        dest: "/tmp/pvwa.zip"
       delegate_to: localhost
 
-    - name: Unzip the keys package
-      unarchive:
-        src: /tmp/keys.zip
-        dest: /tmp
-      delegate_to: localhost
-
-    - name: Import Vault Role Tasks
+    - name: Import PVWA Role Tasks
       include_role:
-        name: vault
+        name: pvwa
