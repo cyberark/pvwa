@@ -1,6 +1,6 @@
 ---
 
-- hosts: pvwa
+- hosts: default
   gather_facts: no
   tasks:
 
@@ -38,15 +38,12 @@
       win_reboot:
       when: dotnet_install.reboot_required
 
-    - name: pvwa Deployment
+    - name: Copy Vault package from local source
+      copy:
+        src: "../../../pvwa.zip"
+        dest: "/tmp/pvwa.zip"
+      delegate_to: localhost
+
+    - name: Import Vault Role Tasks
       include_role:
-        name: "{{ roles_dirname }}"
-      vars:
-        - pvwa_extract: true
-        - pvwa_prerequisites: true
-        - pvwa_install: true
-        - pvwa_hardening: true
-        - pvwa_registration: false
-        - pvwa_zip_file_path: "/tmp/pvwa.zip"
-        - accept_eula: "yes"
-        - pvwa_official: false
+        name: pvwa

@@ -1,0 +1,12 @@
+---
+
+pvwa_extract: true
+pvwa_prerequisites: true
+pvwa_install: true
+pvwa_hardening: true
+pvwa_clean: true
+pvwa_registration: false
+pvwa_zip_file_path: "/tmp/pvwa.zip"
+accept_eula: "yes"
+pvwa_ignore_checksum: true
+pvwa_official: false

@@ -1,0 +1,26 @@
+---
+
+- hosts: default
+  gather_facts: no
+  tasks:
+
+    - name: Copy Vault package from local source
+      copy:
+        src: "../../../{{ item }}.zip"
+        dest: "/tmp/{{ item }}.zip"
+      with_items:
+        - vault
+        - vaultdr
+        - keys
+        - pacli
+      delegate_to: localhost
+
+    - name: Unzip the keys package
+      unarchive:
+        src: /tmp/keys.zip
+        dest: /tmp
+      delegate_to: localhost
+
+    - name: Import Vault Role Tasks
+      include_role:
+        name: vault
