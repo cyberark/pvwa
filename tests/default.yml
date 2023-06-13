@@ -29,7 +29,7 @@
     - name: download package from s3
       aws_s3:
         bucket: cloud-initiatives-pipeline-bucket
-        object: "Packages/v13.0/Password Vault Web Access-Rls-v13.0.zip"
+        object: "Packages/v13.2/Password Vault Web Access-Rls-v13.2.zip"
         dest: "/tmp/pvwa.zip"
         mode: get
       delegate_to: localhost
