@@ -2,7 +2,7 @@
 # tasks file for pvwa installation
 
 - name: Set installation folder on xml config file
-  win_shell: |
+  ansible.windows.win_shell: |
     try
     {
         $filePath = "{{ pvwa_installationautomation_folder }}\\Installation\\InstallationConfig.xml"
@@ -28,7 +28,7 @@
   block:
 
     - name: Run PVWA installation
-      win_shell: |
+      ansible.windows.win_shell: |
         Set-Location "{{ pvwa_installationautomation_folder }}\Installation"
         #$ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWAInstallation.ps1
@@ -43,13 +43,13 @@
         chdir: "{{ pvwa_installationautomation_folder }}\\Installation"
 
     - name: Get log path for installation
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_install_log }}"
         Write-Output $Result
       register: log_result
 
     - name: Fetch installation log from original folder
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
@@ -57,7 +57,7 @@
         - "{{ log_result.stdout | from_json }}"
 
     - name: Validate PVWA installation
-      win_lineinfile:
+      community.windows.win_lineinfile:
         path: '{{ item.logPath }}'
         regexp: 'Operation Succeeded'
         state: present
@@ -68,22 +68,22 @@
   rescue:
 
     - name: Get log path for installation
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_install_log }}"
         Write-Output $Result
       register: log_result
 
     - name: Fetch installation log from path
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
-    - fail:
+    - ansible.builtin.fail:
         msg: 'ERROR: Installation failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_install.log'
 
 - name: Set PVWA exists variable
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_exists: true

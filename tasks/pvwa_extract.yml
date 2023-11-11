@@ -2,41 +2,42 @@
 # tasks file for pvwa_extract
 
 - name: Create folder
-  win_file:
+  ansible.windows.win_file:
     path: "{{ pvwa_extract_folder }}"
     state: directory
 
 - name: Copy PVWA package from local source
-  win_copy:
+  ansible.windows.win_copy:
     src: "{{ pvwa_zip_file_path }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
+    remote_src: "{{pvwa_zip_file_unc}}" 
   register: st
 
-- fail:
+- ansible.builtin.fail:
     msg: "{{ pvwa_zip_file_path }} not exists, failing..."
   when: not st.checksum
 
 - name: Check if package is valid using checksum
-  fail:
+  ansible.builtin.fail:
     msg: "Checksum does not match, please validate your package."
   when:
     - st.checksum !=  pvwa_sha1_checksum
     - not pvwa_ignore_checksum
 
 - name: Unzip the PVWA package
-  win_unzip:
+  community.windows.win_unzip:
     src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
     dest: "{{ pvwa_extract_folder }}"
   when: pvwa_official
 
 - name: Create component folder
-  win_file:
+  ansible.windows.win_file:
     path: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}"
     state: directory
   when: not pvwa_official
 
 - name: Unzip the PVWA package
-  win_unzip:
+  community.windows.win_unzip:
     src: "{{ pvwa_extract_folder }}\\{{ pvwa_artifact_name }}"
     dest: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}"
   when: not pvwa_official

@@ -2,19 +2,19 @@
 # tasks file for pvwa clean
 
 - name: Find files to delete in Windows Temp folder
-  win_find:
+  ansible.windows.win_find:
     paths: "C:\\Windows\\Temp"
     patterns: ['PVWA*.*', 'InstallationAutomation*.*']
   register: files_to_delete
 
 - name: Clean Windows Temp Folder
-  win_file:
+  ansible.windows.win_file:
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ files_to_delete.files }}"
 
 - name: Clean cred files
-  win_file:
+  ansible.windows.win_file:
     path: "{{ item }}"
     state: absent
   with_items:
@@ -22,7 +22,7 @@
     - "{{ pvwa_installation_path }}\\CredFiles\\gwuser.ini"
 
 - name: Clean run History
-  win_shell: |
+  ansible.windows.win_shell: |
     try {
       $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
 
@@ -43,19 +43,19 @@
     exit 0
 
 - name: Keep installation automation folder
-  win_copy:
+  ansible.windows.win_copy:
     src: "{{ pvwa_installationautomation_folder }}"
     dest: "{{ pvwa_base_bin_drive }}\\Cyberark\\PVWA"
     remote_src: True
-  ignore_errors: yes
+  ignore_errors: True
 
 - name: Delete the deployment folder
-  win_file:
+  ansible.windows.win_file:
     path: "{{ pvwa_extract_folder }}"
     state: absent
 
 - name: clean event logs
-  win_shell: |
+  ansible.windows.win_shell: |
     try {
       wevtutil el | ForEach-Object { wevtutil cl "$_" }
     } catch {
@@ -64,7 +64,7 @@
     }
 
 - name: clean recycle bin
-  win_shell: |
+  ansible.windows.win_shell: |
     try {
       $Recycler = (New-Object -ComObject Shell.Application).Namespace(0xa)
       $Recycler.items() | ForEach-Object { rm $_.path -Force -Recurse }

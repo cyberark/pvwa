@@ -5,7 +5,7 @@
   block:
 
     - name: Run PVWA hardening
-      win_shell: |
+      ansible.windows.win_shell: |
         $ErrorActionPreference = "SilentlyContinue"
         $Action = .\PVWA_Hardening.ps1
         $Action | Out-File -FilePath "{{ pvwa_hardening_log }}"
@@ -19,13 +19,13 @@
         chdir: "{{ pvwa_installationautomation_folder }}"
 
     - name: Get log path for hardening
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_hardening_log }}"
         Write-Output $Result
       register: log_result
 
     - name: Fetch hardening log from original folder
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
         flat: yes
@@ -35,30 +35,30 @@
   rescue:
 
     - name: Get log path for hardening
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_hardening_log }}"
         Write-Output $Result
       register: log_result
 
     - name: Fetch hardening log from original folder
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
-    - fail:
+    - ansible.builtin.fail:
         msg: 'ERROR: Hardening failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_hardening.log'
 
 # Validate PVWA Hardening
 
 - name: Get PVWA Service Info
-  win_service:
+  ansible.windows.win_service:
     name: CyberArk Scheduled Tasks
   register: service_info
 
 - name: Set fact on hardening if correct user running the service
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_hardened: true
   when: service_info.exists and service_info.username == ".\\PVWAReportsUser"

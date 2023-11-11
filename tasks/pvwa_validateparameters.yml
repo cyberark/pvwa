@@ -1,19 +1,23 @@
 ---
 # tasks file for pvwa_validateparameters
-
+- name: Set become variables
+  ansible.builtin.set_fact:
+    ansible_become: true
+    ansible_become_flags: logon_type=new_credentials logon_flags=netcredentials_only
+    
 - name: check EULA is accepted
-  fail:
+  ansible.builtin.fail:
     msg: "You must accept EULA to start the playbook"
   when: (accept_eula|type_debug != 'bool' and accept_eula|lower != "yes") or (accept_eula|type_debug == 'bool' and not accept_eula)
 
 - name: Check if PVWA is already installed (present in appwiz) (64-bit)
-  win_reg_stat:
+  ansible.windows.win_reg_stat:
     path: HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\{{ pvwa_guid }}
     name: Publisher
   register: pvwa_appwiz_info_64bit
 
 - name: Check if PVWA is already installed (present in appwiz) (32-bit)
-  win_reg_stat:
+  ansible.windows.win_reg_stat:
     path: HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{{ pvwa_guid }}
     name: Publisher
   register: pvwa_appwiz_info_32bit
@@ -24,34 +28,34 @@
   register: pvwa_script_installation
 
 - name: Set fact if PVWA is already installed
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_exists: true
   when: pvwa_appwiz_info_64bit.exists or pvwa_appwiz_info_32bit.exists or pvwa_script_installation.exists
 
 - name: Get PVWA Service Info
-  win_service:
+  ansible.windows.win_service:
     name: CyberArk Scheduled Tasks
   register: service_info
 
 - name: Set fact on hardening if correct user is running the service
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_hardened: true
   when: service_info.exists and service_info.username == ".\\PVWAReportsUser"
 
 - name: Set pvwa_upgrade to false if undefined
-  set_fact:
+  ansible.builtin.set_fact:
     pvwa_upgrade: false
   when: pvwa_upgrade is undefined
 
 - name: Check connection to PVWA to validate registration
-  win_uri:
+  ansible.windows.win_uri:
     url: "https://127.0.0.1/PasswordVault/api/server"
     validate_certs: no
     timeout: 60
   register: pvwa_server_info
-  ignore_errors: yes
+  ignore_errors: true
 
-- set_fact:
+- ansible.builtin.set_fact:
     pvwa_registered: true
   when:
     - pvwa_server_info is defined

@@ -4,33 +4,33 @@
 - name: Registration Block
   block:
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         pvwa_registration_configure_instance: true
         pvwa_registration_configure_vault: true
         pvwa_registration_register_instance: true
       when: pvwa_registration
 
     - name: Assign PVWA IP
-      set_fact:
+      ansible.builtin.set_fact:
         pvwa_url: "https://{{ ansible_host }}/PasswordVault"
       when: pvwa_url is not defined
 
     - name: Stop report service
-      win_service:
+      ansible.windows.win_service:
         name: "CyberArk Scheduled Tasks"
         state: stopped
       when:
         - pvwa_registration_configure_instance
 
     - name: Create configure instance input json
-      win_copy:
-        content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2') | to_nice_json }}"
+      ansible.windows.win_copy:
+        content: "{{ lookup('template', 'templates/ConfigureInstanceInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json'
       when:
         - pvwa_registration_configure_instance
 
     - name: Configure instance
-      win_shell: |
+      ansible.windows.win_shell: |
         .\PVWADeploy.ps1 -Action ConfigureInstance -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}"
       args:
         chdir: "{{ pvwa_registrationtool_folder }}"
@@ -38,21 +38,21 @@
         - pvwa_registration_configure_instance
       register: pvwa_deploy_output
 
-    - fail:
+    - ansible.builtin.fail:
         msg: "failed to run PVWADeploy.ps1 ConfigureInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureInstance.log for more information."
       when:
         - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('Failed to run') != -1)
         - pvwa_registration_configure_instance
 
     - name: Create configure vault input json
-      win_copy:
-        content: "{{ lookup('template', 'templates/ConfigureVaultInput.json.j2') | to_nice_json }}"
+      ansible.windows.win_copy:
+        content: "{{ lookup('template', 'templates/ConfigureVaultInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json'
       when:
         - pvwa_registration_configure_vault
 
     - name: Configure vault
-      win_shell: |
+      ansible.windows.win_shell: |
         $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
         .\PVWADeploy.ps1 -Action ConfigureVault -ParametersFile "{{ pvwa_installation_path }}\Env\ConfigureVaultInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
@@ -62,21 +62,21 @@
       register: pvwa_deploy_output
       no_log: true
 
-    - fail:
+    - ansible.builtin.fail:
         msg: "failed to run PVWADeploy.ps1 ConfigureVault. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\ConfigureVault.log for more information."
       when:
         - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('Failed to run') != -1)
         - pvwa_registration_configure_vault
 
     - name: Create register instance input json
-      win_copy:
-        content: "{{ lookup('template', 'templates/RegisterInstanceInput.json.j2') | to_nice_json }}"
+      ansible.windows.win_copy:
+        content: "{{ lookup('template', 'templates/RegisterInstanceInput.json.j2')}}"
         dest: '{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json'
       when:
         - pvwa_registration_register_instance
 
     - name: Register instance
-      win_shell: |
+      ansible.windows.win_shell: |
         $secure_vault_password_object = ConvertTo-SecureString '{{ vault_password }}' -AsPlainText -Force
         .\PVWADeploy.ps1 -Action RegisterInstance -ParametersFile "{{ pvwa_installation_path }}\Env\RegisterInstanceInput.json" -configFilesPath "{{ pvwa_installation_path }}" -VaultSecurePassword $secure_vault_password_object
       args:
@@ -87,20 +87,20 @@
       no_log: true
 
     - name: IIS Restart
-      win_shell: |
+      ansible.windows.win_shell: |
         iisreset /stop
         iisreset /start
       when:
         - pvwa_registration_register_instance
 
-    - fail:
+    - ansible.builtin.fail:
         msg: "failed to run PVWADeploy.ps1 RegisterInstance. Please refer to {{ pvwa_installation_path }}\\Env\\Log\\RegisterInstance.log for more information."
       when:
         - (pvwa_deploy_output.stdout is defined) and (pvwa_deploy_output.stdout.find('Failed to run') != -1)
         - pvwa_registration_register_instance
 
     - name: Check that you can connect (GET) to pvwa and it returns a status 200
-      win_uri:
+      ansible.windows.win_uri:
         url: "https://127.0.0.1/PasswordVault/api/server"
         validate_certs: no
         timeout: 60
@@ -112,18 +112,36 @@
         - pvwa_registration_register_instance
 
     - name: Start report service
-      win_service:
+      ansible.windows.win_service:
         name: "CyberArk Scheduled Tasks"
         state: started
       when:
         - pvwa_registration_register_instance
+        
+    - name: Reboot the machine
+      ansible.windows.win_reboot:
+      when:
+        - pvwa_registration_register_instance
+        
+    - name: Check that you can connect (GET) to pvwa and it returns a status 200 after reboot
+      ansible.windows.win_uri:
+        url: "https://127.0.0.1/PasswordVault/api/server"
+        validate_certs: no
+        timeout: 60
+      until: pvwa_server_info.status_code == 200
+      retries: 12
+      delay: 10
+      when:
+        - pvwa_registration_register_instance
 
-    - set_fact:
+    - ansible.builtin.set_fact:
         pvwa_registered: true
       when:
         - pvwa_registration_register_instance
 
+
+
   rescue:
 
-    - fail:
+    - ansible.builtin.fail:
         msg: 'ERROR: Registration failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_registration.log'

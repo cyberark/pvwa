@@ -5,7 +5,7 @@
   block:
 
     - name: Run PVWA prerequisities script
-      win_shell: |
+      ansible.windows.win_shell: |
         # Script Name: PVWAPreInstall.ps1
         # Description: Initiating pre-installation proccess of PVWA. If success, returns OK
 
@@ -28,13 +28,13 @@
         }
 
     - name: Get log path for preinstall
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_prerequisites_log }}"
         Write-Output $Result
       register: log_result
 
     - name: Fetch preinstall log from path
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
         flat: yes
@@ -44,23 +44,23 @@
   rescue:
 
     - name: Get log path for preinstall
-      win_shell: |
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_prerequisites_log }}"
         Write-Output $Result
       register: log_result
 
     - name: Fetch preinstall log from path
-      fetch:
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
         dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
         flat: yes
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
-    - fail:
+    - ansible.builtin.fail:
         msg: 'ERROR: Preinstallation failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
 
 - name: Enable HTTP Activation for .net framework
-  win_feature:
+  ansible.windows.win_feature:
     name: NET-WCF-HTTP-Activation45
     state: present
