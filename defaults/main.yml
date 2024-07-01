@@ -9,11 +9,11 @@ pvwa_registration_configure_vault: false
 pvwa_registration_register_instance: false
 pvwa_clean: false
 pvwa_extract: false
-pvwa_ignore_checksum: false
 pvwa_exists: false
 pvwa_hardened: false
 pvwa_registered: false
 pvwa_official: true
+platform: "aws"
 
 pvwa_base_bin_drive: "C:"
 pvwa_zip_file_path: ""
@@ -21,6 +21,7 @@ pvwa_extract_folder: "{{ pvwa_base_bin_drive }}\\Cyberark\\packages"
 pvwa_artifact_name: "pvwa.zip"
 pvwa_component_folder: "Password Vault Web Access"
 pvwa_installationautomation_folder: "{{ pvwa_extract_folder }}\\{{ pvwa_component_folder }}\\InstallationAutomation"
+pvwa_iis_disable_logs: "{{ pvwa_installationautomation_folder }}\\HardeningFix\\PVWA_IIS_Disable_logs.psm1"
 
 pvwa_installation_drive: "C:"
 pvwa_installation_path: "{{ pvwa_installation_drive }}\\CyberArk\\Password Vault Web Access"
@@ -39,9 +40,10 @@ pvwa_enable_mobile_version: true
 pvwa_prerequisites_log: "{{ pvwa_installationautomation_folder }}\\pvwa_pre_req_result.txt"
 pvwa_install_log: "{{ pvwa_installationautomation_folder }}\\pvwa_installation_result.txt"
 pvwa_hardening_log: "{{ pvwa_installationautomation_folder }}\\pvwa_hardening_result.txt"
-pvwa_registration_log: "{{ pvwa_installationautomation_folder  }}\\pvwa_registration_result.txt"
+pvwa_registration_log: "{{ pvwa_installationautomation_folder }}\\pvwa_registration_result.txt"
 
 accept_eula: "No"
 
 vault_username: "administrator"
 vault_port: 1858
+log_path_dest: "{{ playbook_dir | dirname }}/logs/pvwa"

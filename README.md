@@ -25,6 +25,7 @@ pvwa_install                      | no           | false                        
 pvwa_hardening                    | no           | false                                           | Apply PVWA hardening
 pvwa_registration                 | no           | false                                           | Connect PVWA to the Vault
 pvwa_clean                        | no           | false                                           | N/A
+platform                          | no           | aws                                             | Deployed platform (aws/azure)
 
 ### Deployment Variables
 Variable                          | Required     | Default                                         | Comments
@@ -76,7 +77,7 @@ to call the PVWA role with several parameters:
 
 ```
 ---
-- include_role:
+- ansible.builtin.include_role:
     name: pvwa
   vars:
     pvwa_install: true
