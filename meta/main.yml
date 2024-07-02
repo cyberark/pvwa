@@ -1,12 +1,15 @@
 ---
+
 galaxy_info:
+  namespace: cyberark
+  role_name: pvwa_ansible
   author:
     - Nimrod Yakobovitz
     - Yogev Chen
     - Avishay Bar
     - Ziv Lifshits
     - Maish Saidel-Keesing
-  description: Installs CyberArk PSM software
+  description: Installs CyberArk PVWA software
   company: CyberArk
   license: Apache2
 
@@ -16,9 +19,10 @@ galaxy_info:
     - name: Windows
       versions:
         - 2016
+        - 2019
 
   galaxy_tags:
-    - psm
+    - pvwa
     - cyberark
     - security
 
