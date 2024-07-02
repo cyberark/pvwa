@@ -2,73 +2,81 @@
 # tasks file for pvwa clean
 
 - name: Find files to delete in Windows Temp folder
-  win_find:
+  ansible.windows.win_find:
     paths: "C:\\Windows\\Temp"
     patterns: ['PVWA*.*', 'InstallationAutomation*.*']
   register: files_to_delete
 
 - name: Clean Windows Temp Folder
-  win_file:
+  ansible.windows.win_file:
     path: "{{ item.path }}"
     state: absent
   with_items: "{{ files_to_delete.files }}"
 
 - name: Clean cred files
-  win_file:
+  ansible.windows.win_file:
     path: "{{ item }}"
     state: absent
   with_items:
     - "{{ pvwa_installation_path }}\\CredFiles\\appuser.ini"
     - "{{ pvwa_installation_path }}\\CredFiles\\gwuser.ini"
 
-- name: Clean run History
-  win_shell: |
-    try {
-      $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU"
-
-      if (& { Test-Path $path } 2>&1) {
-        $arr = (Get-Item -Path $path).Property
-        foreach ($item in $arr)
-        {
-          if ($item -ne "(Default)")
-          {
-            Remove-ItemProperty -Path $path -Name $item -ErrorAction SilentlyContinue
-          }
-        }
-      }
-    } catch {
-      Write-Output "Error occured: $error"
-      exit 1
-    }
-    exit 0
-
 - name: Keep installation automation folder
-  win_copy:
+  ansible.windows.win_copy:
     src: "{{ pvwa_installationautomation_folder }}"
     dest: "{{ pvwa_base_bin_drive }}\\Cyberark\\PVWA"
-    remote_src: True
-  ignore_errors: yes
+    remote_src: true
 
 - name: Delete the deployment folder
-  win_file:
+  ansible.windows.win_file:
     path: "{{ pvwa_extract_folder }}"
     state: absent
 
-- name: clean event logs
-  win_shell: |
-    try {
-      wevtutil el | ForEach-Object { wevtutil cl "$_" }
-    } catch {
-      Write-Output "Error occured: $error"
-      exit 1
-    }
+###############################
 
-- name: clean recycle bin
-  win_shell: |
-    try {
-      $Recycler = (New-Object -ComObject Shell.Application).Namespace(0xa)
-      $Recycler.items() | ForEach-Object { rm $_.path -Force -Recurse }
-    } catch {
-      Write-Output "Error occured: $error"
-      exit 1
-    }
+- name: Set CyberArk Scheduled Tasks Service Startup Mode to Manual
+  ansible.windows.win_service:
+    name: CyberArk Scheduled Tasks
+    start_mode: manual
+    state: stopped
+
+- name: Stop PVWA application pool
+  community.windows.win_iis_webapppool:
+    name: PasswordVaultWebAccessPool
+    state: stopped
+
+- name: Create Deployment Folders
+  ansible.windows.win_file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "C:\\CyberArk"
+    - "C:\\CyberArk\\Deployment"
+    - "C:\\CyberArk\\Deployment\\Logs"
+
+- name: Copy PS1 scripts - AWS
+  ansible.windows.win_copy:
+    src: "files/aws/{{ item }}"
+    dest: C:\CyberArk\Deployment\
+  with_items:
+    - PVWARegistration.ps1
+    - PVWAConfiguration.ps1
+    - Set-LocalService.ps1
+    - CloudWatch.ps1
+    - Common.ps1
+  when: platform == 'aws'
+
+- name: Copy PS1 scripts - Azure
+  ansible.windows.win_copy:
+    src: "files/azure/{{ item }}"
+    dest: C:\CyberArk\
+  with_items:
+    - Set-LocalAccountPassword.ps1
+    - Set-ServiceLogon.ps1
+    - CreateSelfCertAndBind.ps1
+  when: platform == 'azure'
+
+- name: Copy CloudWatch Json
+  ansible.windows.win_copy:
+    src: "files/aws/AWS.EC2.Windows.CloudWatch.json"
+    dest: "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\"

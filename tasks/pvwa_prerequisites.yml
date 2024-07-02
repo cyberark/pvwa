@@ -1,11 +1,46 @@
 ---
+
+- name: Get roles directory dirname
+  ansible.builtin.set_fact:
+    dotnet_installer_path: "C:\\ndp48-x86-x64-allos-enu.exe"
+
+- name: Download .NET Framework 4.8
+  ansible.windows.win_get_url:
+    url: >
+      https://download.visualstudio.microsoft.com/download/pr/014120d7-d689-4305-befd-3cb711108212/0fd66638cde16859462a6243a4629a50/ndp48-x86-x64-allos-enu.exe
+    dest: "{{ dotnet_installer_path }}"
+
+- name: Install Microsoft .NET Framework 4.8
+  ansible.windows.win_package:
+    path: "{{ dotnet_installer_path }}"
+    product_id: '{50e73eb2-10f7-4457-954a-6b06fccc7d04}'
+    arguments: /q /norestart
+  register: dotnet_install
+
+- name: Delete .NET Framework Installer
+  ansible.windows.win_file:
+    path: "{{ dotnet_installer_path }}"
+    state: absent
+
+- name: Reboot host if required
+  ansible.windows.win_reboot:
+  when: dotnet_install.reboot_required
+
+- name: Install IIS Web-Server with sub features and management tools
+  ansible.windows.win_feature:
+    name: "web-server"
+    state: present
+    restart: true
+    include_sub_features: true
+    include_management_tools: true
+
 # tasks file for pvwa prerequisities
 
 - name: Pre-Installation Block
   block:
 
     - name: Run PVWA prerequisities script
-      win_shell: |
+      ansible.windows.win_shell: |
         # Script Name: PVWAPreInstall.ps1
         # Description: Initiating pre-installation proccess of PVWA. If success, returns OK
 
@@ -27,40 +62,41 @@
             exit 1
         }
 
-    - name: Get log path for preinstall
-      win_shell: |
+    - name: Get log path for prerequisites
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_prerequisites_log }}"
         Write-Output $Result
       register: log_result
 
-    - name: Fetch preinstall log from path
-      fetch:
+    - name: Fetch prerequisites log from path
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
-        flat: yes
+        dest: '{{ log_path_dest }}/pvwa_prerequisites.log'
+        flat: true
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
   rescue:
 
-    - name: Get log path for preinstall
-      win_shell: |
+    - name: Get log path for prerequisites
+      ansible.windows.win_shell: |
         $Result = Get-Content "{{ pvwa_prerequisites_log }}"
         Write-Output $Result
       register: log_result
 
-    - name: Fetch preinstall log from path
-      fetch:
+    - name: Fetch prerequisites log from path
+      ansible.builtin.fetch:
         src: '{{ item.logPath }}'
-        dest: '{{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
-        flat: yes
+        dest: '{{ log_path_dest }}/pvwa_prerequisites.log'
+        flat: true
       with_items:
         - "{{ log_result.stdout | from_json }}"
 
-    - fail:
-        msg: 'ERROR: Preinstallation failed. For more info check {{ playbook_dir | dirname }}/logs/pvwa/{{ inventory_hostname }}_preinstall.log'
+    - name: Fail when prerequisites not successful
+      ansible.builtin.fail:
+        msg: 'ERROR: Prerequisites failed. For more info check {{ log_path_dest }}/pvwa_prerequisites.log'
 
 - name: Enable HTTP Activation for .net framework
-  win_feature:
+  ansible.windows.win_feature:
     name: NET-WCF-HTTP-Activation45
     state: present

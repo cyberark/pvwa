@@ -2,39 +2,39 @@
 # tasks file for pvwa
 
 - name: Validate input parameters
-  include_tasks: pvwa_validateparameters.yml
+  ansible.builtin.include_tasks: pvwa_validateparameters.yml
 
 - name: Extract PVWA package
-  include_tasks: pvwa_extract.yml
+  ansible.builtin.include_tasks: pvwa_extract.yml
   when:
     - pvwa_extract
 
 - name: Running PVWA prerequisities
-  include_tasks: pvwa_prerequisites.yml
+  ansible.builtin.include_tasks: pvwa_prerequisites.yml
   when:
     - pvwa_prerequisites
 
 - name: Running PVWA install
-  include_tasks: pvwa_install.yml
+  ansible.builtin.include_tasks: pvwa_install.yml
   when:
     - pvwa_install
     - not pvwa_exists
 
 - name: Running PVWA hardening
-  include_tasks: pvwa_hardening.yml
+  ansible.builtin.include_tasks: pvwa_hardening.yml
   when:
     - pvwa_hardening
     - pvwa_exists
     - not pvwa_hardened
 
 - name: Running PVWA registration
-  include_tasks: pvwa_registration.yml
+  ansible.builtin.include_tasks: pvwa_registration.yml
   when:
     - pvwa_registration or pvwa_registration_configure_instance or pvwa_registration_configure_vault or pvwa_registration_register_instance
     - pvwa_exists
     - not pvwa_registered
 
 - name: Running PVWA clean
-  include_tasks: pvwa_clean.yml
+  ansible.builtin.include_tasks: pvwa_clean.yml
   when:
     - pvwa_clean
