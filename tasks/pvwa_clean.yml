@@ -59,24 +59,22 @@
     src: "files/aws/{{ item }}"
     dest: C:\CyberArk\Deployment\
   with_items:
+    - UserDataScript.ps1
     - PVWARegistration.ps1
     - PVWAConfiguration.ps1
-    - Set-LocalService.ps1
     - CloudWatch.ps1
     - Common.ps1
+    - ../CreateSelfCertAndBind.ps1
   when: platform == 'aws'
 
 - name: Copy PS1 scripts - Azure
   ansible.windows.win_copy:
-    src: "files/azure/{{ item }}"
-    dest: C:\CyberArk\
-  with_items:
-    - Set-LocalAccountPassword.ps1
-    - Set-ServiceLogon.ps1
-    - CreateSelfCertAndBind.ps1
+    src: "files/CreateSelfCertAndBind.ps1"
+    dest: "C:\\CyberArk\\"
   when: platform == 'azure'
 
 - name: Copy CloudWatch Json
   ansible.windows.win_copy:
     src: "files/aws/AWS.EC2.Windows.CloudWatch.json"
     dest: "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\"
+  when: platform == 'aws'
