@@ -3,52 +3,29 @@
   "EngineConfiguration":{
      "PollInterval":"00:00:05",
      "Components":[
-        {
-           "Id":"CfnInitLog",
-           "FullName":"AWS.EC2.Windows.CloudWatch.CustomLog.CustomLogInputComponent,AWS.EC2.Windows.CloudWatch",
-           "Parameters":{
-              "LogDirectoryPath":"C:\\cfn\\log",
-              "TimestampFormat":"yyyy-MM-dd HH:mm:ss,fff",
-              "Encoding":"ASCII",
-              "Filter":"cfn-init.log",
-              "CultureName":"en-US",
-              "TimeZoneKind":"Local"
-           }
-        },
-        {
-           "Id":"CloudWatchCfnInitLog",
-           "FullName":"AWS.EC2.Windows.CloudWatch.CloudWatchLogsOutput,AWS.EC2.Windows.CloudWatch",
-           "Parameters":{
-              "AccessKey":"",
-              "SecretKey":"",
-              "Region":"AWS_REGION_PH",
-              "LogGroup":"LOG_GROUP_PH",
-              "LogStream":"PVWA_CFN_LOG_PH"
-           }
-        },
-        {
-           "Id":"Set-LocalService",
-           "FullName":"AWS.EC2.Windows.CloudWatch.CustomLog.CustomLogInputComponent,AWS.EC2.Windows.CloudWatch",
-           "Parameters":{
-              "LogDirectoryPath":"C:\\CyberArk\\Deployment\\Logs",
-              "TimestampFormat":"yyyy-MM-dd HH:mm:ss",
-              "Encoding":"ASCII",
-              "Filter":"Set-LocalService.log",
-              "CultureName":"en-US",
-              "TimeZoneKind":"Local"
-           }
-        },
-        {
-           "Id":"CloudWatchSet-LocalService",
-           "FullName":"AWS.EC2.Windows.CloudWatch.CloudWatchLogsOutput,AWS.EC2.Windows.CloudWatch",
-           "Parameters":{
-              "AccessKey":"",
-              "SecretKey":"",
-              "Region":"AWS_REGION_PH",
-              "LogGroup":"LOG_GROUP_PH",
-              "LogStream":"PVWA_LOCALSERVICE_LOG_PH"
-           }
-        },
+         {
+            "Id":"UserDataLog",
+            "FullName":"AWS.EC2.Windows.CloudWatch.CustomLog.CustomLogInputComponent,AWS.EC2.Windows.CloudWatch",
+            "Parameters":{
+               "LogDirectoryPath":"C:\\CyberArk\\Deployment\\Logs",
+               "TimestampFormat":"yyyy-MM-dd HH:mm:ss",
+               "Encoding":"ASCII",
+               "Filter":"UserData.log",
+               "CultureName":"en-US",
+               "TimeZoneKind":"Local"
+            }
+         },
+         {
+            "Id":"CloudWatchUserDataLog",
+            "FullName":"AWS.EC2.Windows.CloudWatch.CloudWatchLogsOutput,AWS.EC2.Windows.CloudWatch",
+            "Parameters":{
+               "AccessKey":"",
+               "SecretKey":"",
+               "Region":"AWS_REGION_PH",
+               "LogGroup":"LOG_GROUP_PH",
+               "LogStream":"USERDATA_LOG_PH"
+            }
+         },
         {
            "Id":"PVWAConfiguration",
            "FullName":"AWS.EC2.Windows.CloudWatch.CustomLog.CustomLogInputComponent,AWS.EC2.Windows.CloudWatch",
@@ -98,8 +75,7 @@
      ],
      "Flows":{
         "Flows":[
-           "CfnInitLog,CloudWatchCfnInitLog",
-           "Set-LocalService,CloudWatchSet-LocalService",
+           "UserDataLog,CloudWatchUserDataLog",
            "PVWAConfiguration,CloudWatchPVWAConfiguration",
            "PVWARegistration,CloudWatchPVWARegistration"
         ]
