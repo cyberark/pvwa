@@ -1,43 +1,67 @@
-[CmdletBinding()]
-Param(
-  [Parameter(Mandatory=$true)][string[]]$Services,
-  [Parameter(Mandatory=$true)][string]$Username
+param (
+    [string]$CertificateDnsName = $null
 )
-. C:\ProgramData\Amazon\EC2-Windows\Launch\Module\Scripts\New-RandomPassword.ps1
-. C:\ProgramData\Amazon\EC2-Windows\Launch\Module\Scripts\Confirm-Password.ps1
 
-. "$PSScriptRoot\Common.ps1"
+# Set $CertificateDnsName to $env:computername if the parameter was not provided
+if (-not $CertificateDnsName) {
+    $CertificateDnsName = $env:computername
+}
 
+Write-Output "Certificate DNS Name: $CertificateDnsName"
+# The name of the certificate
+$CertificateDnsName = $env:computername
 
-$LogFile = "C:\CyberArk\Deployment\Logs\Set-LocalService.log"
+# The Website that we will assign the certificate
+$siteName = "Default Web Site" 
 
-try{
-    WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "Set new password"
-    $Password = New-RandomPassword
-    $adsi = [ADSI]"WinNT://$env:COMPUTERNAME"
-    $existing = $adsi.Children | where {$_.SchemaClassName -eq 'user' -and $_.Name -eq $Username }
-    if ($existing -eq $null) {
-        Write-Error "User $Username does not exist"
-        return
+# ----------------------------------------------------------------------------------------
+# SSL CERTIFICATE CREATION
+# ----------------------------------------------------------------------------------------
+
+# create the ssl certificate that will expire in 30 years
+try 
+{
+    $newCert = New-SelfSignedCertificate -DnsName $CertificateDnsName -CertStoreLocation cert:\LocalMachine\My -NotAfter (Get-Date).AddYears(30)
+    "Certificate Details:`r`n`r`n $newCert"
+    
+    
+    # ----------------------------------------------------------------------------------------
+    # IIS BINDINGS
+    # ----------------------------------------------------------------------------------------
+    
+    
+    $webbindings = Get-WebBinding -Name $siteName
+    $webbindings
+    
+    
+    $hasSsl = $webbindings | Where-Object { $_.protocol -like "*https*" }
+    
+    if($hasSsl)
+    {
+        Write-Output "An SSL certificate is already assigned. Removing it..."
+        Get-WebBinding -Port 443 -Name "Default Web Site" | Remove-WebBinding
+        Write-Output "Removing of SSL binding finished successfully"
     }
-    WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "Set existing password"
-    $existing.SetPassword($Password)
-    foreach ($Service in $Services)
-    { 
-        $filter = 'Name=' + "'" + $Service + "'" + ''
-        $s = Get-WMIObject -class Win32_Service -Filter $filter
-        $s.Change($Null,$Null,$Null,$Null,$Null,$Null,$Null,$Password,$Null,$Null,$Null)  
-    }
-  }
-    catch{
-        WriteLog -LogFile $LogFile -LogLevel "ERROR" -Log $_.Exception.Message
-        exit 1
-      }
+    
+    "Applying TLS/SSL Certificate"
+    New-WebBinding -Name $siteName -Port 443 -Protocol https 
+    (Get-WebBinding -Name $siteName -Port 443 -Protocol "https").AddSslCertificate($newCert.Thumbprint, "my")
+}
+catch 
+{
+    Write-Output "An Error ocured on certificate creation..."
+    
+}
+"`r`n`r`nNew web bindings"
+$webbindings = Get-WebBinding -Name $siteName
+$webbindings
+
+
 # SIG # Begin signature block
 # MIIgTgYJKoZIhvcNAQcCoIIgPzCCIDsCAQExDzANBglghkgBZQMEAgEFADB5Bgor
 # BgEEAYI3AgEEoGswaTA0BgorBgEEAYI3AgEeMCYCAwEAAAQQH8w7YFlLCE63JNLG
-# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCD+jBSUGO9KRsQj
-# ujDWJgLs9Eawfm8ieOrx+jRUej2lZaCCDl8wggboMIIE0KADAgECAhB3vQ4Ft1kL
+# KX7zUQIBAAIBAAIBAAIBAAIBADAxMA0GCWCGSAFlAwQCAQUABCCKdP5NkIXSHmbg
+# kZrn9Rq2enZ+5+/RLMp/XluDcvm81KCCDl8wggboMIIE0KADAgECAhB3vQ4Ft1kL
 # th1HYVMeP3XtMA0GCSqGSIb3DQEBCwUAMFMxCzAJBgNVBAYTAkJFMRkwFwYDVQQK
 # ExBHbG9iYWxTaWduIG52LXNhMSkwJwYDVQQDEyBHbG9iYWxTaWduIENvZGUgU2ln
 # bmluZyBSb290IFI0NTAeFw0yMDA3MjgwMDAwMDBaFw0zMDA3MjgwMDAwMDBaMFwx
@@ -118,23 +142,23 @@ try{
 # R2xvYmFsU2lnbiBudi1zYTEyMDAGA1UEAxMpR2xvYmFsU2lnbiBHQ0MgUjQ1IEVW
 # IENvZGVTaWduaW5nIENBIDIwMjACDHBNxPwWOpXgXVV8DDANBglghkgBZQMEAgEF
 # AKB8MBAGCisGAQQBgjcCAQwxAjAAMBkGCSqGSIb3DQEJAzEMBgorBgEEAYI3AgEE
-# MBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCBm
-# xxT+3KNByPhe3lLiw5IEWEphcWlT+XHv5bffAxY+uTANBgkqhkiG9w0BAQEFAASC
-# AgCP+Te+ecW3yW/YaN6ISiZ6iz6ot8pmsBgqk4QJP4g3t6N6lHw/OP9mWthlv+oB
-# Zcm6KpVz7IP1Ia95pUeXJwZ/tyZRynHygjw7IwgREcpkpuYzTqXnPmSanRifhwlB
-# tPvAmi3Zi8hQlxVj7bMqtVG07e2D3yC9VngWiyGODfw0D5Ci56pF+elBdiDF+m9d
-# f9rkveOSOksVQnEWIwsZws5VoiKzmB6KDuqrzoSveJTgLhr33U1eP3FXtDW/9lmL
-# rnkeeFIQEzMnY6/cuXehrqAlCcrMoOaJ6x2OjCD4Yg93NXgLqoJE3bcB+Cg82/nK
-# dX33zRG1VEX1ujHRGl+Q44vhCF4rd/cx+GiIB8sH1CgA+a4wepvG1dqHEliAmpTX
-# 93PR9ZHoMsWgFCnLz5h0Of5HC6gmT2uXN5RiHSkBBLtjwkPyVcQkbvFw+yk5qq5N
-# nqWRoULY9Espi2/pCFShI+kfPmsTqlUiaq1uezRcIuaK+GIa73SqB1wW85nCtiwE
-# EJwofOFrUZwQNKhyOzauz9GRLs6kjguqTg+H6iNZcdfqc+dj0J56wXfdx5qCuiwU
-# AhcorJtjgDkTHzZWXW0/RcJ/O/mt4tfflfzHr0Oayu71O/78eKrPGYjINCFlyjBz
-# hoVpTn18+bnzpa3s4j4zAYTo9SFuK7rLRwJ2+HUkW/eU7qGCDiwwgg4oBgorBgEE
+# MBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEVMC8GCSqGSIb3DQEJBDEiBCDD
+# upyZKGCmK3x7oQXQFwwJM+tE2V0m+kNhhVP02iGriTANBgkqhkiG9w0BAQEFAASC
+# AgAExrxbRgUbzHtj+95CX+ltkbLkHSQSOdFpdz9BNjWbEmcIjtmQ95COGniRjs5N
+# Nk1uzKzdDpR+Z0V8yWgpB12UoI7Y73RCYZMg2SojTnxSGvIri/AsV1BrZk/4OVuF
+# Nj5J54/CF/Ju/Y7yPq45vGNdDHiWBikN3yOVUsR/pYs4xSP12eK15HhCCnQcSVDc
+# pXCvAbFC321fXfkWs5w4K8yJUj9jEHEnTUQDx36RXkRN4+9MQSAZT/H/P8B8TNWT
+# wGxHIjYvjzAF1CnyIZs5vOox4kbnXx4fGtw8RUmkclpYfpxz6zVXBLCOwRIlAGGH
+# 1VDzljGq2gIUGWJDedXUeZ4SmdnPuErKbscuVXPtvj3rG8vv2JdkFK3TXyU8SGmU
+# LBL8o+G6+phIinoNPakUEUt5T42C5PojeRFc5bAiPYyKDAgGvxyd8IZwc76svyBk
+# LM4N8LXXXWC1oBrvwkt3TtklasrGpyohxMctmD1msLMAPkGXBw+BHgikmX1xLNt3
+# swk3Yl2w1mywm+vhqNjJ5O9dHyOfF1uMV++PZHPoGdgtR3Y3RmNp/H+NLknlaHRx
+# I3l69BBee0BSluO5idjP53rKx4iIZv62jjVbPS8yL758+yPoTeSejtRHyw0Ypk5Y
+# a09Y+tJYaJVpyLGlSTzPM+PrvMbiamHfthu2TeQwEhyJfaGCDiwwgg4oBgorBgEE
 # AYI3AwMBMYIOGDCCDhQGCSqGSIb3DQEHAqCCDgUwgg4BAgEDMQ0wCwYJYIZIAWUD
 # BAIBMIH/BgsqhkiG9w0BCRABBKCB7wSB7DCB6QIBAQYLYIZIAYb4RQEHFwMwITAJ
-# BgUrDgMCGgUABBQtYbKBhNmuKzZAamGxLjO+UUVvbgIVAJpVV4YSNAM0XQClLP67
-# njvdzYTsGA8yMDIyMDUwMTE0MzUxMlowAwIBHqCBhqSBgzCBgDELMAkGA1UEBhMC
+# BgUrDgMCGgUABBQZAB1LCramgrSwGpNi4TbaqC0DZgIVAONTzM4CfgfKVfrfGQa9
+# nWZ2R/7RGA8yMDIyMDUwMTE0MzY1OFowAwIBHqCBhqSBgzCBgDELMAkGA1UEBhMC
 # VVMxHTAbBgNVBAoTFFN5bWFudGVjIENvcnBvcmF0aW9uMR8wHQYDVQQLExZTeW1h
 # bnRlYyBUcnVzdCBOZXR3b3JrMTEwLwYDVQQDEyhTeW1hbnRlYyBTSEEyNTYgVGlt
 # ZVN0YW1waW5nIFNpZ25lciAtIEczoIIKizCCBTgwggQgoAMCAQICEHsFsdRJaFFE
@@ -198,13 +222,13 @@ try{
 # MR8wHQYDVQQLExZTeW1hbnRlYyBUcnVzdCBOZXR3b3JrMSgwJgYDVQQDEx9TeW1h
 # bnRlYyBTSEEyNTYgVGltZVN0YW1waW5nIENBAhB71OWvuswHP6EBIwQiQU0SMAsG
 # CWCGSAFlAwQCAaCBpDAaBgkqhkiG9w0BCQMxDQYLKoZIhvcNAQkQAQQwHAYJKoZI
-# hvcNAQkFMQ8XDTIyMDUwMTE0MzUxMlowLwYJKoZIhvcNAQkEMSIEIJiDIvC7o2Ql
-# sZ8kxQ7tTT+X6D+Jm04NYaBTJ3HcW857MDcGCyqGSIb3DQEJEAIvMSgwJjAkMCIE
+# hvcNAQkFMQ8XDTIyMDUwMTE0MzY1OFowLwYJKoZIhvcNAQkEMSIEIB/jOebatD+3
+# gA+X54Q+O7/SzSBQrsz5reYsO1CqrNmNMDcGCyqGSIb3DQEJEAIvMSgwJjAkMCIE
 # IMR0znYAfQI5Tg2l5N58FMaA+eKCATz+9lPvXbcf32H4MAsGCSqGSIb3DQEBAQSC
-# AQBTpCObj8nbszfR2xiIYTZuNTU+a+z+bd3WqJqeIqic4v480c+AgdBSXT71guDu
-# m5kSpgO5XoR3H/SpvmRdESPsWlWfUYCQmLl0YlC/Ny6XYKlm15mhYL2mQT8f1/LZ
-# /VOXKw+twFnLyzHAR2JwUXe/OuWUcaLV6buYmDCyB4R3gylS5Vy1aw4LVHzyI705
-# p2C+iiM2uMvQOQJuMUZ38023T/inPdvVQmghhqSvngzuTQ66KKQQJCEhfmfyzm7z
-# dXX2BBxZg5n85qI+rh+ZbARUKMxJbchA6HPk9m9llMwI7tMRCb3fkTEXaiDoLcUX
-# u+7++j1hH/RAk8cNAhWZgx+X
+# AQBUiR0Vrk7Lz843/ANSvt8IpwUGyT1Dsn1393873oLy9YB2ETICizXCZ2kqDAQd
+# lf6Hi34EF8+NXUMByu7fnM6RKMdhCyQfUGaz+GSwqvHknn9db/MfT6eRWtEl0m65
+# 7Visiakz5X78sGz55Kp7VyQAK5TXaV+HkHcBd4rLB995lpl6V6M1WBLwncMIFC0B
+# Y2AhwJPU0i791A91QzPXu/yzrtKQH7NwFK0Z6I0ngvSU23Sof3ic2TmlMnnY6htX
+# pxBi1xBwqwOnj1Uqtl4ye/BwFcUKVhZwO+83dm3bQPPSzHSb/K7Hkfab+KoGUKZL
+# AI7JzucBjfGsG2wD0i1hQBc2
 # SIG # End signature block

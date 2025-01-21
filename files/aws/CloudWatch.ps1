@@ -5,7 +5,6 @@ Param(
     [Parameter(Mandatory=$true)][string]$LogGroup,
     [Parameter(Mandatory=$true)][string]$PVWACfnInitLogStream,
     [Parameter(Mandatory=$true)][string]$PVWAConfiguration,
-    [Parameter(Mandatory=$true)][string]$PVWASetLocalService,
     [Parameter(Mandatory=$true)][string]$PVWARegistration
 )
 
@@ -15,7 +14,6 @@ Param(
          -Replace 'LOG_GROUP_PH',$LogGroup `
          -Replace 'PVWA_CFN_LOG_PH',$PVWACfnInitLogStream `
          -Replace 'PVWA_CONF_LOG_PH',$PVWAConfiguration `
-         -Replace 'PVWA_LOCALSERVICE_LOG_PH',$PVWASetLocalService `
          -Replace 'PVWAREGISTRATION_LOG_PH',$PVWARegistration)| Out-File `
          -FilePath "C:\Program Files\Amazon\SSM\Plugins\awsCloudWatch\AWS.EC2.Windows.CloudWatch.json" -Force -Encoding ASCII
 # SIG # Begin signature block
