@@ -12,6 +12,9 @@ $LogFile = "C:\CyberArk\Deployment\Logs\PVWAConfiguration.log"
 
 
 try{
+    & $PSScriptRoot\CreateSelfCertAndBind.ps1
+
+    WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "New self-signed certificate created successfully."
     WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "Send request to hostname"
     if ($HostName -eq "empty") {
         $HostNameRequest = Invoke-WebRequest -Uri http://169.254.169.254/latest/meta-data/hostname -UseBasicParsing
@@ -35,6 +38,7 @@ try{
     $step4.Value = $PVWAURL
     WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "Save xml"
     $xml.Save($filePath)
+
 }
 catch{
     WriteLog -LogFile $LogFile -LogLevel "ERROR" -Log $_.Exception.Message
