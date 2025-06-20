@@ -64,13 +64,19 @@
     - PVWAConfiguration.ps1
     - CloudWatch.ps1
     - Common.ps1
+    - PVWAComponentRegistration.ps1
     - ../CreateSelfCertAndBind.ps1
   when: platform == 'aws'
 
 - name: Copy PS1 scripts - Azure
   ansible.windows.win_copy:
-    src: "files/CreateSelfCertAndBind.ps1"
+    src: "files/azure/{{ item }}"
     dest: "C:\\CyberArk\\"
+  with_items:
+    - CloudRegisterToVault.ps1
+    - ComponentRegistration.ps1
+    - HttpRedirectHostname.ps1
+    - ../CreateSelfCertAndBind.ps1
   when: platform == 'azure'
 
 - name: Copy CloudWatch Json
