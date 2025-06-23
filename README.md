@@ -42,6 +42,7 @@ pvwa_auth_type                    | yes          | **cyberark;ldap**            
 pvwa_iis_app_folder               | yes          | **C:\inetpub\wwwroot\PasswordVault**            | IIS Application Folder
 pvwa_app_name                     | yes          | **PasswordVault**                               | Web Application Name
 pvwa_installation_drive           | no           | **C:**                                          | Destination installation drive
+use_pvwa_register_script          | no           | false                                           | Whether to use cf scripts for registration
 
 ## Dependencies
 None
@@ -70,6 +71,13 @@ This task will validate which PVWA steps have already occurred on the server to 
 
 This task will clean the configuration (inf) files from the installation, delete the
 PVWA installation logs from the Temp folder and delete the cred files.
+
+### Using `use_pvwa_register_script`
+
+To use this parameter correctly, you need to run all the steps without doing the registration, this will copy
+all the scripts onto the PVWA machine for usage. Then you run registration with this set to `true`.
+
+
 
 ## Example Playbook
 Below is an example of how you can incorporate this role into an Ansible playbook

@@ -46,3 +46,7 @@ accept_eula: "No"
 vault_username: "administrator"
 vault_port: 1858
 log_path_dest: "{{ playbook_dir | dirname }}/logs/pvwa"
+
+# For aws registration when using the role as part of an ansible workflow.
+# This will call the registration scripts that are used with cloud formation outside of that context
+use_pvwa_register_script: false

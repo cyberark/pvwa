@@ -144,3 +144,21 @@
     - name: Fail when registration not successful
       ansible.builtin.fail:
         msg: 'ERROR: Registration failed.'
+  when: not use_pvwa_register_script
+
+# To use this you have to run all the steps (including pvwa_clean) without registration and then run only registration with the use_pvwa_register_script param
+- name: Registration Block - Modern
+  block:
+    - name: Register instance
+      ansible.windows.win_shell: |
+        $SecuredAdminPassword = ConvertTo-SecureString -AsPlainText '{{ vault_password }}' -Force
+        .\\PVWAComponentRegistration.ps1 -VaultIpAddress {{ vault_ip }} `
+        -VaultAdminUser {{ vault_username }} `
+        -VaultPort {{ vault_port }} `
+        -HostName '{{ ansible_host }}' `
+        -AdminPassword $SecuredAdminPassword
+      args:
+        chdir: C:\CyberArk\Deployment\
+      when:
+        - use_pvwa_register_script
+        - platform == 'aws'

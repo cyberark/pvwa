@@ -33,6 +33,8 @@
     restart: true
     include_sub_features: true
     include_management_tools: true
+  async: 900
+  poll: 15
 
 # tasks file for pvwa prerequisities
 
@@ -61,6 +63,8 @@
             Write-Output "Error occured: $error"
             exit 1
         }
+      async: 900
+      poll: 15
 
     - name: Get log path for prerequisites
       ansible.windows.win_shell: |
@@ -100,3 +104,5 @@
   ansible.windows.win_feature:
     name: NET-WCF-HTTP-Activation45
     state: present
+  async: 900
+  poll: 15

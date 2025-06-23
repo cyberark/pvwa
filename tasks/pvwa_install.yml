@@ -23,6 +23,8 @@
         Write-Output "Error occured during SetAtrributeInXML"
         exit 1
     }
+  async: 1800
+  poll: 15
 
 - name: Installation Block
   block:
@@ -41,6 +43,8 @@
         }
       args:
         chdir: "{{ pvwa_installationautomation_folder }}\\Installation"
+      async: 1800
+      poll: 15
 
     - name: Get log path for installation
       ansible.windows.win_shell: |

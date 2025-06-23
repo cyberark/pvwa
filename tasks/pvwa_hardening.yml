@@ -4,6 +4,13 @@
 - name: Hardening Block
   block:
 
+    - name: Disabling HTTP service restart in the XML Hardening config file
+      ansible.windows.win_shell: |
+        $xmlFilePath = "{{ pvwa_installationautomation_folder }}/PVWA_Hardening_Config.xml"
+        [xml]$xml = Get-Content $xmlFilePath
+        $xml.SelectSingleNode("//Step[@Name='ServerInformationDisclosure']/Parameters/Parameter[@Name='RestartHttpService']").Value = "False"
+        $xml.Save($xmlFilePath)
+
     - name: Run PVWA hardening
       ansible.windows.win_shell: |
         $ErrorActionPreference = "SilentlyContinue"
