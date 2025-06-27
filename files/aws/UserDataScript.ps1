@@ -55,7 +55,6 @@ try
     & $PSScriptRoot\PVWAComponentRegistration.ps1 -VaultIpAddress $VaultPrivateIP `
                                                   -VaultAdminUser $VaultAdminUser `
                                                   -VaultPort 1858 `
-                                                  -HostName $ComponentHostname `
                                                   -AdminPassword $SecuredAdminPassword
 }
 catch
@@ -66,7 +65,7 @@ catch
 
 # Generate and apply a new self-signed certificate to the existing HTTPS binding on Default Web Site
 try {
-    & $PSScriptRoot\CreateSelfCertAndBind.ps1 -CertificateDnsName $ComponentHostname
+    & $PSScriptRoot\CreateSelfCertAndBind.ps1 -CertificateDnsName "pvwa"
     WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "New self-signed certificate created successfully."
 } catch {
     WriteLog -LogFile $LogFile -LogLevel "ERROR" -Log "Failed to execute self-signed certificate configuration: $_"
