@@ -155,7 +155,6 @@
         .\\PVWAComponentRegistration.ps1 -VaultIpAddress {{ vault_ip }} `
         -VaultAdminUser {{ vault_username }} `
         -VaultPort {{ vault_port }} `
-        -HostName '{{ ansible_host }}' `
         -AdminPassword $SecuredAdminPassword
       args:
         chdir: C:\CyberArk\Deployment\

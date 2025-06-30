@@ -2,8 +2,7 @@
 Param(
     [Parameter(Mandatory=$true)][string]$VaultIpAddress,
     [Parameter(Mandatory=$true)][string]$VaultAdminUser,
-    [Parameter(Mandatory=$true)][string]$VaultPort,
-    [Parameter(Mandatory=$true)][string]$HostName
+    [Parameter(Mandatory=$true)][string]$VaultPort
 )
 
 . "$PSScriptRoot\Common.ps1"
@@ -12,12 +11,7 @@ $LogFile = "C:\CyberArk\Deployment\Logs\PVWAConfiguration.log"
 
 
 try{
-    WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "Send request to hostname"
-    if ($HostName -eq "empty") {
-        $HostNameRequest = Invoke-WebRequest -Uri http://169.254.169.254/latest/meta-data/hostname -UseBasicParsing
-        $HostName = $HostNameRequest.Content
-    }
-    $PVWAURL = "https://$HostName/PasswordVault"
+    $PVWAURL = "https://pvwa/PasswordVault"
     $ScriptPath = $PSScriptRoot
     $FilePath = "C:\CyberArk\PVWA\InstallationAutomation\Registration\PVWARegisterComponentConfig.xml"
     $xml = [xml](Get-Content $filePath)

@@ -3,7 +3,6 @@ Param(
     [Parameter(Mandatory=$true)][string]$VaultIpAddress,
     [Parameter(Mandatory=$true)][string]$VaultAdminUser,
     [Parameter(Mandatory=$true)][string]$VaultPort,
-    [Parameter(Mandatory=$true)][string]$HostName,
     [Parameter(Mandatory=$true)][SecureString]$AdminPassword
 )
 
@@ -14,8 +13,7 @@ $LogFile = "C:\CyberArk\Deployment\Logs\UserData.log"
 try {
     & $PSScriptRoot\PVWAConfiguration.ps1 -VaultIpAddress $VaultIpAddress `
                             -VaultAdminUser $VaultAdminUser `
-                            -VaultPort $VaultPort `
-                            -HostName $HostName
+                            -VaultPort $VaultPort
     ChildScriptErrorHandler -ScriptName "PVWAConfiguration"
     WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "PVWAConfiguration configuration completed successfully"
 } catch {
