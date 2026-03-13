@@ -50,15 +50,14 @@ WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "Getting Admin password from ss
 $SecuredAdminPassword = ConvertTo-SecureString -AsPlainText (Get-SSMParameterValue -Name "$SSMAdminPassParameterID" -WithDecryption $true).Parameters.Value -Force
 
 # PVWA registration block
-try
-{
+try {
     & $PSScriptRoot\PVWAComponentRegistration.ps1 -VaultIpAddress $VaultPrivateIP `
-                                                  -VaultAdminUser $VaultAdminUser `
-                                                  -VaultPort 1858 `
-                                                  -AdminPassword $SecuredAdminPassword
-}
-catch
-{
+        -VaultAdminUser $VaultAdminUser `
+        -VaultPort 1858 `
+        -AdminPassword $SecuredAdminPassword
+    ChildScriptErrorHandler -ScriptName "PVWAComponentRegistration"
+    WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "PVWA component registration completed successfully"
+} catch {
     WriteLog -LogFile $LogFile -LogLevel "ERROR" -Log "Failed to register PVWA component: $_"
     exit 1
 }
@@ -66,6 +65,7 @@ catch
 # Generate and apply a new self-signed certificate to the existing HTTPS binding on Default Web Site
 try {
     & $PSScriptRoot\CreateSelfCertAndBind.ps1 -CertificateDnsName "pvwa"
+    ChildScriptErrorHandler -ScriptName "CreateSelfCertAndBind"
     WriteLog -LogFile $LogFile -LogLevel "INFO" -Log "New self-signed certificate created successfully."
 } catch {
     WriteLog -LogFile $LogFile -LogLevel "ERROR" -Log "Failed to execute self-signed certificate configuration: $_"
