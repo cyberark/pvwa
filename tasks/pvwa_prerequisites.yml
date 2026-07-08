@@ -26,15 +26,33 @@
   ansible.windows.win_reboot:
   when: dotnet_install.reboot_required
 
-- name: Install IIS Web-Server with sub features and management tools
+- name: Check for missing PVWA prerequisite Windows features
+  ansible.windows.win_shell: |
+    $required = @(
+    {% for feature in pvwa_required_windows_features %}
+      '{{ feature }}'{% if not loop.last %},{% endif %}
+    {% endfor %}
+    )
+    @($required | Where-Object { (Get-WindowsFeature -Name $_).InstallState -ne 'Installed' }) -join ','
+  register: pvwa_missing_windows_features
+  changed_when: false
+
+- name: Install required Windows features for PVWA prerequisites
   ansible.windows.win_feature:
-    name: "web-server"
+    name: "{{ pvwa_missing_windows_features.stdout | trim | split(',') | map('trim') | reject('equalto', '') | list }}"
     state: present
-    restart: true
-    include_sub_features: true
-    include_management_tools: true
-  async: 900
+    include_sub_features: false
+    include_management_tools: false
+  when: pvwa_missing_windows_features.stdout | trim | length > 0
+  register: pvwa_windows_features_install
+  async: 3600
   poll: 15
+
+- name: Reboot host if required after Windows feature install
+  ansible.windows.win_reboot:
+  when:
+    - pvwa_windows_features_install is changed
+    - pvwa_windows_features_install.reboot_required | default(false)
 
 # tasks file for pvwa prerequisities
 
@@ -72,13 +90,23 @@
         Write-Output $Result
       register: log_result
 
+    - name: Resolve prerequisites detail log path on remote host
+      ansible.windows.win_shell: |
+        $json = Get-Content "{{ pvwa_prerequisites_log }}" -Raw | ConvertFrom-Json
+        $logPath = $json.logPath
+        if ($logPath -match '^\.\\') {
+            $logPath = Join-Path "{{ pvwa_installationautomation_folder }}" ($logPath -replace '^\.\\', '')
+        }
+        Write-Output $logPath
+      register: pvwa_prereq_detail_log
+      changed_when: false
+
     - name: Fetch prerequisites log from path
       ansible.builtin.fetch:
-        src: '{{ item.logPath }}'
+        src: '{{ pvwa_prereq_detail_log.stdout | trim }}'
         dest: '{{ log_path_dest }}/pvwa_prerequisites.log'
         flat: true
-      with_items:
-        - "{{ log_result.stdout | from_json }}"
+      when: pvwa_prereq_detail_log.stdout | trim | length > 0
 
   rescue:
 
@@ -88,21 +116,29 @@
         Write-Output $Result
       register: log_result
 
+    - name: Resolve prerequisites detail log path on remote host
+      ansible.windows.win_shell: |
+        $json = Get-Content "{{ pvwa_prerequisites_log }}" -Raw | ConvertFrom-Json
+        $logPath = $json.logPath
+        if ($logPath -match '^\.\\') {
+            $logPath = Join-Path "{{ pvwa_installationautomation_folder }}" ($logPath -replace '^\.\\', '')
+        }
+        Write-Output $logPath
+      register: pvwa_prereq_detail_log
+      changed_when: false
+      failed_when: false
+
     - name: Fetch prerequisites log from path
       ansible.builtin.fetch:
-        src: '{{ item.logPath }}'
+        src: '{{ pvwa_prereq_detail_log.stdout | trim }}'
         dest: '{{ log_path_dest }}/pvwa_prerequisites.log'
         flat: true
-      with_items:
-        - "{{ log_result.stdout | from_json }}"
+      when: pvwa_prereq_detail_log.stdout | trim | length > 0
+      failed_when: false
 
     - name: Fail when prerequisites not successful
       ansible.builtin.fail:
-        msg: 'ERROR: Prerequisites failed. For more info check {{ log_path_dest }}/pvwa_prerequisites.log'
-
-- name: Enable HTTP Activation for .net framework
-  ansible.windows.win_feature:
-    name: NET-WCF-HTTP-Activation45
-    state: present
-  async: 900
-  poll: 15
+        msg: >-
+          ERROR: Prerequisites failed.
+          {{ (log_result.stdout | from_json).errorData | default('see CyberArk Script.log on the target host') }}.
+          Result log: {{ pvwa_prerequisites_log }}

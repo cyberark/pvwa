@@ -24,9 +24,11 @@ function ChildScriptErrorHandler {
       $LogFile,
       $ScriptName
     )
-    if ($? -ne $true) {
-        throw "$ScriptName script returned a non-zero exit code"
-        WriteLog -LogFile $LogFile -LogLevel "ERROR" -Log "Failed to execute $ScriptName configuration: $_"
-        exit 1
+    if ($LASTEXITCODE) {
+        $msg = "$ScriptName script returned exit code $LASTEXITCODE"
+        if ($LogFile) {
+            WriteLog -LogFile $LogFile -LogLevel "ERROR" -Log $msg
+        }
+        throw $msg
     }
   }

@@ -50,3 +50,38 @@ log_path_dest: "{{ playbook_dir | dirname }}/logs/pvwa"
 # For aws registration when using the role as part of an ansible workflow.
 # This will call the registration scripts that are used with cloud formation outside of that context
 use_pvwa_register_script: false
+
+pvwa_required_windows_features:
+  - Web-Server
+  - Web-WebServer
+  - Web-Common-Http
+  - Web-Static-Content
+  - Web-Default-Doc
+  - Web-Dir-Browsing
+  - Web-Http-Errors
+  - Web-Http-Redirect
+  - Web-App-Dev
+  - Web-ASP
+  - Web-Net-Ext45
+  - Web-Asp-Net45
+  - Web-ISAPI-Ext
+  - Web-ISAPI-Filter
+  - Web-Health
+  - Web-Http-Logging
+  - Web-Request-Monitor
+  - Web-Performance
+  - Web-Stat-Compression
+  - Web-Security
+  - Web-Basic-Auth
+  - Web-Windows-Auth
+  - Web-Filtering
+  - Web-Mgmt-Tools
+  - Web-Mgmt-Service
+  - Web-Mgmt-Console
+  - Web-Scripting-Tools
+  - Web-Mgmt-Compat
+  - Web-Metabase
+  - Web-WMI
+  - PowerShell
+  - NET-WCF-HTTP-Activation45
+  - Web-WebSockets
