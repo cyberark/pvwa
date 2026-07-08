@@ -4,6 +4,43 @@
 - name: Validate input parameters
   ansible.builtin.include_tasks: pvwa_validateparameters.yml
 
+- name: Check if Amazon CloudWatch Agent is already installed
+  ansible.windows.win_stat:
+    path: "C:\\Program Files\\Amazon\\AmazonCloudWatchAgent\\amazon-cloudwatch-agent-ctl.ps1"
+  register: cwa_stat
+  when: platform == 'aws'
+
+- name: Download Amazon CloudWatch Agent installer
+  ansible.windows.win_get_url:
+    url: https://s3.amazonaws.com/amazoncloudwatch-agent/windows/amd64/latest/amazon-cloudwatch-agent.msi
+    dest: C:\Windows\Temp\amazon-cloudwatch-agent.msi
+  when:
+    - platform == 'aws'
+    - not cwa_stat.stat.exists
+
+- name: Install Amazon CloudWatch Agent
+  ansible.windows.win_package:
+    path: C:\Windows\Temp\amazon-cloudwatch-agent.msi
+    state: present
+    arguments: /quiet
+  when:
+    - platform == 'aws'
+    - not cwa_stat.stat.exists
+
+- name: Remove Amazon CloudWatch Agent installer
+  ansible.windows.win_file:
+    path: C:\Windows\Temp\amazon-cloudwatch-agent.msi
+    state: absent
+  when:
+    - platform == 'aws'
+    - not cwa_stat.stat.exists
+
+- name: Ensure AmazonCloudWatchAgent service starts automatically
+  ansible.windows.win_service:
+    name: AmazonCloudWatchAgent
+    start_mode: auto
+  when: platform == 'aws'
+
 - name: Extract PVWA package
   ansible.builtin.include_tasks: pvwa_extract.yml
   when:
