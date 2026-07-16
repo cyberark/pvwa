@@ -1,0 +1,35 @@
+{
+   "agent": {
+     "region": "AWS_REGION_PH"
+   },
+   "logs": {
+     "force_flush_interval": 5,
+     "logs_collected": {
+       "files": {
+         "collect_list": [
+           {
+             "file_path": "C:\\CyberArk\\Deployment\\Logs\\UserData.log",
+             "log_group_name": "LOG_GROUP_PH",
+             "log_stream_name": "USERDATA_LOG_PH",
+             "timestamp_format": "%Y-%m-%d %H:%M:%S",
+             "timezone": "LOCAL"
+           },
+           {
+             "file_path": "C:\\CyberArk\\Deployment\\Logs\\PVWAConfiguration.log",
+             "log_group_name": "LOG_GROUP_PH",
+             "log_stream_name": "PVWA_CONF_LOG_PH",
+             "timestamp_format": "%Y-%m-%d %H:%M:%S",
+             "timezone": "LOCAL"
+           },
+           {
+             "file_path": "C:\\CyberArk\\Deployment\\Logs\\PVWARegistration.log",
+             "log_group_name": "LOG_GROUP_PH",
+             "log_stream_name": "PVWAREGISTRATION_LOG_PH",
+             "timestamp_format": "%Y-%m-%d %H:%M:%S",
+             "timezone": "LOCAL"
+           }
+         ]
+       }
+     }
+   }
+ }
