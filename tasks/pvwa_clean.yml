@@ -54,6 +54,12 @@
     - "C:\\CyberArk\\Deployment"
     - "C:\\CyberArk\\Deployment\\Logs"
 
+- name: Remove legacy SSM awsCloudWatch plugin directory
+  ansible.windows.win_file:
+    path: "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch"
+    state: absent
+  when: platform == 'aws'
+
 - name: Copy PS1 scripts - AWS
   ansible.windows.win_copy:
     src: "files/aws/{{ item }}"
@@ -63,6 +69,7 @@
     - PVWAConfiguration.ps1
     - CloudWatch.ps1
     - Common.ps1
+    - amazon-cloudwatch-agent.json
     - ../CreateSelfCertAndBind.ps1
   when: platform == 'aws'
 
@@ -71,9 +78,3 @@
     src: "files/CreateSelfCertAndBind.ps1"
     dest: "C:\\CyberArk\\"
   when: platform == 'azure'
-
-- name: Copy CloudWatch Json
-  ansible.windows.win_copy:
-    src: "files/aws/AWS.EC2.Windows.CloudWatch.json"
-    dest: "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\"
-  when: platform == 'aws'
